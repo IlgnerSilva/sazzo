@@ -1,0 +1,17 @@
+{
+	"Input": {
+		"email": {
+			"label": "Email",
+			"placeholder": "email@exemplo.com"
+		},
+		"password": {
+			"label": "Senha",
+			"placeholder": "Digite sua senha"
+		}
+	},
+	"Button": {
+		"login": "Entrar",
+		"logout": "Sair",
+		"register": "Registrar"
+	}
+}

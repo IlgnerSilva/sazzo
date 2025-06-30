@@ -5,9 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@radix-ui/react-dialog':
+    specifier: ^1.1.14
+    version: 1.1.14(@types/react-dom@19.1.6)(@types/react@19.1.8)(react-dom@19.1.0)(react@19.1.0)
+  '@radix-ui/react-separator':
+    specifier: ^1.1.7
+    version: 1.1.7(@types/react-dom@19.1.6)(@types/react@19.1.8)(react-dom@19.1.0)(react@19.1.0)
   '@radix-ui/react-slot':
     specifier: ^1.2.3
     version: 1.2.3(@types/react@19.1.8)(react@19.1.0)
+  '@radix-ui/react-tooltip':
+    specifier: ^1.2.7
+    version: 1.2.7(@types/react-dom@19.1.6)(@types/react@19.1.8)(react-dom@19.1.0)(react@19.1.0)
   '@t3-oss/env-nextjs':
     specifier: ^0.13.8
     version: 0.13.8(typescript@5.8.3)(zod@3.25.67)

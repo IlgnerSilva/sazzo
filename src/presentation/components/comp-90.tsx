@@ -1,9 +1,9 @@
 import { LoaderCircleIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/presentation/components/ui/button";
 import { useTranslations } from "next-intl";
 
 export function Component() {
-	const c = useTranslations("components.Button");
+	const c = useTranslations("errors");
 	return (
 		<Button disabled>
 			<LoaderCircleIcon
@@ -11,7 +11,6 @@ export function Component() {
 				size={16}
 				aria-hidden="true"
 			/>
-			{c("login")}
 		</Button>
 	);
 }

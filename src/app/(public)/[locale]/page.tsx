@@ -1,5 +1,5 @@
-import { Component } from "@/components/comp-90";
+import { SwitcherLocale } from "@/presentation/components/switcher-locale";
 
 export default function Home() {
-	return <Component />;
+	return <SwitcherLocale />;
 }

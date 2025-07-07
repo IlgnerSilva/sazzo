@@ -1,17 +1,25 @@
 {
-	"Input": {
-		"email": {
-			"label": "Email",
-			"placeholder": "email@exemplo.com"
+	"FormLoginCredentials": {
+		"title": "Entre com sua conta",
+		"subtitle": "Ou entre com e-mail",
+		"inputs": {
+			"email": {
+				"label": "E-mail",
+				"placeholder": "E-mail"
+			},
+			"password": {
+				"label": "Senha",
+				"placeholder": "Senha"
+			},
+			"checkbox": {
+				"label-remember": "Lembrar de Mim"
+			}
 		},
-		"password": {
-			"label": "Senha",
-			"placeholder": "Digite sua senha"
+		"buttons": {
+			"signin": "Entrar"
+		},
+		"links": {
+			"forgot": "Esqueceu a Senha?"
 		}
-	},
-	"Button": {
-		"login": "Entrar",
-		"logout": "Sair",
-		"register": "Registrar"
 	}
 }

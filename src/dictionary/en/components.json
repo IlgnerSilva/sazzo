@@ -1,17 +1,25 @@
 {
-	"Input": {
-		"email": {
-			"label": "Email",
-			"placeholder": "email@example.com"
+	"FormLoginCredentials": {
+		"title": "Login To Your Account",
+		"subtitle": "Or login with email",
+		"inputs": {
+			"email": {
+				"label": "E-mail",
+				"placeholder": "E-mail"
+			},
+			"password": {
+				"label": "E-mail",
+				"placeholder": "E-mail"
+			},
+			"checkbox": {
+				"label-remember": "Remember Me"
+			}
 		},
-		"password": {
-			"label": "Password",
-			"placeholder": "Enter your password"
+		"buttons": {
+			"signin": "Sign In"
+		},
+		"links": {
+			"forgot": "Forgot Password?"
 		}
-	},
-	"Button": {
-		"login": "Sign in",
-		"logout": "Sign out",
-		"register": "Register"
 	}
 }

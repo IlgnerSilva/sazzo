@@ -11,9 +11,9 @@ export const routing = defineRouting({
 	// Caminhos para cada idioma
 	pathnames: {
 		"/": "/",
-		"/auth/login": {
-			en: "/auth/login",
-			"pt-br": "/auth/login",
+		"/auth/signin": {
+			en: "/auth/signin",
+			"pt-br": "/auth/signin",
 		},
 	},
 });

@@ -27,10 +27,10 @@ const authMiddleware = async (req: NextRequest) => {
 	// Se o usuário não estiver autenticado e tentar acessar uma página que requer autenticação, redireciona para a página de login
 	if (!isLogged && isProtectPage) {
 		// Se já estiver tentando acessar a página de login, não redireciona
-		if (req.nextUrl.pathname === "/auth/login") {
+		if (req.nextUrl.pathname === "/auth/signin") {
 			return NextResponse.next(); // Deixa o usuário continuar na página de login
 		}
-		return NextResponse.redirect(new URL("/auth/login", req.nextUrl));
+		return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
 	}
 
 	// Se o usuário estiver autenticado e tentar acessar uma página de login, redireciona para a página inicial

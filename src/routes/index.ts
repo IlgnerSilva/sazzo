@@ -1,2 +1,2 @@
-export const publicRoutes = ["/", "/auth/login", "/auth/verify/totp"];
-export const privateRoutes = ["/oi"];
+export const publicRoutes = ["/auth/signin", "/auth/verify/totp"];
+export const privateRoutes = ["/"];

@@ -15,8 +15,7 @@ import {
 } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
-	baseURL:
-		"https://3000-firebase-sazzo-1750791282318.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev/",
+	baseURL: "http://localhost:3000",
 	plugins: [
 		inferAdditionalFields<typeof auth>(),
 		twoFactorClient(),

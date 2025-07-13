@@ -19,11 +19,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useId } from "react";
 import { useTransition } from "react";
-import { authClient } from "@/lib/better-auth/auth-client";
 import { useTranslations } from "next-intl";
+import { Toaster } from "@/presentation/components/ui/sonner";
+import { toast } from "sonner";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { useErrorTranslation } from "@/hooks/use-error-translation";
 
 export function FormLoginCredentials() {
 	const [isPending, startTransition] = useTransition();
+	const { translateError } = useErrorTranslation();
 	const c = useTranslations("components.FormLoginCredentials");
 	const id = useId();
 	const formSchema = z.object({
@@ -34,19 +38,20 @@ export function FormLoginCredentials() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			email: "",
-			password: "",
+			email: "ilgnersilva@outlook.com",
+			password: "123456",
 			rememberMe: false,
 		},
 	});
 
 	async function onSubmit(data: z.infer<typeof formSchema>) {
 		startTransition(async () => {
-			await authClient.signIn.email({
-				email: data.email,
-				password: data.password,
-				rememberMe: data.rememberMe,
-				callbackURL: "/dashboard",
+			await authClient.signIn.email(data, {
+				onError(ctx) {
+					console.log(ctx.error.code);
+					const message = translateError(ctx.error.code);
+					toast.error(message);
+				},
 			});
 		});
 	}
@@ -86,6 +91,7 @@ export function FormLoginCredentials() {
 									<FormLabel>{c("inputs.email.label")}</FormLabel>
 									<FormControl>
 										<InputEmail
+											required
 											placeholder={c("inputs.email.label")}
 											className="rounded-xl"
 											{...field}
@@ -105,6 +111,7 @@ export function FormLoginCredentials() {
 									<FormLabel>{c("inputs.password.label")}</FormLabel>
 									<FormControl>
 										<InputPassword
+											required
 											className="rounded-xl"
 											placeholder={c("inputs.password.placeholder")}
 											{...field}
@@ -154,6 +161,7 @@ export function FormLoginCredentials() {
 					</div>
 				</div>
 			</form>
+			<Toaster richColors position="top-center" />
 		</Form>
 	);
 }

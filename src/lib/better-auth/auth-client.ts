@@ -16,7 +16,7 @@ import {
 import { env } from "@/env";
 
 export const authClient = createAuthClient({
-	baseURL: env.NEXT_PUBLIC_URL,
+	baseURL: env.NEXT_PUBLIC_HOST_URL,
 	plugins: [
 		inferAdditionalFields<typeof auth>(),
 		twoFactorClient(),

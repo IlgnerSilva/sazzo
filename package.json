@@ -19,6 +19,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@t3-oss/env-nextjs": "^0.13.8",
+    "bcrypt": "^6.0.0",
     "better-auth": "^1.2.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@tailwindcss/postcss": "^4.1.11",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.19.8",
     "@types/pg": "^8.15.4",
     "@types/react": "19.1.8",

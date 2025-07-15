@@ -52,8 +52,8 @@ dependencies:
     specifier: ^16.6.1
     version: 16.6.1
   drizzle-orm:
-    specifier: ^0.44.2
-    version: 0.44.2(@types/pg@8.15.4)(pg@8.16.3)
+    specifier: ^0.44.3
+    version: 0.44.3(@types/pg@8.15.4)(pg@8.16.3)
   lucide-react:
     specifier: ^0.523.0
     version: 0.523.0(react@19.1.0)
@@ -99,8 +99,8 @@ devDependencies:
     specifier: ^4.1.11
     version: 4.1.11
   '@types/node':
-    specifier: ^20.19.5
-    version: 20.19.5
+    specifier: ^20.19.8
+    version: 20.19.8
   '@types/pg':
     specifier: ^8.15.4
     version: 8.15.4
@@ -2704,15 +2704,15 @@ packages:
       tailwindcss: 4.1.11
     dev: true
 
-  /@types/node@20.19.5:
-    resolution: {integrity: sha512-M4CtoNkoQrYOD7O80KM7DjGdzwMvoXZ12SGUbxc0X1AK6gfBKjkJswW/B4MyTPMIuU0sodukEgj8CzIJKEAQXQ==}
+  /@types/node@20.19.8:
+    resolution: {integrity: sha512-HzbgCY53T6bfu4tT7Aq3TvViJyHjLjPNaAS3HOuMc9pw97KHsUtXNX4L+wu59g1WnjsZSko35MbEqnO58rihhw==}
     dependencies:
       undici-types: 6.21.0
 
   /@types/pg@8.15.4:
     resolution: {integrity: sha512-I6UNVBAoYbvuWkkU3oosC8yxqH21f4/Jc4DK71JLG3dT2mdlGe1z+ep/LQGXaKaOgcvUrsQoPRqfgtMcvZiJhg==}
     dependencies:
-      '@types/node': 20.19.5
+      '@types/node': 20.19.8
       pg-protocol: 1.10.3
       pg-types: 2.2.0
 
@@ -2753,7 +2753,7 @@ packages:
       '@noble/hashes': 1.8.0
       '@simplewebauthn/browser': 13.1.2
       '@simplewebauthn/server': 13.1.2
-      better-call: 1.0.11
+      better-call: 1.0.12
       defu: 6.1.4
       jose: 6.0.11
       kysely: 0.28.2
@@ -2761,8 +2761,8 @@ packages:
       zod: 3.25.76
     dev: false
 
-  /better-call@1.0.11:
-    resolution: {integrity: sha512-MOM01EMZFMzApWq9+WfqAnl2+DzFoMNp4H+lTFE1p7WF4evMeaQAAcOhI1WwMjITV4PGIWJ3Vn5GciQ5VHXbIA==}
+  /better-call@1.0.12:
+    resolution: {integrity: sha512-ssq5OfB9Ungv2M1WVrRnMBomB0qz1VKuhkY2WxjHaLtlsHoSe9EPolj1xf7xf8LY9o3vfk3Rx6rCWI4oVHeBRg==}
     dependencies:
       '@better-fetch/fetch': 1.1.18
       rou3: 0.5.1
@@ -2880,8 +2880,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.44.2(@types/pg@8.15.4)(pg@8.16.3):
-    resolution: {integrity: sha512-zGAqBzWWkVSFjZpwPOrmCrgO++1kZ5H/rZ4qTGeGOe18iXGVJWf3WPfHOVwFIbmi8kHjfJstC6rJomzGx8g/dQ==}
+  /drizzle-orm@0.44.3(@types/pg@8.15.4)(pg@8.16.3):
+    resolution: {integrity: sha512-8nIiYQxOpgUicEL04YFojJmvC4DNO4KoyXsEIqN44+g6gNBr6hmVpWk3uyAt4CaTiRGDwoU+alfqNNeonLAFOQ==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'

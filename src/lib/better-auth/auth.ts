@@ -1,21 +1,20 @@
+import { compare, hash } from "bcrypt";
+import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "@/db/drizzle";
-import { schema } from "@/db/drizzle";
+import { nextCookies } from "better-auth/next-js";
 import {
-	twoFactor,
-	username,
-	magicLink,
-	emailOTP,
 	admin,
 	bearer,
-	multiSession,
+	emailOTP,
 	jwt,
+	magicLink,
+	multiSession,
 	openAPI,
+	twoFactor,
+	username,
 } from "better-auth/plugins";
-import { nextCookies } from "better-auth/next-js";
-import { betterAuth } from "better-auth";
+import { db, schema } from "@/db/drizzle";
 import { env } from "@/env";
-import { hash, compare } from "bcrypt";
 
 export const auth = betterAuth({
 	database: drizzleAdapter(db, {
@@ -100,7 +99,7 @@ export const auth = betterAuth({
 			console.log(error, request);
 		},
 	},
-	secret: env.SECRET,
+	secret: env.BETTER_AUTH_SECRET,
 	session: {
 		preserveSessionInDatabase: false,
 		expiresIn: 60 * 5,
@@ -156,6 +155,7 @@ export const auth = betterAuth({
 			allowedAttempts: 5,
 			async sendVerificationOTP({ email, otp, type }, request) {
 				// Send email with OTP
+				console.log(email, otp, type, request);
 			},
 		}),
 		magicLink({

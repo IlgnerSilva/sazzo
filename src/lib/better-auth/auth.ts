@@ -32,8 +32,6 @@ export const auth = betterAuth({
 			// Send email with reset password link
 			console.log(data, request);
 		},
-		minPasswordLength: 8,
-		maxPasswordLength: 128,
 		password: {
 			hash: async (password) => {
 				return await hash(password, 6);

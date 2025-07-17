@@ -1,25 +1,49 @@
 {
 	"FormLoginCredentials": {
 		"title": "Login To Your Account",
-		"subtitle": "Or login with email",
-		"inputs": {
-			"email": {
-				"label": "E-mail",
-				"placeholder": "E-mail"
-			},
-			"password": {
-				"label": "E-mail",
-				"placeholder": "E-mail"
-			},
-			"checkbox": {
-				"label-remember": "Remember Me"
+		"subtitle": "Or login with email"
+	},
+	"FormSignUpCredentials": {
+		"title": "Create Account",
+		"subtitle": "Or sign up with email"
+	},
+	"Inputs": {
+		"name": {
+			"label": "Name",
+			"placeholder": "Name"
+		},
+		"email": {
+			"label": "E-mail",
+			"placeholder": "E-mail"
+		},
+		"password": {
+			"label": "Password",
+			"placeholder": "Password",
+			"validations": {
+				"help-message": "Password must contain:",
+				"feedback-password-min": "Weak password.",
+				"feedback-password-med": "Medium password.",
+				"feedback-password-large": "Strong password.",
+				"min-caracteres": "At least {min} characters",
+				"min-number": "At least {min} number",
+				"min-lowercase": "At least {min} lowercase letter",
+				"min-uppercase": "At least {min} uppercase letter",
+				"matcher-password": "Passwords do not match"
 			}
 		},
-		"buttons": {
-			"signin": "Sign In"
+		"confirm-password": {
+			"label": "Confirm password",
+			"placeholder": "Confirm password"
 		},
-		"links": {
-			"forgot": "Forgot Password?"
+		"checkbox": {
+			"label-remember": "Remember Me"
 		}
+	},
+	"Buttons": {
+		"signin": "Sign In",
+		"signup": "Create account"
+	},
+	"Links": {
+		"forgot": "Forgot Password?"
 	}
 }

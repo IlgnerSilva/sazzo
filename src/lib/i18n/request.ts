@@ -14,7 +14,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
 			common: (await import(`../../dictionary/${locale}/common.json`)).default,
 			components: (await import(`../../dictionary/${locale}/components.json`))
 				.default,
-			errors: (await import(`../../dictionary/${locale}/errors.json`)).default,
+			messages_status: (
+				await import(`../../dictionary/${locale}/messages_status.json`)
+			).default,
 			pages: (await import(`../../dictionary/${locale}/pages.json`)).default,
 			validation: (await import(`../../dictionary/${locale}/validation.json`))
 				.default,

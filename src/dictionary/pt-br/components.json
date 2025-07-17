@@ -1,25 +1,49 @@
 {
 	"FormLoginCredentials": {
 		"title": "Entre com sua conta",
-		"subtitle": "Ou entre com e-mail",
-		"inputs": {
-			"email": {
-				"label": "E-mail",
-				"placeholder": "E-mail"
-			},
-			"password": {
-				"label": "Senha",
-				"placeholder": "Senha"
-			},
-			"checkbox": {
-				"label-remember": "Lembrar de Mim"
+		"subtitle": "Ou entre com e-mail"
+	},
+	"FormSignUpCredentials": {
+		"title": "Criar conta",
+		"subtitle": "Ou cadastre com e-mail"
+	},
+	"Inputs": {
+		"email": {
+			"label": "E-mail",
+			"placeholder": "E-mail"
+		},
+		"name": {
+			"label": "Nome",
+			"placeholder": "Nome"
+		},
+		"password": {
+			"label": "Senha",
+			"placeholder": "Senha",
+			"validations": {
+				"help-message": "A senha deve conter:",
+				"feedback-password-min": "Senha fraca.",
+				"feedback-password-med": "Senha média.",
+				"feedback-password-large": "Senha forte.",
+				"min-caracteres": "Pelo menos {min} caracteres",
+				"min-number": "Pelo menos {min} número",
+				"min-lowercase": "Pelo menos {min} letra minúscula",
+				"min-uppercase": "Pelo menos {min} letra maiúscula",
+				"matcher-password": "As senhas não são iguais"
 			}
 		},
-		"buttons": {
-			"signin": "Entrar"
+		"confirm-password": {
+			"label": "Confirma senha",
+			"placeholder": "Confirma senha"
 		},
-		"links": {
-			"forgot": "Esqueceu a Senha?"
+		"checkbox": {
+			"label-remember": "Lembrar de Mim?"
 		}
+	},
+	"Buttons": {
+		"signin": "Entrar",
+		"signup": "Criar conta"
+	},
+	"Links": {
+		"forgot": "Esqueceu a Senha?"
 	}
 }

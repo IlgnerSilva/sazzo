@@ -27,7 +27,7 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true,
 		autoSignIn: false,
-		requireEmailVerification: true,
+		requireEmailVerification: false,
 		async sendResetPassword(data, request) {
 			// Send email with reset password link
 			console.log(data, request);
@@ -48,7 +48,7 @@ export const auth = betterAuth({
 				return crypto.randomUUID();
 			},
 		},
-		cookiePrefix: "auth",
+		cookiePrefix: env.APP_NAME,
 		useSecureCookies: env.NODE_ENV === "production",
 		disableCSRFCheck: false,
 		defaultCookieAttributes: {
@@ -99,14 +99,15 @@ export const auth = betterAuth({
 	},
 	secret: env.BETTER_AUTH_SECRET,
 	session: {
+		storeSessionInDatabase: false,
 		preserveSessionInDatabase: false,
+		disableSessionRefresh: false,
 		expiresIn: 60 * 5,
-		updateAge: 60 * 5,
+		updateAge: 60 * 1,
 		cookieCache: {
 			enabled: true,
 			maxAge: 60 * 5,
 		},
-		modelName: "auth.session-token",
 	},
 	user: {
 		changeEmail: {

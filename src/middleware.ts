@@ -2,7 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
 import { locales, routing } from "./lib/i18n/routing";
 import { privateRoutes, publicRoutes } from "@/routes";
-import { getCookieCache } from "better-auth/cookies";
+import { getCookieCache, getCookies } from "better-auth/cookies";
 
 // Middleware responsável pela internacionalização das rotas
 const intlMiddleware = createMiddleware(routing);
@@ -21,7 +21,13 @@ const authMiddleware = async (req: NextRequest) => {
 	const isPublicPage = testPathnameRegex(publicRoutes, req.nextUrl.pathname);
 	const isProtectPage = testPathnameRegex(privateRoutes, req.nextUrl.pathname);
 
-	const session = await getCookieCache(req);
+	//console.log(req.cookies);
+	const session = await getCookieCache(req, {
+		cookiePrefix: process.env.APP_NAME,
+		isSecure: process.env.NODE_ENV === "production",
+		secret: process.env.BETTER_AUTH_SECRET,
+	});
+
 	const isLogged = !!session;
 
 	// Se o usuário não estiver autenticado e tentar acessar uma página que requer autenticação, redireciona para a página de login

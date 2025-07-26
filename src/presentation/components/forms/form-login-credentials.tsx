@@ -14,45 +14,45 @@ import { InputEmail } from "@/presentation/components/input-email";
 import { InputPassword } from "@/presentation/components/input-password";
 import { Checkbox } from "@/presentation/components/ui/checkbox";
 import { Button } from "@/presentation/components/button";
-import { z } from "zod/v4";
+import type { z } from "zod/v4";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useId } from "react";
-import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Toaster } from "@/presentation/components/ui/sonner";
-import { toast } from "sonner";
-import { authClient } from "@/lib/better-auth/auth-client";
 import { useMessageTranslation } from "@/hooks/use-message-translation";
+import { loginCredentialSchema } from "@/schemas/auth";
+import { signinWithCredentials } from "@/actions/auth/signin-with-credentials";
+import { useAction } from "next-safe-action/hooks";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export function FormLoginCredentials() {
-	const [isPending, startTransition] = useTransition();
 	const { translateMessage } = useMessageTranslation();
+	const { isPending, executeAsync } = useAction(
+		signinWithCredentials,
+	);
 	const c = useTranslations("components");
 	const id = useId();
-	const formSchema = z.object({
-		email: z.email(),
-		password: z.string().min(1, "Password is required"),
-		rememberMe: z.boolean(),
-	});
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+
+	const form = useForm<z.infer<typeof loginCredentialSchema>>({
+		resolver: zodResolver(loginCredentialSchema),
 		defaultValues: {
 			email: "ilgnersilva@outlook.com",
-			password: "123456",
+			password: "Ilgner1234",
 			rememberMe: false,
 		},
 	});
 
-	async function onSubmit(data: z.infer<typeof formSchema>) {
-		startTransition(async () => {
-			await authClient.signIn.email(data, {
-				onError(ctx) {
-					const message = translateMessage(ctx.error.code);
-					toast.error(message);
-				},
-			});
-		});
+	async function onSubmit(data: z.infer<typeof loginCredentialSchema>) {
+		const { serverError } = await executeAsync(data);
+		if (serverError) {
+			const message = translateMessage(serverError.code || "");
+			toast.error(message);
+			return;
+		}
+
+		redirect("/");
 	}
 
 	return (

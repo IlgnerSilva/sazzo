@@ -1,21 +1,14 @@
 "use server";
 
+import { z } from "zod/v4";
+import { actionClient } from "@/lib/safe-action";
 import { auth } from "@/lib/better-auth/auth";
 import { APIError } from "better-auth/api";
-import { toast } from "sonner";
+import { loginCredentialSchema } from "@/schemas/auth";
 
-interface Props {
-	email: string;
-	password: string;
-	rememberMe?: boolean;
-}
-
-export async function signinWithCredentials({
-	email,
-	password,
-	rememberMe,
-}: Props) {
-	try {
+export const signinWithCredentials = actionClient
+	.inputSchema(loginCredentialSchema)
+	.action(async ({ parsedInput: { email, password, rememberMe } }) => {
 		return await auth.api.signInEmail({
 			body: {
 				email,
@@ -23,12 +16,4 @@ export async function signinWithCredentials({
 				rememberMe,
 			},
 		});
-	} catch (error) {
-		if (error instanceof APIError) {
-			throw new APIError(error.status, {
-				message: error.message,
-				code: error.body?.code,
-			});
-		}
-	}
-}
+	});

@@ -1,21 +1,20 @@
 import { AppSidebar } from "@/presentation/components/app-sidebar"
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
+Breadcrumb,
+BreadcrumbItem,
+BreadcrumbLink,
+BreadcrumbList,
+BreadcrumbPage,
+BreadcrumbSeparator,
 } from "@/presentation/components/ui/breadcrumb"
 import { Separator } from "@/presentation/components/ui/separator"
 import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
+SidebarInset,
+SidebarProvider,
+SidebarTrigger,
 } from "@/presentation/components/ui/sidebar"
-
-export default function Page() {
-  return (
+export function MainLayout({children}: {children: React.ReactNode}){
+    return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
@@ -42,12 +41,9 @@ export default function Page() {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 p-2 md:min-h-min">
+            {children}
           </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
         </div>
       </SidebarInset>
     </SidebarProvider>

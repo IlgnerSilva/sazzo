@@ -3,7 +3,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import {
-	admin,
+	admin as pluginAdmin,
 	bearer,
 	emailOTP,
 	jwt,
@@ -12,9 +12,21 @@ import {
 	openAPI,
 	twoFactor,
 	username,
+	organization,
 } from "better-auth/plugins";
 import { db, schema } from "@/db/drizzle";
 import { env } from "@/env";
+import {
+	ac,
+	community,
+	professional,
+	member,
+	collaborator,
+	manager,
+	owner,
+	admin,
+	support,
+} from "./permissions";
 
 export const auth = betterAuth({
 	database: drizzleAdapter(db, {
@@ -102,11 +114,11 @@ export const auth = betterAuth({
 		storeSessionInDatabase: false,
 		preserveSessionInDatabase: false,
 		disableSessionRefresh: false,
-		expiresIn: 60 * 5,
-		updateAge: 60 * 1,
+		expiresIn: 60 * 30,
+		updateAge: 60 * 5,
 		cookieCache: {
 			enabled: true,
-			maxAge: 60 * 5,
+			maxAge: 60 * 30,
 		},
 	},
 	user: {
@@ -144,9 +156,24 @@ export const auth = betterAuth({
 		bearer({
 			requireSignature: true,
 		}),
-		admin({
+		pluginAdmin({
 			impersonationSessionDuration: 60 * 30,
-			adminRoles: "admin",
+			...ac,
+			roles: {
+				admin,
+				support,
+			},
+		}),
+		organization({
+			ac,
+			roles: {
+				community,
+				professional,
+				member,
+				collaborator,
+				manager,
+				owner,
+			},
 		}),
 		emailOTP({
 			otpLength: 6,

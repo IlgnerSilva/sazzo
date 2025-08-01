@@ -14,6 +14,17 @@ import {
 	multiSessionClient,
 } from "better-auth/client/plugins";
 import { env } from "@/env";
+import {
+	ac,
+	community,
+	professional,
+	member,
+	collaborator,
+	manager,
+	owner,
+	admin,
+	support,
+} from "./permissions";
 
 export const authClient = createAuthClient({
 	baseURL: env.NEXT_PUBLIC_HOST_URL,
@@ -26,8 +37,24 @@ export const authClient = createAuthClient({
 		magicLinkClient(),
 		emailOTPClient(),
 		apiKeyClient(),
-		adminClient(),
-		organizationClient(),
+		adminClient({
+			...ac,
+			roles: {
+				admin,
+				support,
+			},
+		}),
+		organizationClient({
+			ac,
+			roles: {
+				community,
+				professional,
+				member,
+				collaborator,
+				manager,
+				owner,
+			},
+		}),
 		multiSessionClient(),
 	],
 });

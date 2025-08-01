@@ -3,4 +3,4 @@ export const publicRoutes = [
 	"/auth/signup",
 	"/auth/verify/totp",
 ];
-export const privateRoutes = ["/"];
+export const privateRoutes = ["/", "/admin"];

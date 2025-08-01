@@ -1,13 +1,6 @@
 import { AppSidebar } from "@/presentation/components/app-sidebar";
 import { headers } from "next/headers";
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from "@/presentation/components/ui/breadcrumb";
+import { AutoBreadcrumb } from "@/presentation/components/auto-breadcrumb";
 import { Separator } from "@/presentation/components/ui/separator";
 import {
 	SidebarInset,
@@ -22,8 +15,6 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 		headers: await headers(),
 	});
 
-	console.log((await headers()).get("x-url"));
-
 	return (
 		<SidebarProvider>
 			<AppSidebar sessionData={session} />
@@ -35,19 +26,7 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
 							orientation="vertical"
 							className="mr-2 data-[orientation=vertical]:h-4"
 						/>
-						<Breadcrumb>
-							<BreadcrumbList>
-								<BreadcrumbItem className="hidden md:block">
-									<BreadcrumbLink href="#">
-										Building Your Application
-									</BreadcrumbLink>
-								</BreadcrumbItem>
-								<BreadcrumbSeparator className="hidden md:block" />
-								<BreadcrumbItem>
-									<BreadcrumbPage>Data Fetching</BreadcrumbPage>
-								</BreadcrumbItem>
-							</BreadcrumbList>
-						</Breadcrumb>
+						<AutoBreadcrumb />
 					</div>
 				</header>
 				<div className="flex flex-1 flex-col gap-4 p-4 pt-0">

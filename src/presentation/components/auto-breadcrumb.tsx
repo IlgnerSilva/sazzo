@@ -9,10 +9,12 @@ import {
 } from "@/presentation/components/ui/breadcrumb";
 import { useId } from "react";
 import { House } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function AutoBreadcrumb() {
 	const pathname = usePathname();
 	const id = useId();
+	const t = useTranslations("common.pathname");
 
 	// Converte '/produtos/eletronicos/smartphones' em:
 	// [{ label: 'Produtos', href: '/produtos' }, ...]
@@ -35,11 +37,16 @@ export function AutoBreadcrumb() {
 					{breadcrumbs.map((breadcrumb, item) => (
 						<>
 							<BreadcrumbItem>
-								<BreadcrumbLink href={breadcrumb.href}>
+								<BreadcrumbLink
+									className={
+										breadcrumbs.length - 1 === item ? "text-foreground" : ""
+									}
+									href={breadcrumb.href}
+								>
 									{item === 0 ? (
 										<House className="h-4 w-4" />
 									) : (
-										breadcrumb.label
+										t(breadcrumb.label.toLocaleLowerCase() + ".root")
 									)}
 								</BreadcrumbLink>
 							</BreadcrumbItem>

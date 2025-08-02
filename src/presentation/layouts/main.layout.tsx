@@ -8,16 +8,18 @@ import {
 	SidebarTrigger,
 } from "@/presentation/components/ui/sidebar";
 import { auth } from "@/lib/better-auth/auth";
-import { NextRequest } from "next/server";
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
 	const session = await auth.api.getSession({
 		headers: await headers(),
 	});
 
+	const orgs = await auth.api.listOrganizations({
+		headers: await headers(),
+	});
 	return (
 		<SidebarProvider>
-			<AppSidebar sessionData={session} />
+			<AppSidebar organizationsData={orgs} sessionData={session} />
 			<SidebarInset>
 				<header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
 					<div className="flex items-center gap-2 px-4">

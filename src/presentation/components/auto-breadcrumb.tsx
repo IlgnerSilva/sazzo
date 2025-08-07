@@ -35,7 +35,7 @@ export function AutoBreadcrumb() {
 			{breadcrumbs.length > 1 && (
 				<BreadcrumbList key={id}>
 					{breadcrumbs.map((breadcrumb, item) => (
-						<>
+						<div className="flex items-center gap-2" key={item}>
 							<BreadcrumbItem>
 								<BreadcrumbLink
 									className={
@@ -53,7 +53,7 @@ export function AutoBreadcrumb() {
 							{item < breadcrumbs.length - 1 && (
 								<BreadcrumbSeparator className="hidden md:block" />
 							)}
-						</>
+						</div>
 					))}
 				</BreadcrumbList>
 			)}

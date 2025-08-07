@@ -1,13 +1,16 @@
 export interface Session {
-	expiresAt: string; // ou Date se for convertido
-	token: string;
-	createdAt: string; // ou Date
-	updatedAt: string; // ou Date
-	ipAddress: string;
-	userAgent: string;
-	userId: string;
-	impersonatedBy: string | null;
 	id: string;
+    userId: string;
+    expiresAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
+    token: string;
+    ipAddress?: string | null | undefined | undefined;
+    userAgent?: string | null | undefined | undefined;
+	impersonatedBy?: string | null | undefined | undefined;
+	activeOrganizationId?: string | null | undefined | undefined;
+
+	
 }
 
 export type UserRole =
@@ -24,16 +27,16 @@ export interface User {
 	name: string;
 	email: string;
 	emailVerified: boolean;
-	image: string | null;
-	createdAt: string;
-	updatedAt: string;
-	role: UserRole;
-	banned: boolean | null;
-	banReason: string | null;
-	banExpires: string | null;
-	username: string | null;
-	displayUsername: string | null;
-	twoFactorEnabled: boolean | null;
+	image?: string | null;
+	createdAt?: Date | null | undefined;
+	updatedAt?: Date | null | undefined;
+	role?: string | null | undefined | undefined;
+	banned?: boolean | null | undefined | undefined;
+	banReason?: string | null | undefined | undefined;
+	banExpires?: Date | null | undefined;
+	username?: string | null | undefined | undefined;
+	displayUsername?: string | null | undefined | undefined;
+	twoFactorEnabled: boolean | null | undefined;
 	id: string;
 }
 

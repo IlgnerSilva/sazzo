@@ -10,7 +10,7 @@ import {
 } from "@/presentation/components/ui/table";
 
 export async function Teste() {
-	// await new Promise((resolve) => setTimeout(resolve, 5000));
+	await new Promise((resolve) => setTimeout(resolve, 5000));
 	const { users } = await auth.api.listUsers({
 		query: {
 			limit: 10,

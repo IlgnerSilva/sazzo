@@ -1,8 +1,8 @@
-import createMiddleware from "next-intl/middleware";
+import { getCookieCache } from "better-auth/cookies";
 import { type NextRequest, NextResponse } from "next/server";
-import { locales, routing } from "./lib/i18n/routing";
+import createMiddleware from "next-intl/middleware";
 import { privateRoutes, publicRoutes } from "@/routes";
-import { getCookieCache, getCookies } from "better-auth/cookies";
+import { locales, routing } from "./lib/i18n/routing";
 
 // Middleware responsável pela internacionalização das rotas
 const intlMiddleware = createMiddleware(routing);
@@ -32,10 +32,6 @@ const authMiddleware = async (req: NextRequest) => {
 
 	// Se o usuário não estiver autenticado e tentar acessar uma página que requer autenticação, redireciona para a página de login
 	if (!isLogged && isProtectPage) {
-		// Se já estiver tentando acessar a página de login, não redireciona
-		if (req.nextUrl.pathname === "/auth/signin") {
-			return NextResponse.next(); // Deixa o usuário continuar na página de login
-		}
 		return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
 	}
 

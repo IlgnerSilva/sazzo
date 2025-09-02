@@ -29,9 +29,7 @@ import { redirect } from "next/navigation";
 
 export function FormLoginCredentials() {
 	const { translateMessage } = useMessageTranslation();
-	const { isPending, executeAsync } = useAction(
-		signinWithCredentials,
-	);
+	const { isPending, executeAsync } = useAction(signinWithCredentials);
 	const c = useTranslations("components");
 	const id = useId();
 

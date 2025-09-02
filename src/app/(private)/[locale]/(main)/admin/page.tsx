@@ -1,6 +1,6 @@
 import { Teste } from "@/presentation/components/teste";
 import { Suspense } from "react";
-import { Loader2 } from 'lucide-react'
+import { Loader2 } from "lucide-react";
 
 export default function Page() {
 	return (

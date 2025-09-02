@@ -12,9 +12,12 @@ import {
 
 import { locales, usePathname } from "@/lib/i18n/routing";
 import { usePathname as usePath, useRouter } from "next/navigation";
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
-export function SwitcherLocale({className, ...props}: React.ButtonHTMLAttributes<HTMLSelectElement>) {
+export function SwitcherLocale({
+	className,
+	...props
+}: React.ButtonHTMLAttributes<HTMLSelectElement>) {
 	const id = useId();
 	const pathname = usePathname(); // Defina dentro do componente de função
 	const router = useRouter();

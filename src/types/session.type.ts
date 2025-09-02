@@ -1,16 +1,14 @@
 export interface Session {
 	id: string;
-    userId: string;
-    expiresAt: Date;
-    createdAt: Date;
-    updatedAt: Date;
-    token: string;
-    ipAddress?: string | null | undefined | undefined;
-    userAgent?: string | null | undefined | undefined;
+	userId: string;
+	expiresAt: Date;
+	createdAt: Date;
+	updatedAt: Date;
+	token: string;
+	ipAddress?: string | null | undefined | undefined;
+	userAgent?: string | null | undefined | undefined;
 	impersonatedBy?: string | null | undefined | undefined;
 	activeOrganizationId?: string | null | undefined | undefined;
-
-	
 }
 
 export type UserRole =

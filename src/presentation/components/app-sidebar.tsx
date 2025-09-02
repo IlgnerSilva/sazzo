@@ -33,7 +33,7 @@ export function AppSidebar({
 	sessionData: AuthData;
 	organizationsData: Organization[];
 }) {
-	const { user  } = sessionData;
+	const { user } = sessionData;
 	const pathnameTranslation = useTranslations("common.pathname");
 	const pathname = usePathname();
 	const pathSegments = pathname.split("/").filter(Boolean);

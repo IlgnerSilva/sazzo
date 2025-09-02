@@ -8,10 +8,10 @@ import {
 	SidebarTrigger,
 } from "@/presentation/components/ui/sidebar";
 import { auth } from "@/lib/better-auth/auth";
-import { getSession } from '@/data/session'
+import { getSession } from "@/data/session";
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
-	const session = await getSession()
+	const session = await getSession();
 
 	const orgs = await auth.api.listOrganizations({
 		headers: await headers(),

@@ -1,5 +1,5 @@
 import { FormLoginCredentials } from "@/presentation/components/forms/form-login-credentials";
 
-export function PageSigin() {
+export async function PageSigin() {
 	return <FormLoginCredentials />;
 }

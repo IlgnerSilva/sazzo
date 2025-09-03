@@ -1,3 +1,4 @@
+import type { Auth } from "../entities/auth.entity";
 import type { User } from "../entities/user.entity";
 
 export interface IAuthRepository {
@@ -10,4 +11,6 @@ export interface IAuthRepository {
 		url: string | undefined;
 		redirect: boolean;
 	}>;
+
+	authSession: () => Promise<Auth | null>;
 }

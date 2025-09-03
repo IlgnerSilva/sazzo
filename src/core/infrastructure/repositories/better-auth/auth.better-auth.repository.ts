@@ -1,4 +1,5 @@
 import { injectable } from "inversify";
+import { headers } from "next/headers";
 import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
 import { auth } from "@/lib/better-auth/auth";
 
@@ -10,6 +11,12 @@ export class AuthRepository implements IAuthRepository {
 				email,
 				password,
 			},
+		});
+	}
+
+	async authSession() {
+		return await auth.api.getSession({
+			headers: await headers(),
 		});
 	}
 }

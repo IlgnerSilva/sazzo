@@ -8,10 +8,10 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "@/presentation/components/ui/sidebar";
-import { getSession } from "@/server/data/session";
+import { getSessionWithAutenticaded } from "@/server/dal/getSessionWithAutenticaded";
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
-	const session = await getSession();
+	const session = await getSessionWithAutenticaded();
 
 	const orgs = await auth.api.listOrganizations({
 		headers: await headers(),

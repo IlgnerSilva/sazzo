@@ -1,29 +1,29 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod/v4";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { Button } from "@/presentation/components/button";
+import { InputEmail } from "@/presentation/components/input-email";
+import {
+	InputPassword,
+	InputPasswordStrength,
+} from "@/presentation/components/input-password";
 import {
 	Form,
-	FormField,
 	FormControl,
-	FormLabel,
+	FormField,
 	FormItem,
+	FormLabel,
 	FormMessage,
 } from "@/presentation/components/ui/form";
-import { useForm } from "react-hook-form";
-import { InputEmail } from "@/presentation/components/input-email";
 import { Input } from "@/presentation/components/ui/input";
-import {
-	InputPasswordStrength,
-	InputPassword,
-} from "@/presentation/components/input-password";
-import { Button } from "@/presentation/components/button";
-import { z } from "zod/v4";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
-import { useTranslations } from "next-intl";
 import { Toaster } from "@/presentation/components/ui/sonner";
-import { toast } from "sonner";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { useMessageTranslation } from "@/hooks/use-message-translation";
+import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 
 export function FormSignUp() {
 	const [isPending, startTransition] = useTransition();
@@ -84,14 +84,14 @@ export function FormSignUp() {
 						<Button className="w-full cursor-pointer" variant="secondary">
 							Facebook
 						</Button>
-						<div></div>
+						<div />
 					</div>
 					<div className="flex w-full items-center justify-center">
-						<div className="w-full border-t"></div>
+						<div className="w-full border-t" />
 						<div className="w-full text-nowrap bg-primary-foreground px-2 text-muted-foreground text-sm uppercase">
 							{c("FormSignUpCredentials.subtitle")}
 						</div>
-						<div className="w-full border-t"></div>
+						<div className="w-full border-t" />
 					</div>
 					<FormField
 						control={form.control}

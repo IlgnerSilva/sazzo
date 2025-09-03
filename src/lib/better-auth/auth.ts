@@ -3,28 +3,28 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import {
-	admin as pluginAdmin,
 	bearer,
 	emailOTP,
 	jwt,
 	magicLink,
 	multiSession,
 	openAPI,
+	organization,
+	admin as pluginAdmin,
 	twoFactor,
 	username,
-	organization,
 } from "better-auth/plugins";
-import { db, schema } from "@/db/drizzle";
 import { env } from "@/env";
+import { db, schema } from "@/lib/drizzle";
 import {
 	ac,
-	community,
-	professional,
-	member,
-	collaborator,
-	manager,
-	owner,
 	admin,
+	collaborator,
+	community,
+	manager,
+	member,
+	owner,
+	professional,
 	support,
 } from "./permissions";
 

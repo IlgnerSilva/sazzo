@@ -11,15 +11,19 @@ export default getRequestConfig(async ({ requestLocale }) => {
 	return {
 		locale,
 		messages: {
-			common: (await import(`../../dictionary/${locale}/common.json`)).default,
-			components: (await import(`../../dictionary/${locale}/components.json`))
+			common: (await import(`../../server/dictionary/${locale}/common.json`))
 				.default,
-			messages_status: (
-				await import(`../../dictionary/${locale}/messages_status.json`)
+			components: (
+				await import(`../../server/dictionary/${locale}/components.json`)
 			).default,
-			pages: (await import(`../../dictionary/${locale}/pages.json`)).default,
-			validation: (await import(`../../dictionary/${locale}/validation.json`))
+			messages_status: (
+				await import(`../../server/dictionary/${locale}/messages_status.json`)
+			).default,
+			pages: (await import(`../../server/dictionary/${locale}/pages.json`))
 				.default,
+			validation: (
+				await import(`../../server/dictionary/${locale}/validation.json`)
+			).default,
 		},
 	};
 });

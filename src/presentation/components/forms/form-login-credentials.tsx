@@ -1,37 +1,42 @@
 "use client";
 
-import {
-	Form,
-	FormField,
-	FormControl,
-	FormLabel,
-	FormItem,
-	FormMessage,
-} from "@/presentation/components/ui/form";
-import { Label } from "@/presentation/components/ui/label";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useAction } from "next-safe-action/hooks";
+import { useId } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod/v4";
+import { Button } from "@/presentation/components/button";
 import { InputEmail } from "@/presentation/components/input-email";
 import { InputPassword } from "@/presentation/components/input-password";
 import { Checkbox } from "@/presentation/components/ui/checkbox";
-import { Button } from "@/presentation/components/button";
-import type { z } from "zod/v4";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useId } from "react";
-import { useTranslations } from "next-intl";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/presentation/components/ui/form";
+import { Label } from "@/presentation/components/ui/label";
 import { Toaster } from "@/presentation/components/ui/sonner";
-import { useMessageTranslation } from "@/hooks/use-message-translation";
-import { loginCredentialSchema } from "@/schemas/auth";
-import { signinWithCredentials } from "@/actions/auth/signin-with-credentials";
-import { useAction } from "next-safe-action/hooks";
-import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
+import { signinWithCredentials } from "@/server/actions/auth/signin-with-credentials";
 
 export function FormLoginCredentials() {
 	const { translateMessage } = useMessageTranslation();
 	const { isPending, executeAsync } = useAction(signinWithCredentials);
 	const c = useTranslations("components");
 	const id = useId();
+
+	const loginCredentialSchema = z.object({
+		email: z.string().email(),
+		password: z.string().min(8),
+		rememberMe: z.boolean(),
+	});
 
 	const form = useForm<z.infer<typeof loginCredentialSchema>>({
 		resolver: zodResolver(loginCredentialSchema),
@@ -73,14 +78,14 @@ export function FormLoginCredentials() {
 							<Button className="w-full cursor-pointer" variant="secondary">
 								Facebook
 							</Button>
-							<div></div>
+							<div />
 						</div>
 						<div className="flex w-full items-center justify-center">
-							<div className="w-full border-t"></div>
+							<div className="w-full border-t" />
 							<div className="w-full text-nowrap bg-primary-foreground px-2 text-muted-foreground text-sm uppercase">
 								{c("FormLoginCredentials.subtitle")}
 							</div>
-							<div className="w-full border-t"></div>
+							<div className="w-full border-t" />
 						</div>
 						<FormField
 							control={form.control}

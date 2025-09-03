@@ -1,7 +1,7 @@
 import { getCookieCache } from "better-auth/cookies";
 import { type NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
-import { privateRoutes, publicRoutes } from "@/routes";
+import { privateRoutes, publicRoutes } from "@/server/routes";
 import { locales, routing } from "./lib/i18n/routing";
 
 // Middleware responsável pela internacionalização das rotas

@@ -1,5 +1,6 @@
-import { AppSidebar } from "@/presentation/components/app-sidebar";
 import { headers } from "next/headers";
+import { auth } from "@/lib/better-auth/auth";
+import { AppSidebar } from "@/presentation/components/app-sidebar";
 import { AutoBreadcrumb } from "@/presentation/components/auto-breadcrumb";
 import { Separator } from "@/presentation/components/ui/separator";
 import {
@@ -7,8 +8,7 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "@/presentation/components/ui/sidebar";
-import { auth } from "@/lib/better-auth/auth";
-import { getSession } from "@/data/session";
+import { getSession } from "@/server/data/session";
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
 	const session = await getSession();

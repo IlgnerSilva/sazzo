@@ -1,6 +1,6 @@
 import { LoaderCircleIcon } from "lucide-react";
-import { Button as ButtonUI } from "@/presentation/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Button as ButtonUI } from "@/presentation/components/ui/button";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	isLoading?: boolean;

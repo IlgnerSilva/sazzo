@@ -1,7 +1,8 @@
 "use client";
-
+import { usePathname as usePath, useRouter } from "next/navigation";
 import { useId } from "react";
-
+import { locales, usePathname } from "@/lib/i18n/routing";
+import { cn } from "@/lib/utils";
 import {
 	Select,
 	SelectContent,
@@ -9,10 +10,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/presentation/components/ui/select";
-
-import { locales, usePathname } from "@/lib/i18n/routing";
-import { usePathname as usePath, useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 
 export function SwitcherLocale({
 	className,
@@ -24,8 +21,12 @@ export function SwitcherLocale({
 	const getLocale = usePath().split("/")[1].toUpperCase();
 
 	const languages = [
-		{ value: "en", label: "EN", flag: "🇺🇸" },
-		{ value: "pt-br", label: "PT-BR", flag: "🇧🇷" },
+		{ value: "en", label: "EN", flag: "fi fi-us" },
+		{
+			value: "pt-br",
+			label: "PT-BR",
+			flag: "fi fi-br",
+		},
 	];
 
 	const validLanguages = locales
@@ -52,16 +53,24 @@ export function SwitcherLocale({
 					<SelectValue
 						className="max-w-max placeholder:flex placeholder:items-center placeholder:gap-2 placeholder:text-lg placeholder:text-muted-foreground/80"
 						placeholder={
-							languages.find((language) => {
-								if (language.value.toUpperCase() === getLocale) return language;
-							})?.flag +
-							" " +
-							languages
-								.find((language) => {
-									if (language.value.toUpperCase() === getLocale)
-										return language;
-								})
-								?.value.toUpperCase()
+							<>
+								<span
+									className={
+										languages.find((language) => {
+											if (language.value.toUpperCase() === getLocale)
+												return language;
+										})?.flag
+									}
+								/>
+								<span>
+									{languages
+										.find((language) => {
+											if (language.value.toUpperCase() === getLocale)
+												return language;
+										})
+										?.value.toUpperCase()}
+								</span>
+							</>
 						}
 					/>
 				</SelectTrigger>
@@ -74,7 +83,7 @@ export function SwitcherLocale({
 								value={language.value}
 							>
 								<span className="leading-none">
-									{language.flag} {language.label}
+									<span className={language.flag} /> {language.label}
 								</span>
 							</SelectItem>
 						);

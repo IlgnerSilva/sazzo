@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-function AuthIcon(
+function AuthImage(
 	props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) {
 	return (
@@ -732,4 +732,4 @@ function AuthIcon(
 	);
 }
 
-export { AuthIcon };
+export { AuthImage };

@@ -57,6 +57,9 @@ dependencies:
   drizzle-orm:
     specifier: ^0.44.5
     version: 0.44.5(@types/pg@8.15.5)(pg@8.16.3)
+  flag-icons:
+    specifier: ^7.5.0
+    version: 7.5.0
   inversify:
     specifier: ^6.2.2
     version: 6.2.2(reflect-metadata@0.2.2)
@@ -3118,6 +3121,10 @@ packages:
       '@esbuild/win32-ia32': 0.25.9
       '@esbuild/win32-x64': 0.25.9
     dev: true
+
+  /flag-icons@7.5.0:
+    resolution: {integrity: sha512-kd+MNXviFIg5hijH766tt+3x76ele1AXlo4zDdCxIvqWZhKt4T83bOtxUOOMlTx/EcFdUMH5yvQgYlFh1EqqFg==}
+    dev: false
 
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}

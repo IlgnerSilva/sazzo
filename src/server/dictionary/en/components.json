@@ -10,11 +10,10 @@
 	"NavUser": {
 		"Links": {
 			"logout": "Log out",
-			"account": "Account",
-			"notifications": "Notifications",
-			"billing": "Billing",
-			"admin": "Admin",
-			"updatePlan": "Atualizar plano"
+			"profile": "Profile",
+			"security": "Security",
+			"organizations": "Organizations",
+			"admin": "Admin"
 		}
 	},
 	"Inputs": {

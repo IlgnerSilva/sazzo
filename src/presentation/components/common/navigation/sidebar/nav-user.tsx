@@ -1,13 +1,13 @@
 "use client";
 
 import {
-	BadgeCheck,
-	Bell,
+	AppWindow,
+	BrickWallIcon,
+	Building,
 	ChevronsUpDown,
-	CreditCard,
 	Key,
 	LogOut,
-	Sparkles,
+	ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -88,35 +88,35 @@ export function NavUser({
 							</div>
 						</UIDropdownMenu.DropdownMenuLabel>
 						<UIDropdownMenu.DropdownMenuSeparator />
-						<UIDropdownMenu.DropdownMenuGroup>
+						{/* <UIDropdownMenu.DropdownMenuGroup>
 							<UIDropdownMenu.DropdownMenuItem>
 								<Sparkles />
-								{t("components.NavUser.Links.updatePlan")}
+								{t("components.NavUser.Links.profile")}
 							</UIDropdownMenu.DropdownMenuItem>
-						</UIDropdownMenu.DropdownMenuGroup>
+						</UIDropdownMenu.DropdownMenuGroup> */}
 						<UIDropdownMenu.DropdownMenuSeparator />
 						<UIDropdownMenu.DropdownMenuGroup>
-							<Link href="/account">
+							<Link href="/profile">
 								<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
-									<BadgeCheck />
-									{t("components.NavUser.Links.account")}
+									<AppWindow />
+									{t("components.NavUser.Links.profile")}
 								</UIDropdownMenu.DropdownMenuItem>
 							</Link>
 							<Link href="#">
 								<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
-									<CreditCard />
-									{t("components.NavUser.Links.billing")}
+									<Building />
+									{t("components.NavUser.Links.organizations")}
 								</UIDropdownMenu.DropdownMenuItem>
 							</Link>
 							<Link href="#">
 								<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
-									<Bell />
-									{t("components.NavUser.Links.notifications")}
+									<ShieldCheck />
+									{t("components.NavUser.Links.security")}
 								</UIDropdownMenu.DropdownMenuItem>
 							</Link>
 							<Link href="/admin">
 								<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
-									<Key />
+									<BrickWallIcon />
 									{t("components.NavUser.Links.admin")}
 								</UIDropdownMenu.DropdownMenuItem>
 							</Link>
@@ -124,7 +124,7 @@ export function NavUser({
 						<UIDropdownMenu.DropdownMenuSeparator />
 						<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
 							<LogOut />
-							Log out
+							{t("components.NavUser.Links.logout")}
 						</UIDropdownMenu.DropdownMenuItem>
 					</UIDropdownMenu.DropdownMenuContent>
 				</UIDropdownMenu.DropdownMenu>

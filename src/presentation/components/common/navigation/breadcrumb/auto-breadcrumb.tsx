@@ -23,7 +23,6 @@ export function AutoBreadcrumb() {
 			href: isLast ? undefined : href,
 		};
 	});
-
 	return (
 		<UIBreadcrumb.Breadcrumb>
 			{breadcrumbs.length > 1 && (

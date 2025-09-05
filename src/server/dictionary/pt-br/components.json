@@ -10,11 +10,10 @@
 	"NavUser": {
 		"Links": {
 			"logout": "Sair",
-			"account": "Minha conta",
-			"notifications": "Notificações",
-			"billing": "Fatura",
-			"admin": "Admin",
-			"updatePlan": "Atualizar plano"
+			"profile": "Perfil",
+			"security": "Segurança",
+			"organizations": "Organizações",
+			"admin": "Admin"
 		}
 	},
 	"Inputs": {

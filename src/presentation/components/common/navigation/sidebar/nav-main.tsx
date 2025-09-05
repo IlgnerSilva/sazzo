@@ -1,24 +1,9 @@
 "use client";
 
 import { ChevronRight, type LucideIcon } from "lucide-react";
-
-import {
-	Collapsible,
-	CollapsibleContent,
-	CollapsibleTrigger,
-} from "@/presentation/components/ui/collapsible";
-import {
-	SidebarGroup,
-	SidebarGroupLabel,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarMenuSub,
-	SidebarMenuSubButton,
-	SidebarMenuSubItem,
-} from "@/presentation/components/ui/sidebar";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { UICollapsible, UISidebar } from "@/presentation/components/ui";
 
 export function NavMain({
 	items,
@@ -37,32 +22,35 @@ export function NavMain({
 	const pathname = usePathname();
 	const pathSegments = pathname.split("/").filter(Boolean);
 	return (
-		<SidebarGroup>
-			<SidebarGroupLabel>Platform</SidebarGroupLabel>
-			<SidebarMenu>
+		<UISidebar.SidebarGroup>
+			<UISidebar.SidebarGroupLabel>Platform</UISidebar.SidebarGroupLabel>
+			<UISidebar.SidebarMenu>
 				{items.map((item) => (
-					<Collapsible
+					<UICollapsible.Collapsible
 						key={item.title}
 						asChild
 						defaultOpen={item.isActive}
 						className="group/collapsible"
 					>
-						<SidebarMenuItem>
-							<CollapsibleTrigger className="cursor-pointer" asChild>
-								<SidebarMenuButton
+						<UISidebar.SidebarMenuItem>
+							<UICollapsible.CollapsibleTrigger
+								className="cursor-pointer"
+								asChild
+							>
+								<UISidebar.SidebarMenuButton
 									className={item.isActive ? "text-sidebar-primary" : ""}
 									tooltip={item.title}
 								>
 									{item.icon && <item.icon />}
 									<span>{item.title}</span>
 									<ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-								</SidebarMenuButton>
-							</CollapsibleTrigger>
-							<CollapsibleContent>
-								<SidebarMenuSub>
+								</UISidebar.SidebarMenuButton>
+							</UICollapsible.CollapsibleTrigger>
+							<UICollapsible.CollapsibleContent>
+								<UISidebar.SidebarMenuSub>
 									{item.items?.map((subItem) => (
-										<SidebarMenuSubItem key={subItem.title}>
-											<SidebarMenuSubButton
+										<UISidebar.SidebarMenuSubItem key={subItem.title}>
+											<UISidebar.SidebarMenuSubButton
 												className={
 													pathSegments.find(
 														(pathSegments) =>
@@ -76,15 +64,15 @@ export function NavMain({
 												<Link href={subItem.url}>
 													<span>{subItem.title}</span>
 												</Link>
-											</SidebarMenuSubButton>
-										</SidebarMenuSubItem>
+											</UISidebar.SidebarMenuSubButton>
+										</UISidebar.SidebarMenuSubItem>
 									))}
-								</SidebarMenuSub>
-							</CollapsibleContent>
-						</SidebarMenuItem>
-					</Collapsible>
+								</UISidebar.SidebarMenuSub>
+							</UICollapsible.CollapsibleContent>
+						</UISidebar.SidebarMenuItem>
+					</UICollapsible.Collapsible>
 				))}
-			</SidebarMenu>
-		</SidebarGroup>
+			</UISidebar.SidebarMenu>
+		</UISidebar.SidebarGroup>
 	);
 }

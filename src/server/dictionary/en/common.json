@@ -9,5 +9,14 @@
 		"cancel": "Cancel",
 		"edit": "Edit",
 		"delete": "Delete"
+	},
+	"pathname": {
+		"admin": {
+			"root": "Admin",
+			"overview": "overview"
+		},
+		"account": {
+			"root": "My Account"
+		}
 	}
 }

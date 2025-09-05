@@ -14,6 +14,9 @@
 		"admin": {
 			"root": "Administrador",
 			"overview": "Visão geral"
+		},
+		"account": {
+			"root": "Minha Conta"
 		}
 	}
 }

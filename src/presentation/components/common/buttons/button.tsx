@@ -1,6 +1,6 @@
 import { LoaderCircleIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button as ButtonUI } from "@/presentation/components/ui/button";
+import { UIButton } from "@/presentation/components/ui";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	isLoading?: boolean;
@@ -15,7 +15,7 @@ export function Button({
 	...props
 }: ButtonProps) {
 	return (
-		<ButtonUI
+		<UIButton.Button
 			variant={variant}
 			disabled={isLoading}
 			className={cn("", className)}
@@ -29,6 +29,6 @@ export function Button({
 				/>
 			)}
 			{children}
-		</ButtonUI>
+		</UIButton.Button>
 	);
 }

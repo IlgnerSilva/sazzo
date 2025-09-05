@@ -15,7 +15,10 @@
 		"utils": "@/lib/utils",
 		"ui": "@/presentation/components/ui",
 		"lib": "@/lib",
-		"hooks": "@/hooks"
+		"hooks": "@/presentation/hooks"
 	},
-	"iconLibrary": "lucide"
+	"iconLibrary": "lucide",
+	"registries": {
+		"@kokonutui": "https://kokonutui.com/r/{name}.json"
+	}
 }

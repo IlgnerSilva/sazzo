@@ -1,10 +1,10 @@
 "use client";
 
-import { useId, useState, useMemo } from "react";
-import { EyeIcon, EyeClosed, CheckIcon, EyeOffIcon, XIcon } from "lucide-react";
-import { Input } from "@/presentation/components/ui/input";
-import { cn } from "@/lib/utils";
+import { CheckIcon, EyeClosed, EyeIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useId, useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
+import { UIInput } from "@/presentation/components/ui";
 
 export function InputPassword({
 	className,
@@ -18,7 +18,7 @@ export function InputPassword({
 	return (
 		<div className="*:not-first:mt-2">
 			<div className="relative">
-				<Input
+				<UIInput.Input
 					id={id}
 					className={cn("pe-9", className)}
 					{...props}
@@ -67,7 +67,7 @@ export function InputPasswordStrength({
 		}));
 	};
 
-	const strength = checkStrength(props.value);
+	const strength = checkStrength(props.value as string);
 
 	const strengthScore = useMemo(() => {
 		return strength.filter((req) => req.met).length;
@@ -94,7 +94,7 @@ export function InputPasswordStrength({
 			{/* Password input field with toggle visibility button */}
 			<div className="*:not-first:mt-2">
 				<div className="relative">
-					<Input
+					<UIInput.Input
 						id={id}
 						className={cn("pe-9", className)}
 						{...props}
@@ -130,7 +130,7 @@ export function InputPasswordStrength({
 				<div
 					className={`h-full ${getStrengthColor(strengthScore)} transition-all duration-500 ease-out`}
 					style={{ width: `${(strengthScore / 4) * 100}%` }}
-				></div>
+				/>
 			</div>
 
 			{/* Password strength description */}
@@ -144,8 +144,7 @@ export function InputPasswordStrength({
 			{/* Password requirements list */}
 			<ul className="space-y-1.5" aria-label="Password requirements">
 				{strength.map((req, index) => (
-					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-					<li key={index} className="flex items-center gap-2">
+					<li key={index as number} className="flex items-center gap-2">
 						{req.met ? (
 							<CheckIcon
 								size={16}

@@ -1,15 +1,9 @@
 "use client";
-import { usePathname } from "next/navigation";
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbSeparator,
-} from "@/presentation/components/ui/breadcrumb";
-import { useId } from "react";
 import { House } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useId } from "react";
+import { UIBreadcrumb } from "@/presentation/components/ui";
 
 export function AutoBreadcrumb() {
 	const pathname = usePathname();
@@ -31,13 +25,13 @@ export function AutoBreadcrumb() {
 	});
 
 	return (
-		<Breadcrumb>
+		<UIBreadcrumb.Breadcrumb>
 			{breadcrumbs.length > 1 && (
-				<BreadcrumbList key={id}>
+				<UIBreadcrumb.BreadcrumbList key={id}>
 					{breadcrumbs.map((breadcrumb, item) => (
-						<div className="flex items-center gap-2" key={item}>
-							<BreadcrumbItem>
-								<BreadcrumbLink
+						<div className="flex items-center gap-2" key={item as number}>
+							<UIBreadcrumb.BreadcrumbItem>
+								<UIBreadcrumb.BreadcrumbLink
 									className={
 										breadcrumbs.length - 1 === item ? "text-foreground" : ""
 									}
@@ -46,17 +40,17 @@ export function AutoBreadcrumb() {
 									{item === 0 ? (
 										<House className="h-4 w-4" />
 									) : (
-										t(breadcrumb.label.toLocaleLowerCase() + ".root")
+										t((breadcrumb.label.toLocaleLowerCase() + ".root") as any)
 									)}
-								</BreadcrumbLink>
-							</BreadcrumbItem>
+								</UIBreadcrumb.BreadcrumbLink>
+							</UIBreadcrumb.BreadcrumbItem>
 							{item < breadcrumbs.length - 1 && (
-								<BreadcrumbSeparator className="hidden md:block" />
+								<UIBreadcrumb.BreadcrumbSeparator className="hidden md:block" />
 							)}
 						</div>
 					))}
-				</BreadcrumbList>
+				</UIBreadcrumb.BreadcrumbList>
 			)}
-		</Breadcrumb>
+		</UIBreadcrumb.Breadcrumb>
 	);
 }

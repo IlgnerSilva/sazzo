@@ -9,18 +9,12 @@ import { useId } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod/v4";
-import { Button } from "@/presentation/components/button";
-import { InputEmail } from "@/presentation/components/input-email";
-import { InputPassword } from "@/presentation/components/input-password";
-import { Checkbox } from "@/presentation/components/ui/checkbox";
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/presentation/components/ui/form";
+	Button,
+	InputEmail,
+	InputPassword,
+} from "@/presentation/components/common";
+import { UICheckbox, UIForm } from "@/presentation/components/ui";
 import { Label } from "@/presentation/components/ui/label";
 import { Toaster } from "@/presentation/components/ui/sonner";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
@@ -60,7 +54,7 @@ export function FormLoginCredentials() {
 
 	return (
 		<>
-			<Form {...form}>
+			<UIForm.Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="mx-auto h-full max-w-80 md:max-w-sm"
@@ -87,16 +81,16 @@ export function FormLoginCredentials() {
 							</div>
 							<div className="w-full border-t" />
 						</div>
-						<FormField
+						<UIForm.FormField
 							control={form.control}
 							name="email"
 							render={({ field }) => {
 								return (
-									<FormItem>
-										<FormLabel htmlFor={id}>
+									<UIForm.FormItem>
+										<UIForm.FormLabel htmlFor={id}>
 											{c("Inputs.email.label")}
-										</FormLabel>
-										<FormControl>
+										</UIForm.FormLabel>
+										<UIForm.FormControl>
 											<InputEmail
 												id={id}
 												required
@@ -104,22 +98,22 @@ export function FormLoginCredentials() {
 												className="rounded-xl"
 												{...field}
 											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
+										</UIForm.FormControl>
+										<UIForm.FormMessage />
+									</UIForm.FormItem>
 								);
 							}}
 						/>
-						<FormField
+						<UIForm.FormField
 							control={form.control}
 							name="password"
 							render={({ field }) => {
 								return (
-									<FormItem>
-										<FormLabel htmlFor={id}>
+									<UIForm.FormItem>
+										<UIForm.FormLabel htmlFor={id}>
 											{c("Inputs.password.label")}
-										</FormLabel>
-										<FormControl>
+										</UIForm.FormLabel>
+										<UIForm.FormControl>
 											<InputPassword
 												id={id}
 												required
@@ -127,22 +121,22 @@ export function FormLoginCredentials() {
 												placeholder={c("Inputs.password.placeholder")}
 												{...field}
 											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
+										</UIForm.FormControl>
+										<UIForm.FormMessage />
+									</UIForm.FormItem>
 								);
 							}}
 						/>
 						<div className="flex items-center justify-between">
-							<FormField
+							<UIForm.FormField
 								control={form.control}
 								name="rememberMe"
 								render={({ field }) => {
 									return (
-										<FormItem>
-											<FormControl>
+										<UIForm.FormItem>
+											<UIForm.FormControl>
 												<div className="flex items-center gap-2">
-													<Checkbox
+													<UICheckbox.Checkbox
 														id={id}
 														checked={field.value}
 														onCheckedChange={field.onChange}
@@ -151,8 +145,8 @@ export function FormLoginCredentials() {
 														{c("Inputs.checkbox.label-remember")}
 													</Label>
 												</div>
-											</FormControl>
-										</FormItem>
+											</UIForm.FormControl>
+										</UIForm.FormItem>
 									);
 								}}
 							/>
@@ -178,7 +172,7 @@ export function FormLoginCredentials() {
 					</Link>
 				</div>
 				<Toaster richColors position="top-center" />
-			</Form>
+			</UIForm.Form>
 		</>
 	);
 }

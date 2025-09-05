@@ -1,3 +1,4 @@
+import type { EnableTwoFactor } from "@/core/application/use-cases/EnableTwoFactor.use-case";
 import type { GetSessionUseCase } from "@/core/application/use-cases/GetSession.use-case";
 import type { SignInEmailUseCase } from "@/core/application/use-cases/SignInEmail.use-case";
 import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
@@ -7,4 +8,5 @@ export const AUTH_SYMBOLS = {
 	IAuthRepository: createSymbol<IAuthRepository>("IAuthRepository"),
 	SignInEmailUseCase: createSymbol<SignInEmailUseCase>("SignInEmailUseCase"),
 	GetSessionUseCase: createSymbol<GetSessionUseCase>("GetSessionUseCase"),
+	EnableTwoFactor: createSymbol<EnableTwoFactor>("EnableTwoFactor"),
 } as const;

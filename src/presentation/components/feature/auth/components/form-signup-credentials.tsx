@@ -7,22 +7,13 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod/v4";
 import { authClient } from "@/lib/better-auth/auth-client";
-import { Button } from "@/presentation/components/button";
-import { InputEmail } from "@/presentation/components/input-email";
 import {
+	Button,
+	InputEmail,
 	InputPassword,
 	InputPasswordStrength,
-} from "@/presentation/components/input-password";
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/presentation/components/ui/form";
-import { Input } from "@/presentation/components/ui/input";
-import { Toaster } from "@/presentation/components/ui/sonner";
+} from "@/presentation/components/common";
+import { UIForm, UIInput, UISonner } from "@/presentation/components/ui";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 
 export function FormSignUp() {
@@ -66,7 +57,7 @@ export function FormSignUp() {
 	}
 
 	return (
-		<Form {...form}>
+		<UIForm.Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="mx-auto h-full max-w-80 md:max-w-sm"
@@ -93,76 +84,78 @@ export function FormSignUp() {
 						</div>
 						<div className="w-full border-t" />
 					</div>
-					<FormField
+					<UIForm.FormField
 						control={form.control}
 						name="name"
 						render={({ field }) => {
 							return (
-								<FormItem>
-									<FormLabel>{c("Inputs.name.label")}</FormLabel>
-									<FormControl>
-										<Input required className="rounded-xl" {...field} />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
+								<UIForm.FormItem>
+									<UIForm.FormLabel>{c("Inputs.name.label")}</UIForm.FormLabel>
+									<UIForm.FormControl>
+										<UIInput.Input required className="rounded-xl" {...field} />
+									</UIForm.FormControl>
+									<UIForm.FormMessage />
+								</UIForm.FormItem>
 							);
 						}}
 					/>
-					<FormField
+					<UIForm.FormField
 						control={form.control}
 						name="email"
 						render={({ field }) => {
 							return (
-								<FormItem>
-									<FormLabel>{c("Inputs.email.label")}</FormLabel>
-									<FormControl>
+								<UIForm.FormItem>
+									<UIForm.FormLabel>{c("Inputs.email.label")}</UIForm.FormLabel>
+									<UIForm.FormControl>
 										<InputEmail required className="rounded-xl" {...field} />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
+									</UIForm.FormControl>
+									<UIForm.FormMessage />
+								</UIForm.FormItem>
 							);
 						}}
 					/>
 					<div className="flex gap-2">
 						<div>
-							<FormField
+							<UIForm.FormField
 								control={form.control}
 								name="password"
 								render={({ field }) => {
 									return (
-										<FormItem>
-											<FormLabel>{c("Inputs.password.label")}</FormLabel>
-											<FormControl>
+										<UIForm.FormItem>
+											<UIForm.FormLabel>
+												{c("Inputs.password.label")}
+											</UIForm.FormLabel>
+											<UIForm.FormControl>
 												<InputPasswordStrength
 													required
 													className="rounded-xl"
 													{...field}
 												/>
-											</FormControl>
-										</FormItem>
+											</UIForm.FormControl>
+										</UIForm.FormItem>
 									);
 								}}
 							/>
 						</div>
 						<div>
-							<FormField
+							<UIForm.FormField
 								control={form.control}
 								name="confirmPassword"
 								render={({ field }) => {
 									return (
-										<FormItem>
-											<FormLabel>
+										<UIForm.FormItem>
+											<UIForm.FormLabel>
 												{c("Inputs.confirm-password.label")}
-											</FormLabel>
-											<FormControl>
+											</UIForm.FormLabel>
+											<UIForm.FormControl>
 												<InputPassword
 													required
 													className="rounded-xl"
 													{...field}
 												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
+											</UIForm.FormControl>
+											<UIForm.FormMessage />
+										</UIForm.FormItem>
 									);
 								}}
 							/>
@@ -181,7 +174,7 @@ export function FormSignUp() {
 					</div>
 				</div>
 			</form>
-			<Toaster richColors position="top-center" />
-		</Form>
+			<UISonner.Toaster richColors position="top-center" />
+		</UIForm.Form>
 	);
 }

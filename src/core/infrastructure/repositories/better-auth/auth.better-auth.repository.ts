@@ -19,4 +19,13 @@ export class AuthRepository implements IAuthRepository {
 			headers: await headers(),
 		});
 	}
+
+	async twoFactor(password: string) {
+		return await auth.api.enableTwoFactor({
+			body: {
+				password,
+			},
+			headers: await headers(),
+		});
+	}
 }

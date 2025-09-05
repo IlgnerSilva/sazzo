@@ -7,6 +7,16 @@
 		"title": "Criar conta",
 		"subtitle": "Ou cadastre com e-mail"
 	},
+	"NavUser": {
+		"Links": {
+			"logout": "Sair",
+			"account": "Minha conta",
+			"notifications": "Notificações",
+			"billing": "Fatura",
+			"admin": "Admin",
+			"updatePlan": "Atualizar plano"
+		}
+	},
 	"Inputs": {
 		"email": {
 			"label": "E-mail",

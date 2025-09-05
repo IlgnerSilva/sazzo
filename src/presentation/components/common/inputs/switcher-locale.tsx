@@ -3,13 +3,7 @@ import { usePathname as usePath, useRouter } from "next/navigation";
 import { useId } from "react";
 import { locales, usePathname } from "@/lib/i18n/routing";
 import { cn } from "@/lib/utils";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/presentation/components/ui/select";
+import { UISelect } from "@/presentation/components/ui";
 
 export function SwitcherLocale({
 	className,
@@ -41,16 +35,16 @@ export function SwitcherLocale({
 
 	return (
 		<div className={cn("*:not-first:mt-2 rounded-md", className)}>
-			<Select
+			<UISelect.Select
 				onValueChange={(e) => {
 					handleLocaleChange(e);
 				}}
 			>
-				<SelectTrigger
+				<UISelect.SelectTrigger
 					id={id}
 					className="max-w-max [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
 				>
-					<SelectValue
+					<UISelect.SelectValue
 						className="max-w-max placeholder:flex placeholder:items-center placeholder:gap-2 placeholder:text-lg placeholder:text-muted-foreground/80"
 						placeholder={
 							<>
@@ -73,11 +67,11 @@ export function SwitcherLocale({
 							</>
 						}
 					/>
-				</SelectTrigger>
-				<SelectContent className="[&_*[role=option]>span>svg]:shrink-0 [&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8">
+				</UISelect.SelectTrigger>
+				<UISelect.SelectContent className="[&_*[role=option]>span>svg]:shrink-0 [&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8">
 					{validLanguages.map((language) => {
 						return (
-							<SelectItem
+							<UISelect.SelectItem
 								className="flex items-center gap-1"
 								key={language?.value}
 								value={language.value}
@@ -85,11 +79,11 @@ export function SwitcherLocale({
 								<span className="leading-none">
 									<span className={language.flag} /> {language.label}
 								</span>
-							</SelectItem>
+							</UISelect.SelectItem>
 						);
 					})}
-				</SelectContent>
-			</Select>
+				</UISelect.SelectContent>
+			</UISelect.Select>
 		</div>
 	);
 }

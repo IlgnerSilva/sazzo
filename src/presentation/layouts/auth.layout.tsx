@@ -1,5 +1,5 @@
-import { AuthImage } from "@/presentation/components/icons/auth.icon";
-import { SwitcherLocale } from "@/presentation/components/switcher-locale";
+import { SwitcherLocale } from "@/presentation/components/common";
+import { AuthImage } from "@/presentation/components/feature/auth";
 
 export function AuthLayout({
 	children,

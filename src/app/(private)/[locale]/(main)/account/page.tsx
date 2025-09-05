@@ -1,11 +1,12 @@
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
-import { Teste } from "@/presentation/components/common/navigation/tabs/tab";
+import { PageAccount } from "@/presentation/pages/account/account.page"
 
-export default function Page() {
+export default async function Page() {
+	
 	return (
 		<Suspense fallback={<Loader2 className="animate-spin" />}>
-			<Teste />
+			<PageAccount/>
 		</Suspense>
 	);
 }

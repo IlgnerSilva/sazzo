@@ -7,6 +7,16 @@
 		"title": "Create Account",
 		"subtitle": "Or sign up with email"
 	},
+	"NavUser": {
+		"Links": {
+			"logout": "Log out",
+			"account": "Account",
+			"notifications": "Notifications",
+			"billing": "Billing",
+			"admin": "Admin",
+			"updatePlan": "Atualizar plano"
+		}
+	},
 	"Inputs": {
 		"name": {
 			"label": "Name",

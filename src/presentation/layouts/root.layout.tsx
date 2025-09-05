@@ -1,8 +1,8 @@
-import { routing } from "@/lib/i18n/routing";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { routing } from "@/lib/i18n/routing";
 
 type Params = Promise<{ locale: string }>;
 

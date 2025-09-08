@@ -13,3 +13,7 @@ export { NavMain } from "./navigation/sidebar/nav-main";
 export { NavProjects } from "./navigation/sidebar/nav-projects";
 export { NavUser } from "./navigation/sidebar/nav-user";
 export { TeamSwitcher } from "./navigation/sidebar/team-switcher";
+export { TabsDemo } from "./navigation/tabs/vertical";
+
+
+

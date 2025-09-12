@@ -1,13 +1,19 @@
+"use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
 import { useId } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod/v4";
-import { Button, InputEmail } from "@/presentation/components/common";
+import { Button, InputPassword } from "@/presentation/components/common";
 import { UIForm } from "@/presentation/components/ui";
+import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { enableTwoFactor } from "@/server/actions/auth/enable-two-factor";
 
+
 export function FormEnabledTwoFactor() {
+	const { translateMessage } = useMessageTranslation();
 	const { isPending, executeAsync } = useAction(enableTwoFactor);
 	const id = useId();
 
@@ -24,8 +30,12 @@ export function FormEnabledTwoFactor() {
 
 	async function onSubmit(data: z.infer<typeof enabledTwoFactorSchema>) {
 		const { serverError, data: response } = await executeAsync(data);
+		if (serverError) {
+			const message = translateMessage(serverError.code || "");
+			toast.error(message);
+			return;
+		}
 		console.log(response);
-		console.log(serverError);
 	}
 
 	return (
@@ -34,7 +44,7 @@ export function FormEnabledTwoFactor() {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="mx-auto h-full max-w-80 md:max-w-sm"
 			>
-				<div className="flex gap-2">
+				<div className="flex items-end justify-center gap-2">
 					<UIForm.FormField
 						control={form.control}
 						name="password"
@@ -43,7 +53,7 @@ export function FormEnabledTwoFactor() {
 								<UIForm.FormItem>
 									<UIForm.FormLabel htmlFor={id}>Senha</UIForm.FormLabel>
 									<UIForm.FormControl>
-										<InputEmail
+										<InputPassword
 											id={id}
 											required
 											className="rounded-xl"
@@ -57,7 +67,7 @@ export function FormEnabledTwoFactor() {
 					/>
 
 					<Button
-						className="w-full cursor-pointer"
+						className="w-full max-w-max cursor-pointer"
 						variant="default"
 						type="submit"
 						isLoading={isPending}

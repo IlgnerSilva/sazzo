@@ -1,4 +1,5 @@
 import { ContainerModule, type interfaces } from "inversify";
+import { EnableTwoFactor } from "@/core/application/use-cases/EnableTwoFactor.use-case";
 import { GetSessionUseCase } from "@/core/application/use-cases/GetSession.use-case";
 import { SignInEmailUseCase } from "@/core/application/use-cases/SignInEmail.use-case";
 import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
@@ -14,6 +15,7 @@ const initializateModule = (bind: interfaces.Bind) => {
 		SignInEmailUseCase,
 	);
 	bind<GetSessionUseCase>(AUTH_SYMBOLS.GetSessionUseCase).to(GetSessionUseCase);
+	bind<EnableTwoFactor>(AUTH_SYMBOLS.EnableTwoFactor).to(EnableTwoFactor);
 };
 
 export const authModule = new ContainerModule(initializateModule);

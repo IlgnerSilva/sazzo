@@ -5,7 +5,7 @@ export const useMessageTranslation = () => {
 
 	const translateMessage = (messageCode: string, fallback = null) => {
 		try {
-			const translation = t(messageCode);
+			const translation = t(messageCode as any);
 			return translation !== messageCode
 				? translation
 				: fallback || messageCode;

@@ -16,7 +16,6 @@ import {
 } from "@/presentation/components/common";
 import { UICheckbox, UIForm } from "@/presentation/components/ui";
 import { Label } from "@/presentation/components/ui/label";
-import { Toaster } from "@/presentation/components/ui/sonner";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { signinWithCredentials } from "@/server/actions/auth/signin-with-credentials";
 
@@ -171,7 +170,6 @@ export function FormLoginCredentials() {
 						{c("Links.forgot")}
 					</Link>
 				</div>
-				<Toaster richColors position="top-center" />
 			</UIForm.Form>
 		</>
 	);

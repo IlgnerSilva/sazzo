@@ -2,6 +2,7 @@
 	"USER_NOT_FOUND": "Usuário não encontrado",
 	"USER_ALREADY_EXISTS": "Usuário já existe",
 	"INVALID_EMAIL_OR_PASSWORD": "Email ou senha inválidos",
+	"INVALID_PASSWORD": "Senha inválida",
 	"EMAIL_NOT_VERIFIED": "Email não verificado",
 	"SESSION_EXPIRED": "Sessão expirada. Faça login novamente.",
 	"CREDENTIAL_ACCOUNT_NOT_FOUND": "Conta de credencial não encontrada",

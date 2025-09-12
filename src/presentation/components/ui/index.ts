@@ -1,3 +1,4 @@
+export * as UIAlertDialog from "./alert-dialog";
 export * as UIAvatar from "./avatar";
 export * as UIBreadcrumb from "./breadcrumb";
 export * as UIButton from "./button";

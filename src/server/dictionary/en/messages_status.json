@@ -1,6 +1,7 @@
 {
 	"USER_NOT_FOUND": "User not found",
 	"USER_ALREADY_EXISTS": "User already exists",
+	"INVALID_PASSWORD": "Invalid password",
 	"INVALID_EMAIL_OR_PASSWORD": "Invalid email or password",
 	"EMAIL_NOT_VERIFIED": "Email not verified",
 	"SESSION_EXPIRED": "Session expired. Please log in again.",

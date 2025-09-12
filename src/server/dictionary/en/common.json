@@ -15,8 +15,8 @@
 			"root": "Admin",
 			"overview": "overview"
 		},
-		"profile": {
-			"root": "Profile"
+		"account": {
+			"root": "My Account"
 		}
 	}
 }

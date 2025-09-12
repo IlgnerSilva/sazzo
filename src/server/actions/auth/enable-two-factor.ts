@@ -5,7 +5,7 @@ import { getInjection } from "@/core/di/container";
 import { AUTH_SYMBOLS } from "@/core/di/symbols/auth.symbols";
 import { actionClient } from "@/lib/safe-action";
 
-export const signinWithCredentials = actionClient
+export const enableTwoFactor = actionClient
 	.inputSchema(
 		z.object({
 			password: z.string(),

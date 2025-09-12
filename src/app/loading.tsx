@@ -1,4 +1,5 @@
+import { UISpinner } from "@/presentation/components/ui";
+
 export default function Loading() {
-	console.log("Loading...");
-	return <div>Loading...</div>;
+	return <UISpinner.Spinner variant="ellipsis" />;
 }

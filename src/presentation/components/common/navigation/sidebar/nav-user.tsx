@@ -96,10 +96,10 @@ export function NavUser({
 						</UIDropdownMenu.DropdownMenuGroup> */}
 						<UIDropdownMenu.DropdownMenuSeparator />
 						<UIDropdownMenu.DropdownMenuGroup>
-							<Link href="/profile">
+							<Link href="/account">
 								<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
 									<AppWindow />
-									{t("components.NavUser.Links.profile")}
+									{t("components.NavUser.Links.account")}
 								</UIDropdownMenu.DropdownMenuItem>
 							</Link>
 							<Link href="#">

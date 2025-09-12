@@ -27,7 +27,7 @@ export function FormLoginCredentials() {
 	const id = useId();
 
 	const loginCredentialSchema = z.object({
-		email: z.string().email(),
+		email: z.email(),
 		password: z.string().min(8),
 		rememberMe: z.boolean(),
 	});

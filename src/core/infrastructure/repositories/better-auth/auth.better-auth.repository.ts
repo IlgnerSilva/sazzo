@@ -20,7 +20,7 @@ export class AuthRepository implements IAuthRepository {
 		});
 	}
 
-	async twoFactor(password: string) {
+	async twoFactor(password: string){
 		return await auth.api.enableTwoFactor({
 			body: {
 				password,

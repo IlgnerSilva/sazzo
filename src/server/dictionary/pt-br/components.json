@@ -10,10 +10,15 @@
 	"NavUser": {
 		"Links": {
 			"logout": "Sair",
-			"profile": "Perfil",
+			"account": "Minha conta",
 			"security": "Segurança",
 			"organizations": "Organizações",
 			"admin": "Admin"
+		},
+		"Tabs": {
+			"profile": "Perfil",
+			"settings": "Configurações",
+			"security": "Segurança"
 		}
 	},
 	"Inputs": {

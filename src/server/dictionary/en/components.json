@@ -10,10 +10,15 @@
 	"NavUser": {
 		"Links": {
 			"logout": "Log out",
-			"profile": "Profile",
+			"account": "My Account",
 			"security": "Security",
 			"organizations": "Organizations",
 			"admin": "Admin"
+		},
+		"Tabs": {
+			"profile": "Profile",
+			"settings": "Settings",
+			"security": "Security"
 		}
 	},
 	"Inputs": {

@@ -21,6 +21,10 @@
 			"security": "Security"
 		}
 	},
+	"TabSecurity": {
+		"title": "Security",
+		"subtitle": "Manage your account security and authentication settings."
+	},
 	"Inputs": {
 		"name": {
 			"label": "Name",

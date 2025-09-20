@@ -1,9 +1,9 @@
 // permissions.ts
 import { createAccessControl } from "better-auth/plugins/access";
-import { defaultStatements, adminAc } from "better-auth/plugins/admin/access";
+import { adminAc, defaultStatements } from "better-auth/plugins/admin/access";
 import {
-	defaultStatements as orgDefaultStatements,
 	adminAc as orgAdminAc,
+	defaultStatements as orgDefaultStatements,
 } from "better-auth/plugins/organization/access";
 
 /**

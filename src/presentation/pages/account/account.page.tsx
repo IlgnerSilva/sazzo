@@ -1,14 +1,10 @@
 import { UserRound } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { Button, TabsDemo } from "@/presentation/components/common";
-import { FormEnabledTwoFactor } from "@/presentation/components/feature/auth";
-import { UIAlertDialog } from "@/presentation/components/ui";
+import { TabsDemo } from "@/presentation/components/common";
+import { TabSecurity } from "@/presentation/components/feature/security";
 import { TabsContent, TabsTrigger } from "@/presentation/components/ui/tabs";
-import { getSessionWithAutenticaded } from "@/server/dal/getSessionWithAutenticaded";
 
 export async function AccountPage() {
-	const session = await getSessionWithAutenticaded();
-	console.log(session)
 	const t = await getTranslations("components.NavUser.Tabs");
 	return (
 		<div className="w-full h-full">
@@ -29,23 +25,7 @@ export async function AccountPage() {
 				tabContents={
 					<>
 						<TabsContent value="profile">Content for Profile</TabsContent>
-						<TabsContent value="security">
-							<UIAlertDialog.AlertDialog>
-								<UIAlertDialog.AlertDialogTrigger asChild>
-									<Button variant="default">Show Dialog</Button>
-								</UIAlertDialog.AlertDialogTrigger>
-								<UIAlertDialog.AlertDialogContent>
-									<UIAlertDialog.AlertDialogDescription>
-										<FormEnabledTwoFactor />
-									</UIAlertDialog.AlertDialogDescription>
-								<UIAlertDialog.AlertDialogFooter>
-									<UIAlertDialog.AlertDialogCancel>
-										<Button variant="secondary">Close</Button>
-									</UIAlertDialog.AlertDialogCancel>
-								</UIAlertDialog.AlertDialogFooter>
-								</UIAlertDialog.AlertDialogContent>
-							</UIAlertDialog.AlertDialog>
-						</TabsContent>
+						<TabSecurity />
 						<TabsContent value="settings">
 							Content for Notifications
 						</TabsContent>

@@ -1,0 +1,1 @@
+export { TabSecurity } from "./components/tab-security";

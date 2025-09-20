@@ -1,7 +1,7 @@
 import { ContainerModule, type interfaces } from "inversify";
+import { SignInEmailUseCase } from "@/core/application/auth/use-cases/SignInEmail.use-case";
 import { EnableTwoFactor } from "@/core/application/use-cases/EnableTwoFactor.use-case";
 import { GetSessionUseCase } from "@/core/application/use-cases/GetSession.use-case";
-import { SignInEmailUseCase } from "@/core/application/use-cases/SignInEmail.use-case";
 import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
 import { AuthRepository } from "@/core/infrastructure/repositories/better-auth/auth.better-auth.repository";
 import { AUTH_SYMBOLS } from "../symbols/auth.symbols";

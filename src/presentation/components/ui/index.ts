@@ -17,5 +17,7 @@ export * as UISidebar from "./sidebar";
 export * as UISkeletron from "./skeleton";
 export * as UISonner from "./sonner";
 export * as UISpinner from "./spinner";
+export * as UIStatus from "./status";
 export * as UISTable from "./table";
+export * as UITabs from "./tabs";
 export * as UISTooltip from "./tooltip";

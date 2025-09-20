@@ -21,6 +21,10 @@
 			"security": "Segurança"
 		}
 	},
+	"TabSecurity": {
+		"title": "Segurança",
+		"subtitle": "Gerencie sua segurança e configurações de autenticação."
+	},
 	"Inputs": {
 		"email": {
 			"label": "E-mail",

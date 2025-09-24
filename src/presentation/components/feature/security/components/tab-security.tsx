@@ -1,4 +1,4 @@
-import { Key, ShieldCheck, Smartphone } from "lucide-react";
+import { Key, ShieldCheck, Smartphone, XCircle } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/presentation/components/common";
 import { UIAlertDialog, UIStatus, UITabs } from "@/presentation/components/ui";
@@ -60,31 +60,32 @@ export async function TabSecurity() {
 									<UIStatus.StatusIndicator />
 									<UIStatus.StatusLabel>Disabled</UIStatus.StatusLabel>
 								</UIStatus.Status>
-								<Button variant="default">Enable</Button>
+								<UIAlertDialog.AlertDialog>
+									<UIAlertDialog.AlertDialogTrigger asChild>
+										<Button className="cursor-pointer" variant="default">
+											Enable
+										</Button>
+									</UIAlertDialog.AlertDialogTrigger>
+									<UIAlertDialog.AlertDialogContent>
+										<UIAlertDialog.AlertDialogHeader className="flex items-center justify-between">
+											<UIAlertDialog.AlertDialogTitle className="self-start">
+												Login em duas etapas
+											</UIAlertDialog.AlertDialogTitle>
+											<UIAlertDialog.AlertDialogCancel className="self-end cursor-pointer">
+												<XCircle />
+											</UIAlertDialog.AlertDialogCancel>
+										</UIAlertDialog.AlertDialogHeader>
+										<hr />
+										<UIAlertDialog.AlertDialogDescription>
+											<FormEnabledTwoFactor />
+										</UIAlertDialog.AlertDialogDescription>
+									</UIAlertDialog.AlertDialogContent>
+								</UIAlertDialog.AlertDialog>
 							</div>
 						)}
 					</div>
 				</div>
 			</section>
-			<div>
-				<UITabs.TabsContent value="security">
-					<UIAlertDialog.AlertDialog>
-						<UIAlertDialog.AlertDialogTrigger asChild>
-							<Button variant="default">Show Dialog</Button>
-						</UIAlertDialog.AlertDialogTrigger>
-						<UIAlertDialog.AlertDialogContent>
-							<UIAlertDialog.AlertDialogDescription>
-								<FormEnabledTwoFactor />
-							</UIAlertDialog.AlertDialogDescription>
-							<UIAlertDialog.AlertDialogFooter>
-								<UIAlertDialog.AlertDialogCancel>
-									<Button variant="secondary">Close</Button>
-								</UIAlertDialog.AlertDialogCancel>
-							</UIAlertDialog.AlertDialogFooter>
-						</UIAlertDialog.AlertDialogContent>
-					</UIAlertDialog.AlertDialog>
-				</UITabs.TabsContent>
-			</div>
 		</div>
 	);
 }

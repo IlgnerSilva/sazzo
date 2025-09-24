@@ -13,7 +13,13 @@ export interface IAuthRepository {
 	}>;
 
 	authSession: () => Promise<Auth | null>;
-	twoFactor: (
+	enableTwoFactor: (
 		password: string,
 	) => Promise<{ totpURI: string; backupCodes: string[] }>;
+	verifyTwoFactorTOTP: (
+		code: string,
+	) => Promise<{
+		user: User;
+		token: string;
+	}>;
 }

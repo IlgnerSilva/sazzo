@@ -74,7 +74,6 @@ export function InputPasswordStrength({
 	}, [strength]);
 
 	const getStrengthColor = (score: number) => {
-		console.log(score);
 		if (score === 0) return "bg-border";
 		if (score <= 1) return "bg-destructive";
 		if (score <= 2) return "bg-warning";

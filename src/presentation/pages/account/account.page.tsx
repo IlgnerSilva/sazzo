@@ -25,7 +25,9 @@ export async function AccountPage() {
 				tabContents={
 					<>
 						<TabsContent value="profile">Content for Profile</TabsContent>
-						<TabSecurity />
+						<TabsContent value="security">
+							<TabSecurity />
+						</TabsContent>
 						<TabsContent value="settings">
 							Content for Notifications
 						</TabsContent>

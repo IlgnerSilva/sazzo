@@ -10,6 +10,6 @@ export class EnableTwoFactor {
 	) {}
 
 	async execute(password: string) {
-		return await this.authRepository.twoFactor(password);
+		return await this.authRepository.enableTwoFactor(password);
 	}
 }

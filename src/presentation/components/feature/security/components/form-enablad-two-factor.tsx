@@ -10,9 +10,10 @@ import { Button, InputPassword } from "@/presentation/components/common";
 import { UIForm, UIQRCodeClient } from "@/presentation/components/ui";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { enableTwoFactor } from "@/server/actions/auth/enable-two-factor";
+import { FormVerifyTwoFactorTOTP } from "./form-verify-two-factor-totp";
 
 export function FormEnabledTwoFactor() {
-	const [viewQRCode, setViwQRCode] = useState<boolean | string>(false);
+	const [viewQRCode, setViwQRCode] = useState<string>();
 	const { translateMessage } = useMessageTranslation();
 	const { isPending, executeAsync } = useAction(enableTwoFactor);
 	const id = useId();
@@ -40,7 +41,7 @@ export function FormEnabledTwoFactor() {
 
 	return (
 		<>
-			{viewQRCode === false ? (
+			{!viewQRCode ? (
 				<UIForm.Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
@@ -80,7 +81,15 @@ export function FormEnabledTwoFactor() {
 					</form>
 				</UIForm.Form>
 			) : (
-				<UIQRCodeClient.QRCode data={viewQRCode} />
+				<div className="flex flex-col gap-4">
+					<div className="max-w-3xs mx-auto ">
+						<UIQRCodeClient.QRCode data={viewQRCode} />
+					</div>
+					<hr />
+					<div>
+						<FormVerifyTwoFactorTOTP />
+					</div>
+				</div>
 			)}
 		</>
 	);

@@ -18,6 +18,7 @@ import { UICheckbox, UIForm } from "@/presentation/components/ui";
 import { Label } from "@/presentation/components/ui/label";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { signinWithCredentials } from "@/server/actions/auth/signin-with-credentials";
+import { ReactJsxRuntime } from "next/dist/server/route-modules/app-page/vendored/rsc/entrypoints";
 
 export function FormLoginCredentials() {
 	const { translateMessage } = useMessageTranslation();
@@ -41,13 +42,16 @@ export function FormLoginCredentials() {
 	});
 
 	async function onSubmit(data: z.infer<typeof loginCredentialSchema>) {
-		const { serverError } = await executeAsync(data);
+		const { serverError, data: response } = await executeAsync(data);
 		if (serverError) {
 			const message = translateMessage(serverError.code || "");
 			toast.error(message);
 			return;
 		}
-
+		if (response?.twoFactorRedirect) {
+			redirect("/auth/two-factor/totp");
+			return;
+		}
 		redirect("/");
 	}
 

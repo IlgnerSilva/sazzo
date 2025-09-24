@@ -10,6 +10,7 @@ export interface IAuthRepository {
 		token: string;
 		url: string | undefined;
 		redirect: boolean;
+		twoFactorRedirect?: boolean
 	}>;
 
 	authSession: () => Promise<Auth | null>;

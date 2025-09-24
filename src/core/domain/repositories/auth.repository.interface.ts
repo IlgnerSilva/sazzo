@@ -17,6 +17,9 @@ export interface IAuthRepository {
 	enableTwoFactor: (
 		password: string,
 	) => Promise<{ totpURI: string; backupCodes: string[] }>;
+	disableTwoFactor: (
+		password: string,
+	) => Promise<{ status: boolean; }>;
 	verifyTwoFactorTOTP: (
 		code: string,
 	) => Promise<{

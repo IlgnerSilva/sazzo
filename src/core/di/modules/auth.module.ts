@@ -1,8 +1,9 @@
 import { ContainerModule, type interfaces } from "inversify";
 import { SignInEmailUseCase } from "@/core/application/use-cases/SignInEmail.use-case";
-import { EnableTwoFactor } from "@/core/application/use-cases/EnableTwoFactor.use-case";
+import { EnableTwoFactorUseCase } from "@/core/application/use-cases/EnableTwoFactor.use-case";
 import { GetSessionUseCase } from "@/core/application/use-cases/GetSession.use-case";
 import { VerifyTwoFactorTOTPUseCase } from "@/core/application/use-cases/VerifyTwoFactorTOTP.use-case";
+import { DisabledTwoFactorUseCase } from "@/core/application/use-cases/DisabledTwoFactor.use-case";
 import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
 import { AuthRepository } from "@/core/infrastructure/repositories/better-auth/auth.better-auth.repository";
 import { AUTH_SYMBOLS } from "../symbols/auth.symbols";
@@ -16,7 +17,8 @@ const initializateModule = (bind: interfaces.Bind) => {
 		SignInEmailUseCase,
 	);
 	bind<GetSessionUseCase>(AUTH_SYMBOLS.GetSessionUseCase).to(GetSessionUseCase);
-	bind<EnableTwoFactor>(AUTH_SYMBOLS.EnableTwoFactor).to(EnableTwoFactor);
+	bind<EnableTwoFactorUseCase>(AUTH_SYMBOLS.EnableTwoFactorUseCase).to(EnableTwoFactorUseCase);
+	bind<DisabledTwoFactorUseCase>(AUTH_SYMBOLS.DisabledTwoFactorUseCase).to(DisabledTwoFactorUseCase);
 	bind<VerifyTwoFactorTOTPUseCase>(
 		AUTH_SYMBOLS.VerifyTwoFactorTOTPUseCase,
 	).to(VerifyTwoFactorTOTPUseCase);

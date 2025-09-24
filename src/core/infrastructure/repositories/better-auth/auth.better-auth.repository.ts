@@ -29,6 +29,15 @@ export class AuthRepository implements IAuthRepository {
 		});
 	}
 
+	async disableTwoFactor(password: string){
+		return await auth.api.disableTwoFactor({
+			body: {
+				password,
+			},
+			headers: await headers(),
+		});
+	}
+
 	async verifyTwoFactorTOTP(code: string){
 		return auth.api.verifyTOTP({
 			body: {

@@ -3,7 +3,7 @@ import { AUTH_SYMBOLS } from "@/core/di/symbols/auth.symbols";
 import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
 
 @injectable()
-export class EnableTwoFactor {
+export class EnableTwoFactorUseCase {
 	constructor(
 		@inject(AUTH_SYMBOLS.IAuthRepository)
 		private readonly authRepository: IAuthRepository,

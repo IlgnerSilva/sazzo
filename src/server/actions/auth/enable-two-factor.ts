@@ -12,5 +12,5 @@ export const enableTwoFactor = actionClient
 		}),
 	)
 	.action(async ({ parsedInput: { password } }) => {
-		return await getInjection(AUTH_SYMBOLS.EnableTwoFactor).execute(password);
+		return await getInjection(AUTH_SYMBOLS.EnableTwoFactorUseCase).execute(password);
 	});

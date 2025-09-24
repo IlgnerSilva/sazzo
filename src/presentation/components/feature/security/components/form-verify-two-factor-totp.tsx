@@ -41,6 +41,7 @@ export function FormVerifyTwoFactorTOTP() {
 		toast.success("2FA verificado com sucesso!", {
 			duration: 1000,
 			onAutoClose: () => {
+				console.log("refresh");
 				router.refresh();
 			},
 		});

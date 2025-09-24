@@ -4,6 +4,7 @@ import { Button } from "@/presentation/components/common";
 import { UIAlertDialog, UIStatus, UITabs } from "@/presentation/components/ui";
 import { getSessionWithAutenticaded } from "@/server/dal/getSessionWithAutenticaded";
 import { FormEnabledTwoFactor } from "./form-enablad-two-factor";
+import { FormDisabledTwoFactor } from "./form-disabled-two-factor";
 
 export async function TabSecurity() {
 	const t = await getTranslations("components.TabSecurity");
@@ -38,51 +39,44 @@ export async function TabSecurity() {
 								<Key />
 							</div>
 						</div>
-						{session?.user?.twoFactorEnabled ? (
-							<div>
-								<div className="flex items-center gap-2">
-									<UIStatus.Status
-										className="bg-transparent border border-accent rounded-full"
-										status="online"
-									>
-										<UIStatus.StatusIndicator />
-										<UIStatus.StatusLabel>Enabled</UIStatus.StatusLabel>
-									</UIStatus.Status>
-									<Button variant="default">Disable</Button>
-								</div>
-							</div>
-						) : (
-							<div className="flex items-center gap-2">
-								<UIStatus.Status
-									className="bg-transparent border border-accent rounded-full"
-									status="offline"
-								>
-									<UIStatus.StatusIndicator />
-									<UIStatus.StatusLabel>Disabled</UIStatus.StatusLabel>
-								</UIStatus.Status>
-								<UIAlertDialog.AlertDialog>
-									<UIAlertDialog.AlertDialogTrigger asChild>
-										<Button className="cursor-pointer" variant="default">
-											Enable
-										</Button>
-									</UIAlertDialog.AlertDialogTrigger>
-									<UIAlertDialog.AlertDialogContent>
-										<UIAlertDialog.AlertDialogHeader className="flex items-center justify-between">
-											<UIAlertDialog.AlertDialogTitle className="self-start">
-												Login em duas etapas
-											</UIAlertDialog.AlertDialogTitle>
-											<UIAlertDialog.AlertDialogCancel className="self-end cursor-pointer">
-												<XCircle />
-											</UIAlertDialog.AlertDialogCancel>
-										</UIAlertDialog.AlertDialogHeader>
-										<hr />
-										<UIAlertDialog.AlertDialogDescription>
+						<div className="flex items-center gap-2">
+							<UIStatus.Status
+								className="bg-transparent border border-accent rounded-full"
+								status={session?.user?.twoFactorEnabled ? "online" : "offline"}
+							>
+								<UIStatus.StatusIndicator />
+								<UIStatus.StatusLabel>
+									{session?.user?.twoFactorEnabled ? "Enabled" : "Disabled"}
+								</UIStatus.StatusLabel>
+							</UIStatus.Status>
+							<UIAlertDialog.AlertDialog>
+								<UIAlertDialog.AlertDialogTrigger asChild>
+									<Button className="cursor-pointer" variant="default">
+										{session?.user?.twoFactorEnabled ? "Disabled" : "Enabled"}
+									</Button>
+								</UIAlertDialog.AlertDialogTrigger>
+								<UIAlertDialog.AlertDialogContent>
+									<UIAlertDialog.AlertDialogHeader className="flex items-center justify-between">
+										<UIAlertDialog.AlertDialogTitle className="self-start">
+											{session?.user?.twoFactorEnabled
+												? "Desabilitar login em duas etapas"
+												: "Habilitar login em duas etapas"}
+										</UIAlertDialog.AlertDialogTitle>
+										<UIAlertDialog.AlertDialogCancel className="self-end cursor-pointer">
+											<XCircle />
+										</UIAlertDialog.AlertDialogCancel>
+									</UIAlertDialog.AlertDialogHeader>
+									<hr />
+									<UIAlertDialog.AlertDialogDescription>
+										{session?.user?.twoFactorEnabled ? (
+											<FormDisabledTwoFactor />
+										) : (
 											<FormEnabledTwoFactor />
-										</UIAlertDialog.AlertDialogDescription>
-									</UIAlertDialog.AlertDialogContent>
-								</UIAlertDialog.AlertDialog>
-							</div>
-						)}
+										)}
+									</UIAlertDialog.AlertDialogDescription>
+								</UIAlertDialog.AlertDialogContent>
+							</UIAlertDialog.AlertDialog>
+						</div>
 					</div>
 				</div>
 			</section>

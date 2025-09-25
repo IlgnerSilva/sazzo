@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { Container } from "inversify";
-import { authModule } from "./modules/auth.module";
+import { authModule, twoFactorModule } from "./modules";
 
 const ApplicationContainer = new Container({
 	defaultScope: "Singleton",
@@ -23,6 +23,7 @@ export class DIContainer {
 		if (this.initialized) return;
 
 		ApplicationContainer.load(authModule);
+		ApplicationContainer.load(twoFactorModule);
 		this.initialized = true;
 	}
 

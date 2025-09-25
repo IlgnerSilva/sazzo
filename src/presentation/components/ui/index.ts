@@ -22,3 +22,4 @@ export * as UISTable from "./table";
 export * as UITabs from "./tabs";
 export * as UISTooltip from "./tooltip";
 export * as UIInputOTP from "./input-otp";
+export * as UIRadioGroup from "./radio-group";

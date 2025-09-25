@@ -2,7 +2,7 @@
 
 import { z } from "zod/v4";
 import { getInjection } from "@/core/di/container";
-import { AUTH_SYMBOLS } from "@/core/di/symbols/auth.symbols";
+import { AUTH_SYMBOLS } from "@/core/di/symbols";
 import { actionClient } from "@/lib/safe-action";
 
 export const enableTwoFactor = actionClient
@@ -12,5 +12,7 @@ export const enableTwoFactor = actionClient
 		}),
 	)
 	.action(async ({ parsedInput: { password } }) => {
-		return await getInjection(AUTH_SYMBOLS.EnableTwoFactorUseCase).execute(password);
+		return await getInjection(AUTH_SYMBOLS.EnableTwoFactorUseCase).execute(
+			password,
+		);
 	});

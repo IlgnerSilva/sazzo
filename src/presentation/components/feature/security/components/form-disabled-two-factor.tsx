@@ -10,13 +10,11 @@ import { Button, InputPassword } from "@/presentation/components/common";
 import { UIForm } from "@/presentation/components/ui";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { disableTwoFactor } from "@/server/actions/auth/disable-two-factor";
-import { useRouter } from "next/navigation";
 
 export function FormDisabledTwoFactor() {
 	const { translateMessage } = useMessageTranslation();
 	const { isPending, executeAsync } = useAction(disableTwoFactor);
 	const id = useId();
-	const router = useRouter();
 
 	const disabledTwoFactorSchema = z.object({
 		password: z.string(),
@@ -30,7 +28,7 @@ export function FormDisabledTwoFactor() {
 	});
 
 	async function onSubmit(data: z.infer<typeof disabledTwoFactorSchema>) {
-		const { serverError, data: response } = await executeAsync(data);
+		const { serverError } = await executeAsync(data);
 		if (serverError) {
 			const message = translateMessage(serverError.code || "");
 			toast.error(message);

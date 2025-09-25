@@ -1,15 +1,15 @@
 import { inject, injectable } from "inversify";
-import { AUTH_SYMBOLS } from "@/core/di/symbols/auth.symbols";
-import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
+import { AUTH_SYMBOLS } from "@/core/di/symbols";
+import type { IAuthRepository } from "@/core/domain/repositories";
 
 @injectable()
 export class DisabledTwoFactorUseCase {
-    constructor(
-        @inject(AUTH_SYMBOLS.IAuthRepository)
-        private readonly authRepository: IAuthRepository,
-    ) {}
+	constructor(
+		@inject(AUTH_SYMBOLS.IAuthRepository)
+		private readonly authRepository: IAuthRepository,
+	) {}
 
-    async execute(password: string) {
-        return await this.authRepository.disableTwoFactor(password);
-    }
+	async execute(password: string) {
+		return await this.authRepository.disableTwoFactor(password);
+	}
 }

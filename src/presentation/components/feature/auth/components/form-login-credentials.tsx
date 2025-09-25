@@ -5,7 +5,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useAction } from "next-safe-action/hooks";
-import { useId } from "react";
+import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod/v4";
@@ -14,15 +14,21 @@ import {
 	InputEmail,
 	InputPassword,
 } from "@/presentation/components/common";
-import { UICheckbox, UIForm } from "@/presentation/components/ui";
+import {
+	UIAlertDialog,
+	UICheckbox,
+	UIForm,
+} from "@/presentation/components/ui";
 import { Label } from "@/presentation/components/ui/label";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { signinWithCredentials } from "@/server/actions/auth/signin-with-credentials";
-import { ReactJsxRuntime } from "next/dist/server/route-modules/app-page/vendored/rsc/entrypoints";
+import { XCircle } from "lucide-react";
+import { FormSwitchVerificationTwoFactor } from "@/presentation/components/feature/security/components/form-switch-verification-two-factor";
 
 export function FormLoginCredentials() {
 	const { translateMessage } = useMessageTranslation();
 	const { isPending, executeAsync } = useAction(signinWithCredentials);
+	const [isTwoFactor, setIsTwoFactor] = useState(false);
 	const c = useTranslations("components");
 	const id = useId();
 
@@ -49,7 +55,7 @@ export function FormLoginCredentials() {
 			return;
 		}
 		if (response?.twoFactorRedirect) {
-			redirect("/auth/two-factor/totp");
+			setIsTwoFactor(true);
 			return;
 		}
 		redirect("/");
@@ -175,6 +181,28 @@ export function FormLoginCredentials() {
 					</Link>
 				</div>
 			</UIForm.Form>
+
+			{isTwoFactor && (
+				<UIAlertDialog.AlertDialog defaultOpen={isTwoFactor}>
+					<UIAlertDialog.AlertDialogContent>
+						<UIAlertDialog.AlertDialogHeader className="flex items-center justify-between">
+							<UIAlertDialog.AlertDialogTitle className="self-start">
+								Requer fator de autenticação
+							</UIAlertDialog.AlertDialogTitle>
+							<UIAlertDialog.AlertDialogCancel
+								className="self-end cursor-pointer"
+								onChange={() => setIsTwoFactor(false)}
+							>
+								<XCircle />
+							</UIAlertDialog.AlertDialogCancel>
+						</UIAlertDialog.AlertDialogHeader>
+						<hr />
+						<UIAlertDialog.AlertDialogDescription>
+							<FormSwitchVerificationTwoFactor />
+						</UIAlertDialog.AlertDialogDescription>
+					</UIAlertDialog.AlertDialogContent>
+				</UIAlertDialog.AlertDialog>
+			)}
 		</>
 	);
 }

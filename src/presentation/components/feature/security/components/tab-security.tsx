@@ -1,7 +1,7 @@
 import { Key, ShieldCheck, Smartphone, XCircle } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/presentation/components/common";
-import { UIAlertDialog, UIStatus, UITabs } from "@/presentation/components/ui";
+import { UIAlertDialog, UIStatus } from "@/presentation/components/ui";
 import { getSessionWithAutenticaded } from "@/server/dal/getSessionWithAutenticaded";
 import { FormEnabledTwoFactor } from "./form-enablad-two-factor";
 import { FormDisabledTwoFactor } from "./form-disabled-two-factor";

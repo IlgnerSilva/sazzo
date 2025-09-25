@@ -1,5 +1,7 @@
 import { compare, hash } from "bcrypt";
 import { betterAuth } from "better-auth";
+import { resend } from "../resend/client";
+import { PlaidVerifyIdentityEmail } from "../resend/templates/send-code-OTP";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import {
@@ -175,12 +177,18 @@ export const auth = betterAuth({
 				owner,
 			},
 		}),
+
 		emailOTP({
 			otpLength: 6,
 			expiresIn: 60 * 5,
 			allowedAttempts: 5,
 			async sendVerificationOTP({ email, otp, type }, request) {
-				// Send email with OTP
+				await resend.emails.send({
+					from: "Acme <onboarding@resend.dev>",
+					to: ["ilgnersilva@outlook.com"],
+					subject: "Código de verifiação OTP",
+					react: PlaidVerifyIdentityEmail({ validationCode: otp }),
+				});
 				console.log(email, otp, type, request);
 			},
 		}),
@@ -199,7 +207,13 @@ export const auth = betterAuth({
 			otpOptions: {
 				digits: 6,
 				period: 30,
-				sendOTP(data, request) {
+				async sendOTP(data, request) {
+					await resend.emails.send({
+						from: "Acme <onboarding@resend.dev>",
+						to: ["ilgnersilva@outlook.com"],
+						subject: "Código de verifiação OTP",
+						react: PlaidVerifyIdentityEmail({ validationCode: data.otp }),
+					});
 					console.log(data, request);
 				},
 			},

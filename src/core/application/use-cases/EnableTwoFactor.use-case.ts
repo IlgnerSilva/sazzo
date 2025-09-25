@@ -1,6 +1,6 @@
 import { inject, injectable } from "inversify";
-import { AUTH_SYMBOLS } from "@/core/di/symbols/auth.symbols";
-import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
+import { AUTH_SYMBOLS } from "@/core/di/symbols";
+import type { IAuthRepository } from "@/core/domain/repositories";
 
 @injectable()
 export class EnableTwoFactorUseCase {

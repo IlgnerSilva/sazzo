@@ -1,12 +1,14 @@
 import { ContainerModule, type interfaces } from "inversify";
-import { SignInEmailUseCase } from "@/core/application/use-cases/SignInEmail.use-case";
-import { EnableTwoFactorUseCase } from "@/core/application/use-cases/EnableTwoFactor.use-case";
-import { GetSessionUseCase } from "@/core/application/use-cases/GetSession.use-case";
-import { VerifyTwoFactorTOTPUseCase } from "@/core/application/use-cases/VerifyTwoFactorTOTP.use-case";
-import { DisabledTwoFactorUseCase } from "@/core/application/use-cases/DisabledTwoFactor.use-case";
-import type { IAuthRepository } from "@/core/domain/repositories/auth.repository.interface";
-import { AuthRepository } from "@/core/infrastructure/repositories/better-auth/auth.better-auth.repository";
-import { AUTH_SYMBOLS } from "../symbols/auth.symbols";
+import {
+	SignInEmailUseCase,
+	EnableTwoFactorUseCase,
+	GetSessionUseCase,
+	VerifyTwoFactorTOTPUseCase,
+	DisabledTwoFactorUseCase,
+} from "@/core/application/use-cases";
+import type { IAuthRepository } from "@/core/domain/repositories";
+import { AuthRepository } from "@/core/infrastructure/repositories/better-auth";
+import { AUTH_SYMBOLS } from "../symbols";
 
 const initializateModule = (bind: interfaces.Bind) => {
 	//Repositories
@@ -17,11 +19,15 @@ const initializateModule = (bind: interfaces.Bind) => {
 		SignInEmailUseCase,
 	);
 	bind<GetSessionUseCase>(AUTH_SYMBOLS.GetSessionUseCase).to(GetSessionUseCase);
-	bind<EnableTwoFactorUseCase>(AUTH_SYMBOLS.EnableTwoFactorUseCase).to(EnableTwoFactorUseCase);
-	bind<DisabledTwoFactorUseCase>(AUTH_SYMBOLS.DisabledTwoFactorUseCase).to(DisabledTwoFactorUseCase);
-	bind<VerifyTwoFactorTOTPUseCase>(
-		AUTH_SYMBOLS.VerifyTwoFactorTOTPUseCase,
-	).to(VerifyTwoFactorTOTPUseCase);
+	bind<EnableTwoFactorUseCase>(AUTH_SYMBOLS.EnableTwoFactorUseCase).to(
+		EnableTwoFactorUseCase,
+	);
+	bind<DisabledTwoFactorUseCase>(AUTH_SYMBOLS.DisabledTwoFactorUseCase).to(
+		DisabledTwoFactorUseCase,
+	);
+	bind<VerifyTwoFactorTOTPUseCase>(AUTH_SYMBOLS.VerifyTwoFactorTOTPUseCase).to(
+		VerifyTwoFactorTOTPUseCase,
+	);
 };
 
 export const authModule = new ContainerModule(initializateModule);

@@ -2,10 +2,7 @@ import { ContainerModule, type interfaces } from "inversify";
 import type { ITwoFactorRepository } from "@/core/domain/repositories";
 import { TwoFactorRepository } from "@/core/infrastructure/repositories/better-auth";
 import { TWOFACTOR_SYMBOLS } from "../symbols";
-import {
-	VerifyTwoFactorOTPUseCase,
-	SendOTPTwoFactorUseCase,
-} from "@/core/application/use-cases";
+import { TwoFactorService } from "@/core/application/services";
 
 const initializateModule = (bind: interfaces.Bind) => {
 	//Repositories
@@ -13,13 +10,10 @@ const initializateModule = (bind: interfaces.Bind) => {
 		TwoFactorRepository,
 	);
 
-	//Use Cases
-	bind<SendOTPTwoFactorUseCase>(TWOFACTOR_SYMBOLS.SendOTPTwoFactorUseCase).to(
-		SendOTPTwoFactorUseCase,
+	//Services
+	bind<TwoFactorService>(TWOFACTOR_SYMBOLS.TwoFactorService).to(
+		TwoFactorService,
 	);
-	bind<VerifyTwoFactorOTPUseCase>(
-		TWOFACTOR_SYMBOLS.VerifyTwoFactorOTPUseCase,
-	).to(VerifyTwoFactorOTPUseCase);
 };
 
 export const twoFactorModule = new ContainerModule(initializateModule);

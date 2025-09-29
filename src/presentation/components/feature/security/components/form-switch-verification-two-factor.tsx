@@ -1,8 +1,6 @@
-import {
-	InputEmail,
-	InputPassword,
-	Button,
-} from "@/presentation/components/common";
+"use client";
+
+import { Button } from "@/presentation/components/common";
 import { UIForm, UIRadioGroup } from "@/presentation/components/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod/v4";
@@ -13,13 +11,15 @@ import { useAction } from "next-safe-action/hooks";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
 import { FormLabel } from "@/presentation/components/ui/form";
-import { useId } from "react";
+import { useId, useState } from "react";
 
 export function FormSwitchVerificationTwoFactor() {
 	const idTOTP = useId();
 	const idOTP = useId();
 	const { translateMessage } = useMessageTranslation();
-	const { isPending, executeAsync } = useAction(sendOTPTwoFactor);
+	const { executeAsync } = useAction(sendOTPTwoFactor);
+	const [isPending, setIsPending] = useState(false);
+
 	const switchVerificationTwoFactorSchema = z.object({
 		switchVerificationTwoFactor: z.enum(["totp", "otp"]).optional(),
 	});
@@ -34,6 +34,7 @@ export function FormSwitchVerificationTwoFactor() {
 	async function onSubmit(
 		data: z.infer<typeof switchVerificationTwoFactorSchema>,
 	) {
+		setIsPending(true);
 		if (data.switchVerificationTwoFactor === "totp") {
 			redirect("/auth/two-factor?verify=totp");
 		}
@@ -42,6 +43,7 @@ export function FormSwitchVerificationTwoFactor() {
 		if (serverError) {
 			const message = translateMessage(serverError.code || "");
 			toast.error(message);
+			setIsPending(false);
 			return;
 		}
 		if (response?.status) {

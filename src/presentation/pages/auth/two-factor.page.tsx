@@ -1,20 +1,12 @@
-"use client";
+import { FormVerifyTwoFactor } from "@/presentation/components/feature/security";
+import { redirect } from "next/navigation";
 
-import {
-	FormVerifyTwoFactorTOTP,
-	FormVerifyTwoFactorOTP,
-} from "@/presentation/components/feature/security";
-import { redirect, useSearchParams } from "next/navigation";
+interface Props {
+	searchParams: "otp" | "totp";
+}
 
-export function PageVerifyTwoFactor() {
-	// const searchParams = useSearchParams();
+export function PageVerifyTwoFactor({ searchParams }: Props) {
+	if (!searchParams) redirect("/auth/signin");
 
-	// if (searchParams.get("verify") === "otp") {
-	// 	return <FormVerifyTwoFactorOTP />;
-	// }
-	// if (searchParams.get("verify") === "totp") {
-	// 	return <FormVerifyTwoFactorTOTP />;
-	// }
-	return <FormVerifyTwoFactorTOTP />;
-	//redirect("/auth/signin");
+	return <FormVerifyTwoFactor type_verify={searchParams} redirect={true} />;
 }

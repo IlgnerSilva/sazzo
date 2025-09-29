@@ -2,7 +2,7 @@
 
 import { z } from "zod/v4";
 import { getInjection } from "@/core/di/container";
-import { AUTH_SYMBOLS } from "@/core/di/symbols";
+import { TWOFACTOR_SYMBOLS } from "@/core/di/symbols";
 import { actionClient } from "@/lib/safe-action";
 
 export const disableTwoFactor = actionClient
@@ -12,7 +12,7 @@ export const disableTwoFactor = actionClient
 		}),
 	)
 	.action(async ({ parsedInput: { password } }) => {
-		return await getInjection(AUTH_SYMBOLS.DisabledTwoFactorUseCase).execute(
-			password,
-		);
+		return await getInjection(
+			TWOFACTOR_SYMBOLS.ITwoFactorRepository,
+		).disableTwoFactor(password);
 	});

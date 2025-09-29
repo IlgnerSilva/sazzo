@@ -1,18 +1,10 @@
 import type { ITwoFactorRepository } from "@/core/domain/repositories";
 import { createSymbol } from "../utils/createSymbol.util";
-import type {
-	VerifyTwoFactorOTPUseCase,
-	SendOTPTwoFactorUseCase,
-} from "@/core/application/use-cases";
+import type { TwoFactorService } from "@/core/application/services";
 
 export const TWOFACTOR_SYMBOLS = {
 	ITwoFactorRepository: createSymbol<ITwoFactorRepository>(
 		"ITwoFactorRepository",
 	),
-	SendOTPTwoFactorUseCase: createSymbol<SendOTPTwoFactorUseCase>(
-		"SendOTPTwoFactorUseCase",
-	),
-	VerifyTwoFactorOTPUseCase: createSymbol<VerifyTwoFactorOTPUseCase>(
-		"VerifyTwoFactorOTPUseCase",
-	),
+	TwoFactorService: createSymbol<TwoFactorService>("TwoFactorService"),
 } as const;

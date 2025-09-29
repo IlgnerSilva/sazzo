@@ -178,20 +178,20 @@ export const auth = betterAuth({
 			},
 		}),
 
-		emailOTP({
-			otpLength: 6,
-			expiresIn: 60 * 5,
-			allowedAttempts: 5,
-			async sendVerificationOTP({ email, otp, type }, request) {
-				await resend.emails.send({
-					from: "Acme <onboarding@resend.dev>",
-					to: ["ilgnersilva@outlook.com"],
-					subject: "Código de verifiação OTP",
-					react: PlaidVerifyIdentityEmail({ validationCode: otp }),
-				});
-				console.log(email, otp, type, request);
-			},
-		}),
+		// emailOTP({
+		// 	otpLength: 6,
+		// 	expiresIn: 60 * 5,
+		// 	allowedAttempts: 5,
+		// 	async sendVerificationOTP({ email, otp, type }, request) {
+		// 		await resend.emails.send({
+		// 			from: "Acme <onboarding@resend.dev>",
+		// 			to: ["ilgnersilva@outlook.com"],
+		// 			subject: "Código de verifiação OTP",
+		// 			react: PlaidVerifyIdentityEmail({ validationCode: otp }),
+		// 		});
+		// 		console.log(email, otp, type, request);
+		// 	},
+		// }),
 		magicLink({
 			expiresIn: 60 * 5,
 			sendMagicLink({ email, token, url }, request) {

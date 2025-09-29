@@ -6,6 +6,6 @@ import { actionClient } from "@/lib/safe-action";
 
 export const sendOTPTwoFactor = actionClient.action(async () => {
 	return await getInjection(
-		TWOFACTOR_SYMBOLS.SendOTPTwoFactorUseCase,
-	).execute();
+		TWOFACTOR_SYMBOLS.TwoFactorService,
+	).sendOTPTwoFactor();
 });

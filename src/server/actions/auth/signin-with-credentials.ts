@@ -14,7 +14,7 @@ export const signinWithCredentials = actionClient
 		}),
 	)
 	.action(async ({ parsedInput: { email, password, rememberMe } }) => {
-		return await getInjection(AUTH_SYMBOLS.SignInEmailUseCase).execute(
+		return await getInjection(AUTH_SYMBOLS.AuthService).signInWithEmail(
 			email,
 			password,
 		);

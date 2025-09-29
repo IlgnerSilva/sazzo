@@ -10,7 +10,7 @@ import { Button, InputPassword } from "@/presentation/components/common";
 import { UIForm, UIQRCodeClient } from "@/presentation/components/ui";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
 import { enableTwoFactor } from "@/server/actions/auth/enable-two-factor";
-import { FormVerifyTwoFactorTOTP } from "./form-verify-two-factor-totp";
+import { FormVerifyTwoFactor } from "./form-verify-two-factor";
 
 export function FormEnabledTwoFactor() {
 	const [viewQRCode, setViwQRCode] = useState<string>();
@@ -87,7 +87,7 @@ export function FormEnabledTwoFactor() {
 					</div>
 					<hr />
 					<div>
-						<FormVerifyTwoFactorTOTP />
+						<FormVerifyTwoFactor type_verify="totp" />
 					</div>
 				</div>
 			)}

@@ -10,20 +10,8 @@ export interface IAuthRepository {
 		token: string;
 		url: string | undefined;
 		redirect: boolean;
-		twoFactorRedirect?: boolean
+		twoFactorRedirect?: boolean;
 	}>;
 
 	authSession: () => Promise<Auth | null>;
-	enableTwoFactor: (
-		password: string,
-	) => Promise<{ totpURI: string; backupCodes: string[] }>;
-	disableTwoFactor: (
-		password: string,
-	) => Promise<{ status: boolean; }>;
-	verifyTwoFactorTOTP: (
-		code: string,
-	) => Promise<{
-		user: User;
-		token: string;
-	}>;
 }

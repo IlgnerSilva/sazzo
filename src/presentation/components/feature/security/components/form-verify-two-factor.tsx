@@ -9,12 +9,18 @@ import { z } from "zod/v4";
 import { Button } from "@/presentation/components/common";
 import { UIForm, UIInputOTP } from "@/presentation/components/ui";
 import { useMessageTranslation } from "@/presentation/hooks/use-message-translation";
-import { verifyTwoFactorTOTP } from "@/server/actions/auth/verifyTwoFactorTOTP";
+import { verifyTwoFactor } from "@/server/actions/auth/";
 import { useRouter } from "next/navigation";
 
-export function FormVerifyTwoFactorTOTP() {
+export function FormVerifyTwoFactor({
+	type_verify,
+	redirect,
+}: {
+	type_verify: "otp" | "totp";
+	redirect?: boolean;
+}) {
 	const { translateMessage } = useMessageTranslation();
-	const { isPending, executeAsync } = useAction(verifyTwoFactorTOTP);
+	const { isPending, executeAsync } = useAction(verifyTwoFactor);
 	const id = useId();
 	const router = useRouter();
 
@@ -32,16 +38,25 @@ export function FormVerifyTwoFactorTOTP() {
 	async function onSubmiVerifyTwoFactor(
 		data: z.infer<typeof verifyTwoFactorSchema>,
 	) {
-		const { serverError } = await executeAsync(data);
+		const { serverError, data: response } = await executeAsync({
+			code: data.code,
+			type: type_verify,
+		});
 		if (serverError) {
 			const message = translateMessage(serverError.code || "");
 			toast.error(message);
 			return;
 		}
+		if (!response) {
+			toast.info("Erro inesperado, tente novamente mais tarde");
+			return;
+		}
+
 		toast.success("2FA verificado com sucesso!", {
 			duration: 1000,
 			onAutoClose: () => {
-				console.log("refresh");
+				if (redirect) return router.push("/");
+				console.log(response);
 				router.refresh();
 			},
 		});

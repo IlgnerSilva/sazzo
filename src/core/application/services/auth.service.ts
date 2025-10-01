@@ -13,6 +13,10 @@ export class AuthService {
 		return await this.authRepository.signInEmail(email, password);
 	}
 
+	async signOut() {
+		return await this.authRepository.signOut();
+	}
+
 	async getCurrentSession() {
 		return await this.authRepository.authSession();
 	}

@@ -83,34 +83,7 @@ export const auth = betterAuth({
 		},
 		expiresIn: 60 * 5,
 	},
-	rateLimit: {
-		enabled: true,
-		window: 60,
-		max: 100,
-		storage: "memory",
-		customRules: {
-			"/api/auth/sign-in": {
-				window: 60,
-				max: 5,
-			},
-			"/api/auth/sign-up": {
-				window: 60,
-				max: 3,
-			},
-		},
-	},
-	logger: {
-		level: "debug",
-		disabled: false,
-		log(level, message, ...args) {
-			console.log(level, message, ...args);
-		},
-	},
-	onAPIError: {
-		onError: (error, request) => {
-			console.log(error, request);
-		},
-	},
+
 	secret: env.BETTER_AUTH_SECRET,
 	session: {
 		storeSessionInDatabase: false,

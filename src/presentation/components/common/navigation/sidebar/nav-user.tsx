@@ -1,5 +1,8 @@
 "use client";
 
+import { useAction } from "next-safe-action/hooks";
+import { signOut } from "@/server/actions/auth";
+
 import {
 	AppWindow,
 	BrickWallIcon,
@@ -28,6 +31,8 @@ export function NavUser({
 }) {
 	const { isMobile } = UISidebar.useSidebar();
 	const t = useTranslations();
+	const { executeAsync } = useAction(signOut);
+
 	if (!user) return null;
 	return (
 		<UISidebar.SidebarMenu>
@@ -122,7 +127,12 @@ export function NavUser({
 							</Link>
 						</UIDropdownMenu.DropdownMenuGroup>
 						<UIDropdownMenu.DropdownMenuSeparator />
-						<UIDropdownMenu.DropdownMenuItem className="cursor-pointer">
+						<UIDropdownMenu.DropdownMenuItem
+							onClick={async () => {
+								await executeAsync();
+							}}
+							className="cursor-pointer"
+						>
 							<LogOut />
 							{t("components.NavUser.Links.logout")}
 						</UIDropdownMenu.DropdownMenuItem>

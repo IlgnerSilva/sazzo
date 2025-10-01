@@ -13,5 +13,7 @@ export interface IAuthRepository {
 		twoFactorRedirect?: boolean;
 	}>;
 
+	signOut: () => Promise<{ success: boolean }>;
+
 	authSession: () => Promise<Auth | null>;
 }

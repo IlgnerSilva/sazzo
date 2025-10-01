@@ -3,3 +3,4 @@ export { enableTwoFactor } from "./enable-two-factor";
 export { sendOTPTwoFactor } from "./sendOTPTwoFactor";
 export { signinWithCredentials } from "./signin-with-credentials";
 export { verifyTwoFactor } from "./verifyTwoFactor";
+export { signOut } from "./signout";

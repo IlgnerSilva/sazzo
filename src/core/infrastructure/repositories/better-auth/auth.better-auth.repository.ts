@@ -14,6 +14,12 @@ export class AuthRepository implements IAuthRepository {
 		});
 	}
 
+	async signOut() {
+		return await auth.api.signOut({
+			headers: await headers(),
+		});
+	}
+
 	async authSession() {
 		return await auth.api.getSession({
 			headers: await headers(),

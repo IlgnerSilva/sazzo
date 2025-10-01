@@ -70,20 +70,20 @@ export function FormSwitchVerificationTwoFactor() {
 									<div className="flex items-center space-x-2">
 										<UIRadioGroup.RadioGroupItem value="totp" />
 										<FormLabel htmlFor={idTOTP} className="font-normal">
-											Verificação por app de autenticação
+											Via Authenticator
 										</FormLabel>
 									</div>
 									<div className="flex items-center space-x-2">
 										<UIRadioGroup.RadioGroupItem value="otp" />
 										<FormLabel htmlFor={idOTP} className="font-normal">
-											Verificação por email
+											Via E-mail
 										</FormLabel>
 									</div>
 								</UIRadioGroup.RadioGroup>
 							);
 						}}
 					/>
-					<hr />
+
 					<div>
 						<Button
 							className="w-full cursor-pointer"
@@ -91,7 +91,7 @@ export function FormSwitchVerificationTwoFactor() {
 							type="submit"
 							isLoading={isPending}
 						>
-							Confirmar
+							Continuar
 						</Button>
 					</div>
 				</div>

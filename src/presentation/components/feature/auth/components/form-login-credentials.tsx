@@ -24,6 +24,7 @@ import { useMessageTranslation } from "@/presentation/hooks/use-message-translat
 import { signinWithCredentials } from "@/server/actions/auth/signin-with-credentials";
 import { XCircle } from "lucide-react";
 import { FormSwitchVerificationTwoFactor } from "@/presentation/components/feature/security/components/form-switch-verification-two-factor";
+import { motion } from "motion/react";
 
 export function FormLoginCredentials() {
 	const { translateMessage } = useMessageTranslation();
@@ -63,145 +64,147 @@ export function FormLoginCredentials() {
 
 	return (
 		<>
-			<UIForm.Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="mx-auto h-full max-w-80 md:max-w-sm"
-				>
-					<div className="mx-2 flex h-full flex-col justify-center gap-8">
-						<div className="mx-auto">
-							<h2 className="text-2xl text-foreground">
-								{c("FormLoginCredentials.title")}
-							</h2>
-						</div>
-						<div className="flex gap-2">
-							<Button className="w-full cursor-pointer" variant="default">
-								Google
-							</Button>
-							<Button className="w-full cursor-pointer" variant="secondary">
-								Facebook
-							</Button>
-							<div />
-						</div>
-						<div className="flex w-full items-center justify-center">
-							<div className="w-full border-t" />
-							<div className="w-full text-nowrap bg-primary-foreground px-2 text-muted-foreground text-sm uppercase">
-								{c("FormLoginCredentials.subtitle")}
+			{!isTwoFactor ? (
+				<UIForm.Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className="mx-auto h-full max-w-80 md:max-w-sm"
+					>
+						<div className="mx-2 flex h-full flex-col justify-center gap-8">
+							<div className="mx-auto">
+								<h2 className="text-2xl text-foreground">
+									{c("FormLoginCredentials.title")}
+								</h2>
 							</div>
-							<div className="w-full border-t" />
-						</div>
-						<UIForm.FormField
-							control={form.control}
-							name="email"
-							render={({ field }) => {
-								return (
-									<UIForm.FormItem>
-										<UIForm.FormLabel htmlFor={id}>
-											{c("Inputs.email.label")}
-										</UIForm.FormLabel>
-										<UIForm.FormControl>
-											<InputEmail
-												id={id}
-												required
-												placeholder={c("Inputs.email.label")}
-												className="rounded-xl"
-												{...field}
-											/>
-										</UIForm.FormControl>
-										<UIForm.FormMessage />
-									</UIForm.FormItem>
-								);
-							}}
-						/>
-						<UIForm.FormField
-							control={form.control}
-							name="password"
-							render={({ field }) => {
-								return (
-									<UIForm.FormItem>
-										<UIForm.FormLabel htmlFor={id}>
-											{c("Inputs.password.label")}
-										</UIForm.FormLabel>
-										<UIForm.FormControl>
-											<InputPassword
-												id={id}
-												required
-												className="rounded-xl"
-												placeholder={c("Inputs.password.placeholder")}
-												{...field}
-											/>
-										</UIForm.FormControl>
-										<UIForm.FormMessage />
-									</UIForm.FormItem>
-								);
-							}}
-						/>
-						<div className="flex items-center justify-between">
+							<div className="flex gap-2">
+								<Button className="w-full cursor-pointer" variant="default">
+									Google
+								</Button>
+								<Button className="w-full cursor-pointer" variant="secondary">
+									Facebook
+								</Button>
+								<div />
+							</div>
+							<div className="flex w-full items-center justify-center">
+								<div className="w-full border-t" />
+								<div className="w-full text-nowrap bg-primary-foreground px-2 text-muted-foreground text-sm uppercase">
+									{c("FormLoginCredentials.subtitle")}
+								</div>
+								<div className="w-full border-t" />
+							</div>
 							<UIForm.FormField
 								control={form.control}
-								name="rememberMe"
+								name="email"
 								render={({ field }) => {
 									return (
 										<UIForm.FormItem>
+											<UIForm.FormLabel htmlFor={id}>
+												{c("Inputs.email.label")}
+											</UIForm.FormLabel>
 											<UIForm.FormControl>
-												<div className="flex items-center gap-2">
-													<UICheckbox.Checkbox
-														id={id}
-														checked={field.value}
-														onCheckedChange={field.onChange}
-													/>
-													<Label htmlFor={id}>
-														{c("Inputs.checkbox.label-remember")}
-													</Label>
-												</div>
+												<InputEmail
+													id={id}
+													required
+													placeholder={c("Inputs.email.label")}
+													className="rounded-xl"
+													{...field}
+												/>
 											</UIForm.FormControl>
+											<UIForm.FormMessage />
 										</UIForm.FormItem>
 									);
 								}}
 							/>
-							<Link className="text-primary text-sm" href={"/forgot-password"}>
-								{c("Links.forgot")}
-							</Link>
+							<UIForm.FormField
+								control={form.control}
+								name="password"
+								render={({ field }) => {
+									return (
+										<UIForm.FormItem>
+											<UIForm.FormLabel htmlFor={id}>
+												{c("Inputs.password.label")}
+											</UIForm.FormLabel>
+											<UIForm.FormControl>
+												<InputPassword
+													id={id}
+													required
+													className="rounded-xl"
+													placeholder={c("Inputs.password.placeholder")}
+													{...field}
+												/>
+											</UIForm.FormControl>
+											<UIForm.FormMessage />
+										</UIForm.FormItem>
+									);
+								}}
+							/>
+							<div className="flex items-center justify-between">
+								<UIForm.FormField
+									control={form.control}
+									name="rememberMe"
+									render={({ field }) => {
+										return (
+											<UIForm.FormItem>
+												<UIForm.FormControl>
+													<div className="flex items-center gap-2">
+														<UICheckbox.Checkbox
+															id={id}
+															checked={field.value}
+															onCheckedChange={field.onChange}
+														/>
+														<Label htmlFor={id}>
+															{c("Inputs.checkbox.label-remember")}
+														</Label>
+													</div>
+												</UIForm.FormControl>
+											</UIForm.FormItem>
+										);
+									}}
+								/>
+								<Link
+									className="text-primary text-sm"
+									href={"/forgot-password"}
+								>
+									{c("Links.forgot")}
+								</Link>
+							</div>
+							<div>
+								<Button
+									className="w-full cursor-pointer"
+									variant="default"
+									type="submit"
+									isLoading={isPending}
+								>
+									{c("Buttons.signin")}
+								</Button>
+							</div>
 						</div>
-						<div>
-							<Button
-								className="w-full cursor-pointer"
-								variant="default"
-								type="submit"
-								isLoading={isPending}
-							>
-								{c("Buttons.signin")}
-							</Button>
+					</form>
+					<div className="mt-6 flex justify-center">
+						<Link className="text-primary text-sm" href={"/forgot-password"}>
+							{c("Links.forgot")}
+						</Link>
+					</div>
+				</UIForm.Form>
+			) : (
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.5 }}
+				>
+					<div className="mx-auto h-full max-w-80 md:max-w-sm">
+						<div className="mx-2 flex h-full flex-col justify-center gap-8">
+							<div className="mx-auto">
+								<h2 className="text-2xl text-foreground">
+									Requer fator de autenticação
+								</h2>
+							</div>
+							<hr />
+							<FormSwitchVerificationTwoFactor />
 						</div>
 					</div>
-				</form>
-				<div className="mt-6 flex justify-center">
-					<Link className="text-primary text-sm" href={"/forgot-password"}>
-						{c("Links.forgot")}
-					</Link>
-				</div>
-			</UIForm.Form>
-
-			{isTwoFactor && (
-				<UIAlertDialog.AlertDialog defaultOpen={isTwoFactor}>
-					<UIAlertDialog.AlertDialogContent>
-						<UIAlertDialog.AlertDialogHeader className="flex items-center justify-between">
-							<UIAlertDialog.AlertDialogTitle className="self-start">
-								Requer fator de autenticação
-							</UIAlertDialog.AlertDialogTitle>
-							<UIAlertDialog.AlertDialogCancel
-								className="self-end cursor-pointer"
-								onChange={() => setIsTwoFactor(false)}
-							>
-								<XCircle />
-							</UIAlertDialog.AlertDialogCancel>
-						</UIAlertDialog.AlertDialogHeader>
-						<hr />
-						<UIAlertDialog.AlertDialogDescription>
-							<FormSwitchVerificationTwoFactor />
-						</UIAlertDialog.AlertDialogDescription>
-					</UIAlertDialog.AlertDialogContent>
-				</UIAlertDialog.AlertDialog>
+				</motion.div>
 			)}
 		</>
 	);

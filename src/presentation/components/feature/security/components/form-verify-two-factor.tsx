@@ -65,7 +65,7 @@ export function FormVerifyTwoFactor({
 		<UIForm.Form {...formEVerifyTwoFactor}>
 			<form
 				onSubmit={formEVerifyTwoFactor.handleSubmit(onSubmiVerifyTwoFactor)}
-				className="mx-auto h-full max-full md:max-w-sm"
+				className="mx-auto min-h-full max-full md:max-w-sm"
 			>
 				<div className="flex items-end justify-center gap-2">
 					<UIForm.FormField
@@ -74,16 +74,15 @@ export function FormVerifyTwoFactor({
 						render={({ field }) => {
 							return (
 								<UIForm.FormItem>
-									<UIForm.FormLabel htmlFor={id}>Senha</UIForm.FormLabel>
+									<UIForm.FormLabel htmlFor={id}>
+										Digite o código de verificação
+									</UIForm.FormLabel>
 									<UIForm.FormControl>
 										<UIInputOTP.InputOTP maxLength={6} {...field}>
 											<UIInputOTP.InputOTPGroup>
 												<UIInputOTP.InputOTPSlot index={0} />
 												<UIInputOTP.InputOTPSlot index={1} />
 												<UIInputOTP.InputOTPSlot index={2} />
-											</UIInputOTP.InputOTPGroup>
-											<UIInputOTP.InputOTPSeparator />
-											<UIInputOTP.InputOTPGroup>
 												<UIInputOTP.InputOTPSlot index={3} />
 												<UIInputOTP.InputOTPSlot index={4} />
 												<UIInputOTP.InputOTPSlot index={5} />

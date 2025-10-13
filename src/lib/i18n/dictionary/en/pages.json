@@ -1,0 +1,21 @@
+{
+  "login": {
+    "title": "Sign in to your account",
+    "subtitle": "Use your email and password",
+    "button": "Sign in",
+    "oauth": {
+      "google": "Sign in with Google",
+      "github": "Sign in with GitHub"
+    },
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailRequired": "Please enter your email",
+      "passwordRequired": "Please enter your password"
+    }
+  },
+  "register": {
+    "title": "Create account",
+    "button": "Register",
+    "success": "Account successfully created"
+  }
+}

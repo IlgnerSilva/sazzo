@@ -1,0 +1,22 @@
+{
+  "appName": "My Application",
+  "language": {
+    "pt-br": "Brazilian Portuguese",
+    "en": "English"
+  },
+  "actions": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "pathname": {
+    "admin": {
+      "root": "Admin",
+      "overview": "overview"
+    },
+    "account": {
+      "root": "My Account"
+    }
+  }
+}

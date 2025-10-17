@@ -1,7 +1,13 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { FieldGroup } from "@/components/ui/field";
 import {
   Form,
@@ -19,12 +25,8 @@ import {
   type FormLoginSchema,
   useFormLoginSchema,
 } from "@/lib/zod/schemas/formLoginSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { ChoiceTwoFactorAuthentication } from "./choice-two-factor-authentication";
+
 
 export function LoginForm({
   className,
@@ -32,6 +34,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const [isPending, startTransition] = useTransition();
   const [showRequireTwoFactor, setShowTwoFactor] = useState(false);
+  const idCheckbox = useId();
 
   const { translateMessage } = useMessageTranslation();
   const c = useTranslations("components");
@@ -70,7 +73,7 @@ export function LoginForm({
 
   return (
     <div
-      className={cn("flex flex-col justify-center gap-6 h-full", className)}
+      className={cn("flex h-full flex-col justify-center gap-6", className)}
       {...props}
     >
       {!showRequireTwoFactor ? (
@@ -84,8 +87,8 @@ export function LoginForm({
             <CardContent>
               <Form {...form}>
                 <form
-                  onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-6"
+                  onSubmit={form.handleSubmit(onSubmit)}
                 >
                   <FieldGroup className="w-full">
                     <FormField
@@ -124,9 +127,14 @@ export function LoginForm({
                       control={form.control}
                       name="rememberMe"
                       render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="flex items-center space-x-2">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
                           <FormLabel>Remember me</FormLabel>
-                          <FormControl></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -134,12 +142,12 @@ export function LoginForm({
                   </FieldGroup>
                   <Button
                     className="cursor-pointer"
-                    variant="default"
-                    type="submit"
-                    loading={isPending}
                     disabled={isPending}
+                    loading={isPending}
+                    type="submit"
+                    variant="default"
                   >
-                    Login
+                    {c("Buttons.signin")}
                   </Button>
                 </form>
               </Form>

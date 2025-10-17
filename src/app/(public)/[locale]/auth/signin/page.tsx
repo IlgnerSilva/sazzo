@@ -5,23 +5,23 @@ import { LoginForm } from "@/components/login-form";
 
 export default function LoginPage() {
   return (
-    <div className="grid lg:grid-cols-2 h-screen">
+    <div className="grid h-screen lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href="#" className="flex items-center gap-2 font-medium">
-            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+            <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <GalleryVerticalEnd className="size-4" />
             </div>
             Acme Inc.
           </Link>
         </div>
-        <div className="flex flex-1 items-center justify-center max-h-screen">
-          <div className="w-full h-full max-w-xs">
+        <div className="flex max-h-screen flex-1 items-center justify-center">
+          <div className="h-full w-full max-w-xs">
             <LoginForm />
           </div>
         </div>
       </div>
-      <div className="bg-muted relative hidden lg:block">
+      <div className="relative hidden bg-muted lg:block">
         <Image
           width={10}
           height={10}

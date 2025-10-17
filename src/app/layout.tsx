@@ -12,5 +12,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}<Toaster position="top-center"/></>;
+  return (
+    <>
+      {children}
+      <Toaster position="top-center" />
+    </>
+  );
 }

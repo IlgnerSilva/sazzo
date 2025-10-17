@@ -1,9 +1,13 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedProperties": "on"
+      }
+    }
   },
   "files": {
     "ignoreUnknown": true,
@@ -15,30 +19,28 @@
     "indentWidth": 2
   },
   "linter": {
+    "domains": {
+      "next": "recommended",
+      "react": "recommended"
+    },
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "suspicious": {
-        "noUnknownAtRules": "off",
-        "noDebugger": "off"
-      },
       "a11y": {
         "useValidAnchor": "error"
       },
       "nursery": {
         "useSortedClasses": "error"
+      },
+      "recommended": true,
+      "suspicious": {
+        "noDebugger": "off",
+        "noUnknownAtRules": "off"
       }
-    },
-    "domains": {
-      "next": "recommended",
-      "react": "recommended"
     }
   },
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }

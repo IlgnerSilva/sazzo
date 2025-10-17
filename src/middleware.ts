@@ -1,9 +1,9 @@
+import {  headers } from "next/headers";
+import { type NextRequest, NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
 import { auth } from "@/lib/better-auth/auth";
 import { locales, routing } from "@/lib/i18n/routing";
 import { privateRoutes, publicRoutes } from "@/routes";
-import createMiddleware from "next-intl/middleware";
-import { cookies, headers } from "next/headers";
-import { type NextRequest, NextResponse } from "next/server";
 
 // Middleware responsável pela internacionalização das rotas
 const intlMiddleware = createMiddleware(routing);
@@ -27,7 +27,7 @@ const authMiddleware = async (req: NextRequest) => {
   });
 
   const isLogged = !!session;
-  console.log(cookies(). getItem("authToken"))
+  // console.log(cookies(). getItem("authToken"))
 
   // Se o usuário não estiver autenticado e tentar acessar uma página que requer autenticação, redireciona para a página de login
   if (!isLogged && isProtectPage) {

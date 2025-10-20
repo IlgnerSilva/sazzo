@@ -19,12 +19,7 @@ import type * as React from "react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
-import {
-	Sidebar,
-	SidebarContent,
-	SidebarFooter,
-	SidebarHeader,
-} from "@/components/ui/sidebar";
+import { UISidebar } from "@/components/ui";
 
 const data = {
 	user: {
@@ -167,18 +162,20 @@ const data = {
 	],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+	...props
+}: React.ComponentProps<typeof UISidebar.Sidebar>) {
 	return (
-		<Sidebar variant="inset" {...props}>
-			<SidebarHeader>
+		<UISidebar.Sidebar variant="inset" {...props}>
+			<UISidebar.SidebarHeader>
 				<TeamSwitcher teams={data.teams} />
-			</SidebarHeader>
-			<SidebarContent>
+			</UISidebar.SidebarHeader>
+			<UISidebar.SidebarContent>
 				<NavMain items={data.navMain} />
-			</SidebarContent>
-			<SidebarFooter>
+			</UISidebar.SidebarContent>
+			<UISidebar.SidebarFooter>
 				<NavUser user={data.user} />
-			</SidebarFooter>
-		</Sidebar>
+			</UISidebar.SidebarFooter>
+		</UISidebar.Sidebar>
 	);
 }

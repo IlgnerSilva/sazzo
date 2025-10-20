@@ -8,23 +8,8 @@ import {
 	LogOut,
 	Sparkles,
 } from "lucide-react";
-
+import { UIDropdown, UISidebar } from "@/components/ui";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	useSidebar,
-} from "@/components/ui/sidebar";
 
 export function NavUser({
 	user,
@@ -35,14 +20,14 @@ export function NavUser({
 		avatar: string;
 	};
 }) {
-	const { isMobile } = useSidebar();
+	const { isMobile } = UISidebar.useSidebar();
 
 	return (
-		<SidebarMenu>
-			<SidebarMenuItem>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton
+		<UISidebar.SidebarMenu>
+			<UISidebar.SidebarMenuItem>
+				<UIDropdown.DropdownMenu>
+					<UIDropdown.DropdownMenuTrigger asChild>
+						<UISidebar.SidebarMenuButton
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 							size="lg"
 						>
@@ -55,15 +40,15 @@ export function NavUser({
 								<span className="truncate text-xs">{user.email}</span>
 							</div>
 							<ChevronsUpDown className="ml-auto size-4" />
-						</SidebarMenuButton>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent
+						</UISidebar.SidebarMenuButton>
+					</UIDropdown.DropdownMenuTrigger>
+					<UIDropdown.DropdownMenuContent
 						align="end"
 						className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
 						side={isMobile ? "bottom" : "right"}
 						sideOffset={4}
 					>
-						<DropdownMenuLabel className="p-0 font-normal">
+						<UIDropdown.DropdownMenuLabel className="p-0 font-normal">
 							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 								<Avatar className="h-8 w-8 rounded-lg">
 									<AvatarImage alt={user.name} src={user.avatar} />
@@ -74,37 +59,37 @@ export function NavUser({
 									<span className="truncate text-xs">{user.email}</span>
 								</div>
 							</div>
-						</DropdownMenuLabel>
-						<DropdownMenuSeparator />
-						<DropdownMenuGroup>
-							<DropdownMenuItem>
+						</UIDropdown.DropdownMenuLabel>
+						<UIDropdown.DropdownMenuSeparator />
+						<UIDropdown.DropdownMenuGroup>
+							<UIDropdown.DropdownMenuItem>
 								<Sparkles />
 								Upgrade to Pro
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-						<DropdownMenuSeparator />
-						<DropdownMenuGroup>
-							<DropdownMenuItem>
+							</UIDropdown.DropdownMenuItem>
+						</UIDropdown.DropdownMenuGroup>
+						<UIDropdown.DropdownMenuSeparator />
+						<UIDropdown.DropdownMenuGroup>
+							<UIDropdown.DropdownMenuItem>
 								<BadgeCheck />
 								Account
-							</DropdownMenuItem>
-							<DropdownMenuItem>
+							</UIDropdown.DropdownMenuItem>
+							<UIDropdown.DropdownMenuItem>
 								<CreditCard />
 								Billing
-							</DropdownMenuItem>
-							<DropdownMenuItem>
+							</UIDropdown.DropdownMenuItem>
+							<UIDropdown.DropdownMenuItem>
 								<Bell />
 								Notifications
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
+							</UIDropdown.DropdownMenuItem>
+						</UIDropdown.DropdownMenuGroup>
+						<UIDropdown.DropdownMenuSeparator />
+						<UIDropdown.DropdownMenuItem>
 							<LogOut />
 							Log out
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</SidebarMenuItem>
-		</SidebarMenu>
+						</UIDropdown.DropdownMenuItem>
+					</UIDropdown.DropdownMenuContent>
+				</UIDropdown.DropdownMenu>
+			</UISidebar.SidebarMenuItem>
+		</UISidebar.SidebarMenu>
 	);
 }

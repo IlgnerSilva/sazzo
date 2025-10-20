@@ -1,12 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import {
-	Choicebox,
-	ChoiceboxIndicator,
-	ChoiceboxItem,
-	ChoiceboxItemHeader,
-	ChoiceboxItemTitle,
-} from "./kibo-ui/choicebox";
+import { UIChoicebox } from "./ui";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 
@@ -24,20 +18,27 @@ export function ChoiceTwoFactorAuthentication() {
 					<CardHeader className="text-center">
 						<CardTitle className="text-xl">Two Factor</CardTitle>
 					</CardHeader>
-					<Choicebox onValueChange={setTypeTwoFactor} value={typeTwoFactor}>
-						<ChoiceboxItem key={1} value="opt">
-							<ChoiceboxItemHeader>
-								<ChoiceboxItemTitle>Via Email</ChoiceboxItemTitle>
-							</ChoiceboxItemHeader>
-							<ChoiceboxIndicator />
-						</ChoiceboxItem>
-						<ChoiceboxItem key={2} value="totp">
-							<ChoiceboxItemHeader>
-								<ChoiceboxItemTitle>Via App</ChoiceboxItemTitle>
-							</ChoiceboxItemHeader>
-							<ChoiceboxIndicator />
-						</ChoiceboxItem>
-					</Choicebox>
+					<UIChoicebox.Choicebox
+						onValueChange={setTypeTwoFactor}
+						value={typeTwoFactor}
+					>
+						<UIChoicebox.ChoiceboxItem key={1} value="opt">
+							<UIChoicebox.ChoiceboxItemHeader>
+								<UIChoicebox.ChoiceboxItemTitle>
+									Via Email
+								</UIChoicebox.ChoiceboxItemTitle>
+							</UIChoicebox.ChoiceboxItemHeader>
+							<UIChoicebox.ChoiceboxIndicator />
+						</UIChoicebox.ChoiceboxItem>
+						<UIChoicebox.ChoiceboxItem key={2} value="totp">
+							<UIChoicebox.ChoiceboxItemHeader>
+								<UIChoicebox.ChoiceboxItemTitle>
+									Via App
+								</UIChoicebox.ChoiceboxItemTitle>
+							</UIChoicebox.ChoiceboxItemHeader>
+							<UIChoicebox.ChoiceboxIndicator />
+						</UIChoicebox.ChoiceboxItem>
+					</UIChoicebox.Choicebox>
 				</div>
 				<Button loading={true}>Continue</Button>
 			</Card>

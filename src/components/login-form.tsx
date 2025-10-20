@@ -5,19 +5,15 @@ import { useTranslations } from "next-intl";
 import { useId, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { FieldGroup } from "@/components/ui/field";
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+	UIButton,
+	UICard,
+	UICheckbox,
+	UIField,
+	UIForm,
+	UIInput,
+} from "@/components/ui";
+
 import { useMessageTranslation } from "@/hooks/use-message-translation";
 import { authClient } from "@/lib/better-auth/auth-client";
 import { cn } from "@/lib/utils";
@@ -76,71 +72,77 @@ export function LoginForm({
 			{...props}
 		>
 			{!showRequireTwoFactor ? (
-				<Card>
+				<UICard.Card>
 					<div>
-						<CardHeader className="text-center">
-							<CardTitle className="text-xl">
+						<UICard.CardHeader className="text-center">
+							<UICard.CardTitle className="text-xl">
 								{c("FormLoginCredentials.title")}
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<Form {...form}>
+							</UICard.CardTitle>
+						</UICard.CardHeader>
+						<UICard.CardContent>
+							<UIForm.Form {...form}>
 								<form
 									className="space-y-6"
 									onSubmit={form.handleSubmit(onSubmit)}
 								>
-									<FieldGroup className="w-full">
-										<FormField
+									<UIField.FieldGroup className="w-full">
+										<UIForm.FormField
 											control={form.control}
 											name="email"
 											render={({ field }) => (
-												<FormItem>
-													<FormLabel>{c("Inputs.email.label")}</FormLabel>
-													<FormControl>
-														<Input
+												<UIForm.FormItem>
+													<UIForm.FormLabel>
+														{c("Inputs.email.label")}
+													</UIForm.FormLabel>
+													<UIForm.FormControl>
+														<UIInput.Input
 															placeholder={c("Inputs.email.placeholder")}
 															{...field}
 														/>
-													</FormControl>
-													<FormMessage />
-												</FormItem>
+													</UIForm.FormControl>
+													<UIForm.FormMessage />
+												</UIForm.FormItem>
 											)}
 										/>
-										<FormField
+										<UIForm.FormField
 											control={form.control}
 											name="password"
 											render={({ field }) => (
-												<FormItem>
-													<FormLabel>{c("Inputs.password.label")}</FormLabel>
-													<FormControl>
-														<Input
+												<UIForm.FormItem>
+													<UIForm.FormLabel>
+														{c("Inputs.password.label")}
+													</UIForm.FormLabel>
+													<UIForm.FormControl>
+														<UIInput.Input
 															placeholder={c("Inputs.password.placeholder")}
 															{...field}
 														/>
-													</FormControl>
-													<FormMessage />
-												</FormItem>
+													</UIForm.FormControl>
+													<UIForm.FormMessage />
+												</UIForm.FormItem>
 											)}
 										/>
-										<FormField
+										<UIForm.FormField
 											control={form.control}
 											name="rememberMe"
 											render={({ field }) => (
-												<FormItem className="flex items-center space-x-2">
-													<FormControl>
-														<Checkbox
+												<UIForm.FormItem className="flex items-center space-x-2">
+													<UIForm.FormControl>
+														<UICheckbox.Checkbox
 															checked={field.value}
 															id={idCheckbox}
 															onCheckedChange={field.onChange}
 														/>
-													</FormControl>
-													<FormLabel id={idCheckbox}>Remember me</FormLabel>
-													<FormMessage />
-												</FormItem>
+													</UIForm.FormControl>
+													<UIForm.FormLabel id={idCheckbox}>
+														Remember me
+													</UIForm.FormLabel>
+													<UIForm.FormMessage />
+												</UIForm.FormItem>
 											)}
 										/>
-									</FieldGroup>
-									<Button
+									</UIField.FieldGroup>
+									<UIButton.Button
 										className="cursor-pointer"
 										disabled={isPending}
 										loading={isPending}
@@ -148,12 +150,12 @@ export function LoginForm({
 										variant="default"
 									>
 										{c("Buttons.signin")}
-									</Button>
+									</UIButton.Button>
 								</form>
-							</Form>
-						</CardContent>
+							</UIForm.Form>
+						</UICard.CardContent>
 					</div>
-				</Card>
+				</UICard.Card>
 			) : (
 				<ChoiceTwoFactorAuthentication />
 			)}

@@ -1,21 +1,21 @@
 {
-  "login": {
-    "title": "Entrar na conta",
-    "subtitle": "Use seu email e senha",
-    "button": "Entrar",
-    "oauth": {
-      "google": "Entrar com Google",
-      "github": "Entrar com GitHub"
-    },
-    "errors": {
-      "invalidCredentials": "Email ou senha inválidos",
-      "emailRequired": "Informe o email",
-      "passwordRequired": "Informe a senha"
-    }
-  },
-  "register": {
-    "title": "Criar conta",
-    "button": "Registrar",
-    "success": "Conta criada com sucesso"
-  }
+	"login": {
+		"title": "Entrar na conta",
+		"subtitle": "Use seu email e senha",
+		"button": "Entrar",
+		"oauth": {
+			"google": "Entrar com Google",
+			"github": "Entrar com GitHub"
+		},
+		"errors": {
+			"invalidCredentials": "Email ou senha inválidos",
+			"emailRequired": "Informe o email",
+			"passwordRequired": "Informe a senha"
+		}
+	},
+	"register": {
+		"title": "Criar conta",
+		"button": "Registrar",
+		"success": "Conta criada com sucesso"
+	}
 }

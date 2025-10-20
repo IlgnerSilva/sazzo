@@ -1,10 +1,10 @@
 {
-  "required": "Este campo é obrigatório",
-  "email": {
-    "invalid": "Email inválido"
-  },
-  "password": {
-    "tooShort": "Senha muito curta",
-    "tooLong": "Senha muito longa"
-  }
+	"required": "Este campo é obrigatório",
+	"email": {
+		"invalid": "Email inválido"
+	},
+	"password": {
+		"tooShort": "Senha muito curta",
+		"tooLong": "Senha muito longa"
+	}
 }

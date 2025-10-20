@@ -1,71 +1,71 @@
 {
-  "FormLoginCredentials": {
-    "title": "Sign in to your account",
-    "subtitle": "Or sign in with your email"
-  },
-  "FormSignUpCredentials": {
-    "title": "Create account",
-    "subtitle": "Or sign up with your email"
-  },
-  "NavUser": {
-    "Links": {
-      "logout": "Log out",
-      "account": "My account",
-      "security": "Security",
-      "organizations": "Organizations",
-      "admin": "Administration"
-    },
-    "Tabs": {
-      "profile": "Profile",
-      "settings": "Settings",
-      "security": "Security"
-    }
-  },
-  "TabSecurity": {
-    "title": "Security",
-    "subtitle": "Manage your security and authentication settings."
-  },
-  "TabProfile": {
-    "title": "Profile",
-    "subtitle": "Manage your profile information."
-  },
-  "Inputs": {
-    "email": {
-      "label": "Email",
-      "placeholder": "Enter your email"
-    },
-    "name": {
-      "label": "Name",
-      "placeholder": "Enter your name"
-    },
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter your password",
-      "validations": {
-        "help-message": "Your password must contain:",
-        "feedback-password-min": "Very weak password.",
-        "feedback-password-med": "Medium strength password.",
-        "feedback-password-large": "Strong password.",
-        "min-caracteres": "At least {min} characters",
-        "min-number": "At least {min} number",
-        "min-lowercase": "At least {min} lowercase letter",
-        "min-uppercase": "At least {min} uppercase letter",
-        "matcher-password": "Passwords do not match"
-      }
-    },
-    "confirm-password": {
-      "label": "Confirm password",
-      "placeholder": "Re-enter your password"
-    },
-    "checkbox": {
-      "label-remember": "Remember me"
-    }
-  },
-  "Buttons": {
-    "signin": "Sign in",
-    "signup": "Sign up"
-  },
-  "Links": {
-    "forgot": "Forgot your password?"
-  }
+	"FormLoginCredentials": {
+		"title": "Sign in to your account",
+		"subtitle": "Or sign in with your email"
+	},
+	"FormSignUpCredentials": {
+		"title": "Create account",
+		"subtitle": "Or sign up with your email"
+	},
+	"NavUser": {
+		"Links": {
+			"logout": "Log out",
+			"account": "My account",
+			"security": "Security",
+			"organizations": "Organizations",
+			"admin": "Administration"
+		},
+		"Tabs": {
+			"profile": "Profile",
+			"settings": "Settings",
+			"security": "Security"
+		}
+	},
+	"TabSecurity": {
+		"title": "Security",
+		"subtitle": "Manage your security and authentication settings."
+	},
+	"TabProfile": {
+		"title": "Profile",
+		"subtitle": "Manage your profile information."
+	},
+	"Inputs": {
+		"email": {
+			"label": "Email",
+			"placeholder": "Enter your email"
+		},
+		"name": {
+			"label": "Name",
+			"placeholder": "Enter your name"
+		},
+		"password": {
+			"label": "Password",
+			"placeholder": "Enter your password",
+			"validations": {
+				"help-message": "Your password must contain:",
+				"feedback-password-min": "Very weak password.",
+				"feedback-password-med": "Medium strength password.",
+				"feedback-password-large": "Strong password.",
+				"min-caracteres": "At least {min} characters",
+				"min-number": "At least {min} number",
+				"min-lowercase": "At least {min} lowercase letter",
+				"min-uppercase": "At least {min} uppercase letter",
+				"matcher-password": "Passwords do not match"
+			}
+		},
+		"confirm-password": {
+			"label": "Confirm password",
+			"placeholder": "Re-enter your password"
+		},
+		"checkbox": {
+			"label-remember": "Remember me"
+		}
+	},
+	"Buttons": {
+		"signin": "Sign in",
+		"signup": "Sign up"
+	},
+	"Links": {
+		"forgot": "Forgot your password?"
+	}
 }

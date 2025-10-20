@@ -5,11 +5,11 @@ import pages from "./dictionary/pt-br/pages.json";
 import zod from "./dictionary/pt-br/zod.json";
 
 export const dictionary = {
-  pages,
-  common,
-  zod,
-  messages_status,
-  components,
+	pages,
+	common,
+	zod,
+	messages_status,
+	components,
 } as const;
 
 export type Messages = typeof dictionary;

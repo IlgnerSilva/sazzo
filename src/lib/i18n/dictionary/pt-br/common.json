@@ -1,22 +1,22 @@
 {
-  "appName": "Meu Aplicativo",
-  "language": {
-    "pt-br": "Português Brasileiro",
-    "en": "Inglês"
-  },
-  "actions": {
-    "submit": "Enviar",
-    "cancel": "Cancelar",
-    "edit": "Editar",
-    "delete": "Excluir"
-  },
-  "pathname": {
-    "admin": {
-      "root": "Administrador",
-      "overview": "Visão geral"
-    },
-    "account": {
-      "root": "Minha conta"
-    }
-  }
+	"appName": "Meu Aplicativo",
+	"language": {
+		"pt-br": "Português Brasileiro",
+		"en": "Inglês"
+	},
+	"actions": {
+		"submit": "Enviar",
+		"cancel": "Cancelar",
+		"edit": "Editar",
+		"delete": "Excluir"
+	},
+	"pathname": {
+		"admin": {
+			"root": "Administrador",
+			"overview": "Visão geral"
+		},
+		"account": {
+			"root": "Minha conta"
+		}
+	}
 }

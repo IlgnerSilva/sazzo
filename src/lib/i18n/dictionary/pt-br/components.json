@@ -1,71 +1,71 @@
 {
-  "FormLoginCredentials": {
-    "title": "Acesse sua conta",
-    "subtitle": "Ou entre com seu e-mail"
-  },
-  "FormSignUpCredentials": {
-    "title": "Criar conta",
-    "subtitle": "Ou cadastre-se com seu e-mail"
-  },
-  "NavUser": {
-    "Links": {
-      "logout": "Sair",
-      "account": "Minha conta",
-      "security": "Segurança",
-      "organizations": "Organizações",
-      "admin": "Administração"
-    },
-    "Tabs": {
-      "profile": "Perfil",
-      "settings": "Configurações",
-      "security": "Segurança"
-    }
-  },
-  "TabSecurity": {
-    "title": "Segurança",
-    "subtitle": "Gerencie suas configurações de segurança e autenticação."
-  },
-  "TabProfile": {
-    "title": "Perfil",
-    "subtitle": "Gerencie as informações do seu perfil."
-  },
-  "Inputs": {
-    "email": {
-      "label": "E-mail",
-      "placeholder": "Digite seu e-mail"
-    },
-    "name": {
-      "label": "Nome",
-      "placeholder": "Digite seu nome"
-    },
-    "password": {
-      "label": "Senha",
-      "placeholder": "Digite sua senha",
-      "validations": {
-        "help-message": "A senha deve conter:",
-        "feedback-password-min": "Senha muito fraca.",
-        "feedback-password-med": "Senha razoável.",
-        "feedback-password-large": "Senha forte.",
-        "min-caracteres": "Pelo menos {min} caracteres",
-        "min-number": "Pelo menos {min} número",
-        "min-lowercase": "Pelo menos {min} letra minúscula",
-        "min-uppercase": "Pelo menos {min} letra maiúscula",
-        "matcher-password": "As senhas não coincidem"
-      }
-    },
-    "confirm-password": {
-      "label": "Confirmar senha",
-      "placeholder": "Digite a senha novamente"
-    },
-    "checkbox": {
-      "label-remember": "Lembrar de mim"
-    }
-  },
-  "Buttons": {
-    "signin": "Entrar",
-    "signup": "Criar conta"
-  },
-  "Links": {
-    "forgot": "Esqueceu sua senha?"
-  }
+	"FormLoginCredentials": {
+		"title": "Acesse sua conta",
+		"subtitle": "Ou entre com seu e-mail"
+	},
+	"FormSignUpCredentials": {
+		"title": "Criar conta",
+		"subtitle": "Ou cadastre-se com seu e-mail"
+	},
+	"NavUser": {
+		"Links": {
+			"logout": "Sair",
+			"account": "Minha conta",
+			"security": "Segurança",
+			"organizations": "Organizações",
+			"admin": "Administração"
+		},
+		"Tabs": {
+			"profile": "Perfil",
+			"settings": "Configurações",
+			"security": "Segurança"
+		}
+	},
+	"TabSecurity": {
+		"title": "Segurança",
+		"subtitle": "Gerencie suas configurações de segurança e autenticação."
+	},
+	"TabProfile": {
+		"title": "Perfil",
+		"subtitle": "Gerencie as informações do seu perfil."
+	},
+	"Inputs": {
+		"email": {
+			"label": "E-mail",
+			"placeholder": "Digite seu e-mail"
+		},
+		"name": {
+			"label": "Nome",
+			"placeholder": "Digite seu nome"
+		},
+		"password": {
+			"label": "Senha",
+			"placeholder": "Digite sua senha",
+			"validations": {
+				"help-message": "A senha deve conter:",
+				"feedback-password-min": "Senha muito fraca.",
+				"feedback-password-med": "Senha razoável.",
+				"feedback-password-large": "Senha forte.",
+				"min-caracteres": "Pelo menos {min} caracteres",
+				"min-number": "Pelo menos {min} número",
+				"min-lowercase": "Pelo menos {min} letra minúscula",
+				"min-uppercase": "Pelo menos {min} letra maiúscula",
+				"matcher-password": "As senhas não coincidem"
+			}
+		},
+		"confirm-password": {
+			"label": "Confirmar senha",
+			"placeholder": "Digite a senha novamente"
+		},
+		"checkbox": {
+			"label-remember": "Lembrar de mim"
+		}
+	},
+	"Buttons": {
+		"signin": "Entrar",
+		"signup": "Criar conta"
+	},
+	"Links": {
+		"forgot": "Esqueceu sua senha?"
+	}
 }

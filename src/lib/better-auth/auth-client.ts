@@ -1,4 +1,3 @@
-import { env } from "@/env";
 import {
 	anonymousClient,
 	apiKeyClient,
@@ -11,6 +10,7 @@ import {
 	usernameClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
+import { env } from "@/env";
 import type { auth } from "./auth.ts";
 
 export const authClient = createAuthClient({
@@ -23,7 +23,7 @@ export const authClient = createAuthClient({
 	},
 	plugins: [
 		inferAdditionalFields<typeof auth>(),
-		twoFactorClient(),
+		twoFactorClient({}),
 		usernameClient(),
 		anonymousClient(),
 		phoneNumberClient(),

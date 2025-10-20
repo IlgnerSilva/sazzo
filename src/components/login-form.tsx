@@ -126,7 +126,7 @@ export function LoginForm({
 											control={form.control}
 											name="rememberMe"
 											render={({ field }) => (
-												<UIForm.FormItem className="flex items-center space-x-2">
+												<UIForm.FormItem className="flex items-center space-x-1">
 													<UIForm.FormControl>
 														<UICheckbox.Checkbox
 															checked={field.value}
@@ -134,23 +134,25 @@ export function LoginForm({
 															onCheckedChange={field.onChange}
 														/>
 													</UIForm.FormControl>
-													<UIForm.FormLabel id={idCheckbox}>
-														Remember me
+													<UIForm.FormLabel htmlFor={idCheckbox}>
+														{c("Inputs.checkbox.label-remember")}
 													</UIForm.FormLabel>
 													<UIForm.FormMessage />
 												</UIForm.FormItem>
 											)}
 										/>
 									</UIField.FieldGroup>
-									<UIButton.Button
-										className="cursor-pointer"
-										disabled={isPending}
-										loading={isPending}
-										type="submit"
-										variant="default"
-									>
-										{c("Buttons.signin")}
-									</UIButton.Button>
+									<div className="w-full">
+										<UIButton.Button
+											className="w-full cursor-pointer"
+											disabled={isPending}
+											loading={isPending}
+											type="submit"
+											variant="default"
+										>
+											{c("Buttons.signin")}
+										</UIButton.Button>
+									</div>
 								</form>
 							</UIForm.Form>
 						</UICard.CardContent>

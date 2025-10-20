@@ -7,6 +7,13 @@
 		"title": "Create account",
 		"subtitle": "Or sign up with your email"
 	},
+	"ChoiceTwoFactorAutentication": {
+		"title": "Choose the authentication method",
+		"sendChoice": {
+			"email": "Send email",
+			"app": "Send app"
+		}
+	},
 	"NavUser": {
 		"Links": {
 			"logout": "Log out",

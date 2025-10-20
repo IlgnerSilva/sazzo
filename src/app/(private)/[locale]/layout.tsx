@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { SessionProvider } from "@/contexts/SessionProvider";
+import { getCachedSession } from "@/lib/better-auth/session-cached";
 import { routing } from "@/lib/i18n/routing";
 
 const geistSans = Geist({
@@ -34,13 +36,14 @@ export default async function LocaleLayout({
 		notFound();
 	}
 	const dictionary = await getMessages();
+	const session = await getCachedSession();
 	return (
 		<html lang={locale}>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} max-h-screen min-h-screen antialiased`}
 			>
 				<NextIntlClientProvider messages={dictionary}>
-					{children}
+					<SessionProvider initialSession={session}>{children}</SessionProvider>
 				</NextIntlClientProvider>
 			</body>
 		</html>

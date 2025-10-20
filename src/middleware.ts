@@ -25,7 +25,7 @@ const authMiddleware = async (req: NextRequest) => {
 	const session = await auth.api.getSession({
 		headers: await headers(),
 	});
-
+	console.log(session);
 	const isLogged = !!session;
 	// console.log(cookies(). getItem("authToken"))
 

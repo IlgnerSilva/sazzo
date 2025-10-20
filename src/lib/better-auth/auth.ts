@@ -182,13 +182,13 @@ export const auth = betterAuth({
 				digits: 6,
 				period: 30,
 				async sendOTP(data, request) {
-					await resend.emails.send({
+					const teste = await resend.emails.send({
 						from: "Acme <onboarding@resend.dev>",
 						to: ["ilgnersilva@outlook.com"],
 						subject: "Código de verifiação OTP",
 						react: PlaidVerifyIdentityEmail({ validationCode: data.otp }),
 					});
-					console.log(data, request);
+					console.log(data, request, teste);
 				},
 			},
 			totpOptions: {

@@ -1,10 +1,8 @@
-import { headers } from "next/headers";
-import { type NextRequest, NextResponse } from "next/server";
-import createMiddleware from "next-intl/middleware";
-import { auth } from "@/lib/better-auth/auth";
 import { getCachedSession } from "@/lib/better-auth/session-cached";
 import { locales, routing } from "@/lib/i18n/routing";
 import { privateRoutes, publicRoutes } from "@/routes";
+import createMiddleware from "next-intl/middleware";
+import { type NextRequest, NextResponse } from "next/server";
 
 // Middleware responsável pela internacionalização das rotas
 const intlMiddleware = createMiddleware(routing);

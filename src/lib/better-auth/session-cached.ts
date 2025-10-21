@@ -1,17 +1,15 @@
-import { unstable_cache } from "next/cache";
 import { headers } from "next/headers";
 import { auth } from "./auth";
 
-async function fetchSession(headerList: Headers) {
-	return await auth.api.getSession({ headers: headerList });
+// Função interna cacheada que recebe os headers como argumento
+async function fetchSessionCached(headersList: Headers) {
+	"use cache";
+	return await auth.api.getSession({ headers: headersList });
 }
 
+// Função externa que obtém os headers e chama a função cacheada
 export const getCachedSession = async () => {
-	const headerList = await headers(); // ✅ capturado fora
-	const getCached = unstable_cache(
-		async (headerList: Headers) => await fetchSession(headerList),
-		["session"],
-		{ revalidate: 60 },
-	);
-	return getCached(headerList); // ✅ passa headers como argumento
+	const headersList = await headers();
+	const session = await fetchSessionCached(headersList);
+	return session;
 };

@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { notFound } from "next/navigation";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { SessionProvider } from "@/contexts/SessionProvider";
 import { getCachedSession } from "@/lib/better-auth/session-cached";
 import { routing } from "@/lib/i18n/routing";
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 type Params = Promise<{ locale: string }>;
 
 export const metadata: Metadata = {
-	title: "Templete - Login",
+	title: "Sazzo - Dashboard",
 	description: "Template Multi Idioma",
 };
 

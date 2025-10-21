@@ -1,5 +1,8 @@
 "use client";
 
+import { UIDropdown, UISidebar } from "@/components/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { authClient } from "@/lib/better-auth/auth-client";
 import {
 	BadgeCheck,
 	Bell,
@@ -7,9 +10,10 @@ import {
 	CreditCard,
 	LogOut,
 	Sparkles,
+	User2,
 } from "lucide-react";
-import { UIDropdown, UISidebar } from "@/components/ui";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export function NavUser({
 	user,
@@ -17,10 +21,24 @@ export function NavUser({
 	user: {
 		name: string;
 		email: string;
-		avatar: string;
+		avatar: string | null;
 	};
 }) {
 	const { isMobile } = UISidebar.useSidebar();
+	const router = useRouter();
+	const c = useTranslations("components");
+
+	async function handleLogOut() {
+		return await authClient.signOut(
+			{},
+			{
+				onSuccess: () => {
+					localStorage.removeItem("authToken");
+					router.push("/auth/signin");
+				},
+			},
+		);
+	}
 
 	return (
 		<UISidebar.SidebarMenu>
@@ -32,8 +50,15 @@ export function NavUser({
 							size="lg"
 						>
 							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage alt={user.name} src={user.avatar} />
-								<AvatarFallback className="rounded-lg">CN</AvatarFallback>
+								{!user.avatar ? (
+									<AvatarFallback className="rounded-lg">
+										<User2 />
+									</AvatarFallback>
+								) : (
+									<AvatarFallback className="rounded-lg">
+										<AvatarImage alt={user.name} src={user.avatar} />
+									</AvatarFallback>
+								)}
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-medium">{user.name}</span>
@@ -51,8 +76,15 @@ export function NavUser({
 						<UIDropdown.DropdownMenuLabel className="p-0 font-normal">
 							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 								<Avatar className="h-8 w-8 rounded-lg">
-									<AvatarImage alt={user.name} src={user.avatar} />
-									<AvatarFallback className="rounded-lg">CN</AvatarFallback>
+									{!user.avatar ? (
+										<AvatarFallback className="rounded-lg">
+											<User2 />
+										</AvatarFallback>
+									) : (
+										<AvatarFallback className="rounded-lg">
+											<AvatarImage alt={user.name} src={user.avatar} />
+										</AvatarFallback>
+									)}
 								</Avatar>
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate font-medium">{user.name}</span>
@@ -83,9 +115,12 @@ export function NavUser({
 							</UIDropdown.DropdownMenuItem>
 						</UIDropdown.DropdownMenuGroup>
 						<UIDropdown.DropdownMenuSeparator />
-						<UIDropdown.DropdownMenuItem>
+						<UIDropdown.DropdownMenuItem
+							className="cursor-pointer"
+							onClick={handleLogOut}
+						>
 							<LogOut />
-							Log out
+							{c("NavUser.Links.logout")}
 						</UIDropdown.DropdownMenuItem>
 					</UIDropdown.DropdownMenuContent>
 				</UIDropdown.DropdownMenu>

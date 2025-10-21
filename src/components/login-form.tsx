@@ -1,10 +1,5 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { useId, useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import {
 	UIButton,
 	UICard,
@@ -13,7 +8,6 @@ import {
 	UIForm,
 	UIInput,
 } from "@/components/ui";
-
 import { useMessageTranslation } from "@/hooks/use-message-translation";
 import { authClient } from "@/lib/better-auth/auth-client";
 import { cn } from "@/lib/utils";
@@ -21,6 +15,12 @@ import {
 	type FormLoginSchema,
 	useFormLoginSchema,
 } from "@/lib/zod/schemas/formLoginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useId, useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { ChoiceTwoFactorAuthentication } from "./choice-two-factor-authentication";
 
 export function LoginForm({
@@ -28,6 +28,7 @@ export function LoginForm({
 	...props
 }: React.ComponentProps<"div">) {
 	const [isPending, startTransition] = useTransition();
+	const router = useRouter();
 	const [showRequireTwoFactor, setShowTwoFactor] = useState(false);
 	const idCheckbox = useId();
 
@@ -49,14 +50,16 @@ export function LoginForm({
 				{
 					email: data.email,
 					password: data.password,
+					rememberMe: data.rememberMe,
 				},
 				{
 					onSuccess: (ctx) => {
 						const authToken = ctx.response.headers.get("set-auth-token");
 						localStorage.setItem("authToken", authToken || "");
 						if ("twoFactorRedirect" in ctx.data) {
-							setShowTwoFactor(true);
+							return setShowTwoFactor(true);
 						}
+						return router.push("/");
 					},
 					onError: (ctx) => {
 						toast.error(translateMessage(ctx.error.code));

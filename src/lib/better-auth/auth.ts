@@ -1,3 +1,5 @@
+import { env } from "@/env";
+import { db, schema } from "@/lib/drizzle";
 import { compare, hash } from "bcrypt";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
@@ -13,8 +15,6 @@ import {
 	twoFactor,
 	username,
 } from "better-auth/plugins";
-import { env } from "@/env";
-import { db, schema } from "@/lib/drizzle";
 import { resend } from "../resend";
 import { PlaidVerifyIdentityEmail } from "../resend/templates/send-code-OTP";
 import {
@@ -34,12 +34,6 @@ export const auth = betterAuth({
 		provider: "pg",
 		schema: { ...schema },
 	}),
-	rateLimit: {
-		enabled: true,
-		max: 2,
-		window: 60 * 5,
-		storage: "memory",
-	},
 	appName: env.NEXT_PUBLIC_APP_NAME,
 	baseURL: env.NEXT_PUBLIC_HOST_URL,
 	trustedOrigins: [env.NEXT_PUBLIC_HOST_URL],

@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { auth } from "@/lib/better-auth/auth";
+import { getCachedSession } from "@/lib/better-auth/session-cached";
 import { locales, routing } from "@/lib/i18n/routing";
 import { privateRoutes, publicRoutes } from "@/routes";
 
@@ -22,10 +23,7 @@ const authMiddleware = async (req: NextRequest) => {
 	const isPublicPage = testPathnameRegex(publicRoutes, req.nextUrl.pathname);
 	const isProtectPage = testPathnameRegex(privateRoutes, req.nextUrl.pathname);
 
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
-	console.log(session);
+	const session = await getCachedSession();
 	const isLogged = !!session;
 	// console.log(cookies(). getItem("authToken"))
 

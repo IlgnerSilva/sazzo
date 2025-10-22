@@ -1,5 +1,12 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useId, useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { InputPassword } from "@/components/input-password";
 import {
 	UIButton,
 	UICard,
@@ -15,12 +22,6 @@ import {
 	type FormLoginSchema,
 	useFormLoginSchema,
 } from "@/lib/zod/schemas/formLoginSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { useId, useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { ChoiceTwoFactorAuthentication } from "./choice-two-factor-authentication";
 
 export function LoginForm({
@@ -31,6 +32,7 @@ export function LoginForm({
 	const router = useRouter();
 	const [showRequireTwoFactor, setShowTwoFactor] = useState(false);
 	const idCheckbox = useId();
+	const idPassword = useId();
 
 	const { translateMessage } = useMessageTranslation();
 	const c = useTranslations("components");
@@ -59,6 +61,7 @@ export function LoginForm({
 						if ("twoFactorRedirect" in ctx.data) {
 							return setShowTwoFactor(true);
 						}
+						toast.success("Logged in successfully");
 						return router.push("/");
 					},
 					onError: (ctx) => {
@@ -111,12 +114,13 @@ export function LoginForm({
 											control={form.control}
 											name="password"
 											render={({ field }) => (
-												<UIForm.FormItem>
-													<UIForm.FormLabel>
+												<UIForm.FormItem className="*:not-first:mt-2">
+													<UIForm.FormLabel htmlFor={idPassword}>
 														{c("Inputs.password.label")}
 													</UIForm.FormLabel>
 													<UIForm.FormControl>
-														<UIInput.Input
+														<InputPassword
+															id={idPassword}
 															placeholder={c("Inputs.password.placeholder")}
 															{...field}
 														/>

@@ -40,14 +40,13 @@ const authMiddleware = async (req: NextRequest) => {
 };
 
 // Função principal do middleware que combina a autenticação e a internacionalização
-const middleware = (req: NextRequest) => {
+const proxy = (req: NextRequest) => {
 	return (authMiddleware as any)(req);
 };
 
 // Configuração de correspondência para os caminhos que o middleware deve interceptar
 export const config = {
 	matcher: ["/((?!api|doc|rpc|spec|_next|_vercel|.*\\..*).*)"],
-	runtime: "nodejs",
 };
 
-export default middleware;
+export default proxy;

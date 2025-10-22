@@ -1,31 +1,39 @@
 import { motion } from "motion/react";
+import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
+import { toast } from "sonner";
+import { useMessageTranslation } from "@/hooks/use-message-translation";
 import { authClient } from "@/lib/better-auth/auth-client";
-import { UIChoicebox } from "./ui";
-import { Button } from "./ui/button";
-import { Card, CardHeader, CardTitle } from "./ui/card";
+import { UIButton, UICard, UIChoicebox } from "./ui";
 
 export function ChoiceTwoFactorAuthentication() {
 	const [isPending, startTransition] = useTransition();
 	const router = useRouter();
 	const c = useTranslations("components");
 	const [typeTwoFactor, setTypeTwoFactor] = useState<string>("");
+	const { translateMessage } = useMessageTranslation();
 
 	function handle() {
 		startTransition(async () => {
-			await authClient.twoFactor.sendOtp(
-				{},
-				{
-					onSuccess: () => {
-						router.push("/auth/signin/two-factor");
+			if (typeTwoFactor === "opt") {
+				await authClient.twoFactor.sendOtp(
+					{},
+					{
+						onSuccess: () => {
+							return router.push("/auth/signin/two-factor");
+						},
+						onError: (ctx) => {
+							toast.error(translateMessage(ctx.error.code));
+							return;
+						},
 					},
-					onError: (ctx) => {
-						console.error(ctx);
-					},
-				},
-			);
+				);
+			}
+			if (typeTwoFactor === "totp") {
+				return router.push("/auth/signin/two-factor");
+			}
 		});
 	}
 
@@ -36,13 +44,13 @@ export function ChoiceTwoFactorAuthentication() {
 			initial={{ x: 100 }}
 			transition={{ duration: 0.5 }}
 		>
-			<Card className="p-4">
+			<UICard.Card className="p-4">
 				<div>
-					<CardHeader className="text-center">
-						<CardTitle className="text-xl">
+					<UICard.CardHeader className="text-center">
+						<UICard.CardTitle className="text-xl">
 							{c("ChoiceTwoFactorAutentication.title")}
-						</CardTitle>
-					</CardHeader>
+						</UICard.CardTitle>
+					</UICard.CardHeader>
 					<UIChoicebox.Choicebox
 						onValueChange={setTypeTwoFactor}
 						value={typeTwoFactor}
@@ -65,15 +73,15 @@ export function ChoiceTwoFactorAuthentication() {
 						</UIChoicebox.ChoiceboxItem>
 					</UIChoicebox.Choicebox>
 				</div>
-				<Button
+				<UIButton.Button
 					className="cursor-pointer"
 					disabled={isPending}
 					loading={isPending}
 					onClick={handle}
 				>
 					Continue
-				</Button>
-			</Card>
+				</UIButton.Button>
+			</UICard.Card>
 		</motion.div>
 	);
 }

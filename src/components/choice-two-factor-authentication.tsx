@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
@@ -22,7 +21,7 @@ export function ChoiceTwoFactorAuthentication() {
 					{},
 					{
 						onSuccess: () => {
-							return router.push("/auth/signin/two-factor");
+							//return router.push("/auth/signin/two-factor");
 						},
 						onError: (ctx) => {
 							toast.error(translateMessage(ctx.error.code));
@@ -32,7 +31,7 @@ export function ChoiceTwoFactorAuthentication() {
 				);
 			}
 			if (typeTwoFactor === "totp") {
-				return router.push("/auth/signin/two-factor");
+				//return router.push("/auth/signin/two-factor");
 			}
 		});
 	}

@@ -1,5 +1,3 @@
-import { env } from "@/env";
-import { db, schema } from "@/lib/drizzle";
 import { compare, hash } from "bcrypt";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
@@ -15,6 +13,8 @@ import {
 	twoFactor,
 	username,
 } from "better-auth/plugins";
+import { env } from "@/env";
+import { db, schema } from "@/lib/drizzle";
 import { resend } from "../resend";
 import { PlaidVerifyIdentityEmail } from "../resend/templates/send-code-OTP";
 import {
@@ -43,7 +43,6 @@ export const auth = betterAuth({
 		requireEmailVerification: false,
 		async sendResetPassword(data, request) {
 			// Send email with reset password link
-			console.log(data, request);
 		},
 		password: {
 			hash: async (password) => {
@@ -75,10 +74,9 @@ export const auth = betterAuth({
 		autoSignInAfterVerification: true,
 		async sendVerificationEmail(data, request) {
 			// Send email with verification link
-			console.log(data, request);
 		},
 		async onEmailVerification(user, request) {
-			console.log(user, request);
+			
 		},
 		expiresIn: 60 * 5,
 	},
@@ -106,6 +104,17 @@ export const auth = betterAuth({
 			enabled: true,
 		},
 		updateAccountOnSignIn: true,
+	},
+	rateLimit: {
+		enabled: true,
+		storage: "database",
+		modelName: "rateLimit",
+		customRules: {
+			"/two-factor/send-otp": {
+				window: 86400, // 24 horas
+				max: 3,
+      		},
+		},
 	},
 	plugins: [
 		openAPI({
@@ -164,7 +173,6 @@ export const auth = betterAuth({
 			expiresIn: 60 * 5,
 			sendMagicLink({ email, token, url }, request) {
 				// Send email with magic link
-				console.log(email, token, url, request);
 			},
 		}),
 		username({
@@ -176,13 +184,12 @@ export const auth = betterAuth({
 				digits: 6,
 				period: 30,
 				async sendOTP(data, request) {
-					const teste = await resend.emails.send({
+					await resend.emails.send({
 						from: "Acme <onboarding@resend.dev>",
 						to: ["ilgnersilva@outlook.com"],
 						subject: "Código de verifiação OTP",
 						react: PlaidVerifyIdentityEmail({ validationCode: data.otp }),
 					});
-					console.log(data, request, teste);
 				},
 			},
 			totpOptions: {

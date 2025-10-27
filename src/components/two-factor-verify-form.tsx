@@ -4,9 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useAction } from "next-safe-action/hooks";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { verifyTwoFactor } from "@/actions/two-factor.action";
 import { UIButton, UICard, UIField, UIForm } from "@/components/ui";
 import { useMessageTranslation } from "@/hooks/use-message-translation";
 import { authClient } from "@/lib/better-auth/auth-client";
@@ -20,9 +22,12 @@ import { InputOTP } from "./ui/input-otp";
 
 export function TwoFactorVerifyForm({
 	className,
+	typeTwoFactor,
 	...props
-}: React.ComponentProps<"div">) {
-	const [isPending, startTransition] = useTransition();
+}: React.ComponentProps<"div"> & {
+	typeTwoFactor: "otp" | "totp";
+}) {
+	const { executeAsync, isPending } = useAction(verifyTwoFactor);
 	const router = useRouter();
 	const { translateMessage } = useMessageTranslation();
 	const c = useTranslations("components");
@@ -35,22 +40,21 @@ export function TwoFactorVerifyForm({
 	});
 
 	const onSubmit = async (data: FormTwoFactorSchema) => {
-		startTransition(async () => {
-			await authClient.twoFactor.verifyOtp(
-				{
-					code: data.code,
-				},
-				{
-					onSuccess: () => {
-						toast.success("Logged in successfully");
-						return router.push("/");
-					},
-					onError: (ctx) => {
-						toast.error(translateMessage(ctx.error.code));
-					},
-				},
-			);
+		const { serverError } = await executeAsync({
+			code: data.code,
+			typeTwoFactor,
 		});
+		if (serverError) {
+			const message = translateMessage(serverError.code || "");
+			toast.error(message);
+			return;
+		}
+		if (!data) {
+			toast.info("Erro inesperado, tente novamente mais tarde");
+			return;
+		}
+		toast.success("Logged in successfully");
+		return router.push("/");
 	};
 
 	return (

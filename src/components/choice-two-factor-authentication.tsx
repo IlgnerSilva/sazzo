@@ -1,39 +1,34 @@
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState, useTransition } from "react";
+import { useAction } from "next-safe-action/hooks";
+import { useState } from "react";
 import { toast } from "sonner";
+import { sendTwoFactorOtp } from "@/actions/two-factor.action";
 import { useMessageTranslation } from "@/hooks/use-message-translation";
-import { authClient } from "@/lib/better-auth/auth-client";
 import { UIButton, UICard, UIChoicebox } from "./ui";
 
 export function ChoiceTwoFactorAuthentication() {
-	const [isPending, startTransition] = useTransition();
-	const router = useRouter();
 	const c = useTranslations("components");
-	const [typeTwoFactor, setTypeTwoFactor] = useState<string>("");
+	const router = useRouter();
+	const [typeTwoFactor, setTypeTwoFactor] = useState<"otp" | "totp">("totp");
 	const { translateMessage } = useMessageTranslation();
+	const { executeAsync, isPending } = useAction(sendTwoFactorOtp);
 
-	function handle() {
-		startTransition(async () => {
-			if (typeTwoFactor === "opt") {
-				await authClient.twoFactor.sendOtp(
-					{},
-					{
-						onSuccess: () => {
-							//return router.push("/auth/signin/two-factor");
-						},
-						onError: (ctx) => {
-							toast.error(translateMessage(ctx.error.code));
-							return;
-						},
-					},
-				);
+	async function handle() {
+		if (typeTwoFactor === "otp") {
+			const { serverError, data } = await executeAsync({ typeTwoFactor });
+			if (serverError) {
+				const message = translateMessage(serverError.code || "");
+				toast.error(message);
+				return;
 			}
-			if (typeTwoFactor === "totp") {
-				//return router.push("/auth/signin/two-factor");
+			if (!data) {
+				toast.info("Erro inesperado, tente novamente mais tarde");
+				return;
 			}
-		});
+			router.push(`/auth/signin/two-factor?typeTwoFactor=${data.token}`);
+		}
 	}
 
 	return (
@@ -51,7 +46,7 @@ export function ChoiceTwoFactorAuthentication() {
 						</UICard.CardTitle>
 					</UICard.CardHeader>
 					<UIChoicebox.Choicebox
-						onValueChange={setTypeTwoFactor}
+						onValueChange={setTypeTwoFactor as any}
 						value={typeTwoFactor}
 					>
 						<UIChoicebox.ChoiceboxItem key={1} value="opt">

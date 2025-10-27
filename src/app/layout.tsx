@@ -1,6 +1,6 @@
-import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {

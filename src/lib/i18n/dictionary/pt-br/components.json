@@ -14,6 +14,26 @@
 			"app": "Via app"
 		}
 	},
+	"SocialProviders": {
+		"google": "Continuar com Google",
+		"github": "Continuar com GitHub",
+		"facebook": "Continuar com Facebook",
+		"apple": "Continuar com Apple"
+	},
+
+	"TwoFactorVerification": {
+		"title": "Verificação em duas etapas",
+		"subtitle": "Digite o código de autenticação",
+		"useBackupCode": "Usar código de backup",
+		"useAuthApp": "Usar aplicativo autenticador"
+	},
+
+	"PasswordReset": {
+		"title": "Redefinir senha",
+		"subtitle": "Digite seu email para receber as instruções",
+		"buttonSend": "Enviar instruções",
+		"checkEmail": "Verifique seu email"
+	},
 	"NavUser": {
 		"Links": {
 			"logout": "Sair",

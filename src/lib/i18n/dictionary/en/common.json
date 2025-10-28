@@ -8,15 +8,35 @@
 		"submit": "Submit",
 		"cancel": "Cancel",
 		"edit": "Edit",
-		"delete": "Delete"
+		"delete": "Delete",
+		"save": "Save",
+		"close": "Close",
+		"confirm": "Confirm",
+		"continue": "Continue",
+		"back": "Back",
+		"retry": "Retry",
+		"resend": "Resend",
+		"verify": "Verify"
+	},
+	"status": {
+		"loading": "Loading...",
+		"saving": "Saving...",
+		"success": "Success!",
+		"error": "Error!",
+		"processing": "Processing..."
+	},
+	"confirmations": {
+		"deleteConfirm": "Are you sure you want to delete?",
+		"unsavedChanges": "You have unsaved changes. Do you want to continue?",
+		"logout": "Are you sure you want to log out?"
 	},
 	"pathname": {
 		"admin": {
-			"root": "Admin",
-			"overview": "overview"
+			"root": "Administrator",
+			"overview": "Overview"
 		},
 		"account": {
-			"root": "My Account"
+			"root": "My account"
 		}
 	}
 }

@@ -3,10 +3,13 @@
 import { sign } from "jsonwebtoken";
 import { headers } from "next/headers";
 import { z } from "zod";
+import { env } from "@/env";
 import { auth } from "@/lib/better-auth/auth";
 import { actionClient } from "@/lib/next-safe-action";
 
-export const sendTwoFactorOtp = actionClient
+const secret = env.TWO_FACTOR_SECRET;
+
+export const sendTwoFactor = actionClient
 	.inputSchema(
 		z.object({
 			typeTwoFactor: z.enum(["otp", "totp"]),
@@ -19,7 +22,7 @@ export const sendTwoFactorOtp = actionClient
 				headers: await headers(),
 			});
 			if (res.status) {
-				const token = sign({ typeTwoFactor }, "sdoifhidoshdsfdshlkfn", {
+				const token = sign({ typeTwoFactor }, secret, {
 					expiresIn: "1h",
 				});
 
@@ -27,7 +30,7 @@ export const sendTwoFactorOtp = actionClient
 			}
 		}
 		if (typeTwoFactor === "totp") {
-			const token = sign({ typeTwoFactor }, "sdoifhidoshdsfdshlkfn", {
+			const token = sign({ typeTwoFactor }, secret, {
 				expiresIn: "1h",
 			});
 			return { status: true, token };
@@ -37,14 +40,20 @@ export const sendTwoFactorOtp = actionClient
 export const verifyTwoFactor = actionClient
 	.inputSchema(
 		z.object({
+			code: z.string().min(1),
 			typeTwoFactor: z.enum(["otp", "totp"]),
-			code: z.string(),
 		}),
 	)
 	.action(async ({ parsedInput: { code, typeTwoFactor } }) => {
 		if (typeTwoFactor === "otp")
-			return await auth.api.verifyTwoFactorOTP({ body: { code } });
+			return await auth.api.verifyTwoFactorOTP({
+				body: { code },
+				headers: await headers(),
+			});
 
 		if (typeTwoFactor === "totp")
-			return await auth.api.verifyTOTP({ body: { code } });
+			return await auth.api.verifyTOTP({
+				body: { code },
+				headers: await headers(),
+			});
 	});

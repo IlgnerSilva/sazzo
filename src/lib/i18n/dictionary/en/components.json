@@ -1,6 +1,6 @@
 {
 	"FormLoginCredentials": {
-		"title": "Sign in to your account",
+		"title": "Access your account",
 		"subtitle": "Or sign in with your email"
 	},
 	"FormSignUpCredentials": {
@@ -8,10 +8,10 @@
 		"subtitle": "Or sign up with your email"
 	},
 	"ChoiceTwoFactorAutentication": {
-		"title": "Choose the authentication method",
+		"title": "Choose authentication method",
 		"sendChoice": {
-			"email": "Send email",
-			"app": "Send app"
+			"email": "Via email",
+			"app": "Via app"
 		}
 	},
 	"NavUser": {
@@ -49,10 +49,10 @@
 			"label": "Password",
 			"placeholder": "Enter your password",
 			"validations": {
-				"help-message": "Your password must contain:",
-				"feedback-password-min": "Very weak password.",
-				"feedback-password-med": "Medium strength password.",
-				"feedback-password-large": "Strong password.",
+				"help-message": "Password must contain:",
+				"feedback-password-min": "Password too weak.",
+				"feedback-password-med": "Password fair.",
+				"feedback-password-large": "Password strong.",
 				"min-caracteres": "At least {min} characters",
 				"min-number": "At least {min} number",
 				"min-lowercase": "At least {min} lowercase letter",
@@ -62,7 +62,7 @@
 		},
 		"confirm-password": {
 			"label": "Confirm password",
-			"placeholder": "Re-enter your password"
+			"placeholder": "Enter password again"
 		},
 		"checkbox": {
 			"label-remember": "Remember me"
@@ -70,9 +70,27 @@
 	},
 	"Buttons": {
 		"signin": "Sign in",
-		"signup": "Sign up"
+		"signup": "Create account"
 	},
 	"Links": {
 		"forgot": "Forgot your password?"
+	},
+	"SocialProviders": {
+		"google": "Continue with Google",
+		"github": "Continue with GitHub",
+		"facebook": "Continue with Facebook",
+		"apple": "Continue with Apple"
+	},
+	"TwoFactorVerification": {
+		"title": "Two-factor verification",
+		"subtitle": "Enter the authentication code",
+		"useBackupCode": "Use backup code",
+		"useAuthApp": "Use authenticator app"
+	},
+	"PasswordReset": {
+		"title": "Reset password",
+		"subtitle": "Enter your email to receive instructions",
+		"buttonSend": "Send instructions",
+		"checkEmail": "Check your email"
 	}
 }

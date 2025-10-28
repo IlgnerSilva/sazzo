@@ -12,6 +12,7 @@ export const env = createEnv({
 			.default("development"),
 		BETTER_AUTH_SECRET: z.string(),
 		BETTER_AUTH_URL: z.string(),
+		TWO_FACTOR_SECRET: z.string(),
 	},
 	client: {
 		NEXT_PUBLIC_HOST_URL: z.url().default("http://localhost:3000"),
@@ -26,5 +27,6 @@ export const env = createEnv({
 		BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
 		NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
 		NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
+		TWO_FACTOR_SECRET: process.env.TWO_FACTOR_SECRET,
 	},
 });

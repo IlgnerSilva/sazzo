@@ -24,5 +24,18 @@
 	"OTP_HAS_EXPIRED": "OTP expirou",
 	"TOTP_NOT_ENABLED": "TOTP não está ativado",
 	"BACKUP_CODES_NOT_ENABLED": "Códigos de backup não estão ativados",
-	"INVALID_BACKUP_CODE": "Código de backup inválido"
+	"INVALID_BACKUP_CODE": "Código de backup inválido",
+	"SUCCESS": {
+		"LOGIN_SUCCESS": "Login realizado com sucesso",
+		"LOGOUT_SUCCESS": "Logout realizado com sucesso",
+		"USER_CREATED": "Usuário criado com sucesso",
+		"USER_UPDATED": "Usuário atualizado com sucesso",
+		"PASSWORD_UPDATED": "Senha atualizada com sucesso",
+		"EMAIL_VERIFIED": "Email verificado com sucesso",
+		"TWO_FACTOR_ENABLED": "Autenticação em duas etapas ativada",
+		"TWO_FACTOR_DISABLED": "Autenticação em duas etapas desativada",
+		"ACCOUNT_LINKED": "Conta vinculada com sucesso",
+		"ACCOUNT_UNLINKED": "Conta desvinculada com sucesso",
+		"VERIFICATION_EMAIL_SENT": "Email de verificação enviado"
+	}
 }

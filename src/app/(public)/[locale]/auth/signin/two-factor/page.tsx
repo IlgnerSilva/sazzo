@@ -1,8 +1,15 @@
 import { type JwtPayload, verify } from "jsonwebtoken";
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { TwoFactorVerifyForm } from "@/components/two-factor-verify-form";
+import { env } from "@/env";
 
-const JWT_SECRET = process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET;
+export const metadata: Metadata = {
+	title: "Two Factor Verify",
+	description: "Template Multi Idioma",
+};
+
+const JWT_SECRET = env.TWO_FACTOR_SECRET;
 
 interface TwoFactorPayload extends JwtPayload {
 	typeTwoFactor: "otp" | "totp";
@@ -18,7 +25,6 @@ function validateTwoFactorToken(token: string): TwoFactorPayload | null {
 
 	try {
 		const decoded = verify(token, JWT_SECRET) as TwoFactorPayload;
-
 		// Validações adicionais
 		if (!decoded || typeof decoded !== "object") {
 			return null;
@@ -27,13 +33,7 @@ function validateTwoFactorToken(token: string): TwoFactorPayload | null {
 		if (!decoded.typeTwoFactor || typeof decoded.typeTwoFactor !== "string") {
 			return null;
 		}
-
-		// Validação de tipos aceitos (exemplo)
-		const validTypes = ["email", "sms", "app"];
-		if (!validTypes.includes(decoded.typeTwoFactor)) {
-			return null;
-		}
-
+		console.log("AQUI", decoded);
 		return decoded;
 	} catch (error) {
 		// Log do erro para debugging (remova em produção ou use logger apropriado)
@@ -55,11 +55,12 @@ export default async function Page({
 	if (!params.typeTwoFactor || typeof params.typeTwoFactor !== "string") {
 		redirect("/auth/signin");
 	}
-
 	// Validação do token
 	const decoded = validateTwoFactorToken(params.typeTwoFactor);
 
+	console.log("DECODE", params.typeTwoFactor);
 	if (!decoded) {
+		console.log("ERRO", params.typeTwoFactor);
 		redirect("/auth/signin");
 	}
 

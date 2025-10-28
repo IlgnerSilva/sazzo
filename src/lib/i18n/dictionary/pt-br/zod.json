@@ -1,10 +1,31 @@
 {
 	"required": "Este campo é obrigatório",
 	"email": {
-		"invalid": "Email inválido"
+		"invalid": "Email inválido",
+		"required": "Email é obrigatório"
 	},
 	"password": {
-		"tooShort": "Senha muito curta",
-		"tooLong": "Senha muito longa"
+		"tooShort": "Senha muito curta (mínimo {min} caracteres)",
+		"tooLong": "Senha muito longa (máximo {max} caracteres)",
+		"required": "Senha é obrigatória",
+		"mismatch": "As senhas não coincidem",
+		"weak": "Senha muito fraca",
+		"mustContainNumber": "Deve conter pelo menos um número",
+		"mustContainUppercase": "Deve conter pelo menos uma letra maiúscula",
+		"mustContainLowercase": "Deve conter pelo menos uma letra minúscula",
+		"mustContainSpecial": "Deve conter pelo menos um caractere especial"
+	},
+	"name": {
+		"required": "Nome é obrigatório",
+		"tooShort": "Nome muito curto",
+		"tooLong": "Nome muito longo"
+	},
+	"string": {
+		"min": "Deve ter no mínimo {min} caracteres",
+		"max": "Deve ter no máximo {max} caracteres"
+	},
+	"number": {
+		"min": "Deve ser maior ou igual a {min}",
+		"max": "Deve ser menor ou igual a {max}"
 	}
 }

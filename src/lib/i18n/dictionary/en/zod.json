@@ -1,10 +1,31 @@
 {
 	"required": "This field is required",
 	"email": {
-		"invalid": "Invalid email"
+		"invalid": "Invalid email",
+		"required": "Email is required"
 	},
 	"password": {
-		"tooShort": "Password is too short",
-		"tooLong": "Password is too long"
+		"tooShort": "Password too short (minimum {min} characters)",
+		"tooLong": "Password too long (maximum {max} characters)",
+		"required": "Password is required",
+		"mismatch": "Passwords do not match",
+		"weak": "Password too weak",
+		"mustContainNumber": "Must contain at least one number",
+		"mustContainUppercase": "Must contain at least one uppercase letter",
+		"mustContainLowercase": "Must contain at least one lowercase letter",
+		"mustContainSpecial": "Must contain at least one special character"
+	},
+	"name": {
+		"required": "Name is required",
+		"tooShort": "Name too short",
+		"tooLong": "Name too long"
+	},
+	"string": {
+		"min": "Must be at least {min} characters",
+		"max": "Must be at most {max} characters"
+	},
+	"number": {
+		"min": "Must be greater than or equal to {min}",
+		"max": "Must be less than or equal to {max}"
 	}
 }

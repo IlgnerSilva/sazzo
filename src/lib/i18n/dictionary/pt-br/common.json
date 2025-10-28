@@ -8,7 +8,27 @@
 		"submit": "Enviar",
 		"cancel": "Cancelar",
 		"edit": "Editar",
-		"delete": "Excluir"
+		"delete": "Excluir",
+		"save": "Salvar",
+		"close": "Fechar",
+		"confirm": "Confirmar",
+		"continue": "Continuar",
+		"back": "Voltar",
+		"retry": "Tentar novamente",
+		"resend": "Reenviar",
+		"verify": "Verificar"
+	},
+	"status": {
+		"loading": "Carregando...",
+		"saving": "Salvando...",
+		"success": "Sucesso!",
+		"error": "Erro!",
+		"processing": "Processando..."
+	},
+	"confirmations": {
+		"deleteConfirm": "Tem certeza que deseja excluir?",
+		"unsavedChanges": "Você tem alterações não salvas. Deseja continuar?",
+		"logout": "Tem certeza que deseja sair?"
 	},
 	"pathname": {
 		"admin": {

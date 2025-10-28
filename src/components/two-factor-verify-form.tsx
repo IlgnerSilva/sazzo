@@ -5,13 +5,11 @@ import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useAction } from "next-safe-action/hooks";
-import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { verifyTwoFactor } from "@/actions/two-factor.action";
 import { UIButton, UICard, UIField, UIForm } from "@/components/ui";
 import { useMessageTranslation } from "@/hooks/use-message-translation";
-import { authClient } from "@/lib/better-auth/auth-client";
 import { cn } from "@/lib/utils";
 import {
 	type FormTwoFactorSchema,
@@ -30,7 +28,7 @@ export function TwoFactorVerifyForm({
 	const { executeAsync, isPending } = useAction(verifyTwoFactor);
 	const router = useRouter();
 	const { translateMessage } = useMessageTranslation();
-	const c = useTranslations("components");
+	const c = useTranslations("messages_status.SUCCESS");
 
 	const form = useForm<FormTwoFactorSchema>({
 		resolver: zodResolver(useFormTwoFactorSchema()),
@@ -53,7 +51,7 @@ export function TwoFactorVerifyForm({
 			toast.info("Erro inesperado, tente novamente mais tarde");
 			return;
 		}
-		toast.success("Logged in successfully");
+		toast.success(c("LOGIN_SUCCESS"));
 		return router.push("/");
 	};
 

@@ -1,6 +1,6 @@
 {
 	"login": {
-		"title": "Sign in to your account",
+		"title": "Sign in to account",
 		"subtitle": "Use your email and password",
 		"button": "Sign in",
 		"oauth": {
@@ -9,13 +9,13 @@
 		},
 		"errors": {
 			"invalidCredentials": "Invalid email or password",
-			"emailRequired": "Please enter your email",
-			"passwordRequired": "Please enter your password"
+			"emailRequired": "Please enter email",
+			"passwordRequired": "Please enter password"
 		}
 	},
 	"register": {
 		"title": "Create account",
 		"button": "Register",
-		"success": "Account successfully created"
+		"success": "Account created successfully"
 	}
 }

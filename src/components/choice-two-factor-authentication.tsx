@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useAction } from "next-safe-action/hooks";
 import { useState } from "react";
 import { toast } from "sonner";
-import { sendTwoFactorOtp } from "@/actions/two-factor.action";
+import { sendTwoFactor } from "@/actions/two-factor.action";
 import { useMessageTranslation } from "@/hooks/use-message-translation";
 import { UIButton, UICard, UIChoicebox } from "./ui";
 
@@ -13,22 +13,21 @@ export function ChoiceTwoFactorAuthentication() {
 	const router = useRouter();
 	const [typeTwoFactor, setTypeTwoFactor] = useState<"otp" | "totp">("totp");
 	const { translateMessage } = useMessageTranslation();
-	const { executeAsync, isPending } = useAction(sendTwoFactorOtp);
+	const { executeAsync, isPending } = useAction(sendTwoFactor);
 
 	async function handle() {
-		if (typeTwoFactor === "otp") {
-			const { serverError, data } = await executeAsync({ typeTwoFactor });
-			if (serverError) {
-				const message = translateMessage(serverError.code || "");
-				toast.error(message);
-				return;
-			}
-			if (!data) {
-				toast.info("Erro inesperado, tente novamente mais tarde");
-				return;
-			}
-			router.push(`/auth/signin/two-factor?typeTwoFactor=${data.token}`);
+		const { serverError, data } = await executeAsync({ typeTwoFactor });
+		if (serverError) {
+			const message = translateMessage(serverError.code || "");
+			toast.error(message);
+			return;
 		}
+		if (!data) {
+			toast.info("Erro inesperado, tente novamente mais tarde");
+			return;
+		}
+
+		router.push(`/auth/signin/two-factor?typeTwoFactor=${data.token}`);
 	}
 
 	return (

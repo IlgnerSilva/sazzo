@@ -1,8 +1,8 @@
 {
 	"USER_NOT_FOUND": "User not found",
 	"USER_ALREADY_EXISTS": "User already exists",
-	"INVALID_PASSWORD": "Invalid password",
 	"INVALID_EMAIL_OR_PASSWORD": "Invalid email or password",
+	"INVALID_PASSWORD": "Invalid password",
 	"EMAIL_NOT_VERIFIED": "Email not verified",
 	"SESSION_EXPIRED": "Session expired. Please log in again.",
 	"CREDENTIAL_ACCOUNT_NOT_FOUND": "Credential account not found",
@@ -24,5 +24,19 @@
 	"OTP_HAS_EXPIRED": "OTP has expired",
 	"TOTP_NOT_ENABLED": "TOTP is not enabled",
 	"BACKUP_CODES_NOT_ENABLED": "Backup codes are not enabled",
-	"INVALID_BACKUP_CODE": "Invalid backup code"
+	"INVALID_BACKUP_CODE": "Invalid backup code",
+
+	"SUCCESS": {
+		"LOGIN_SUCCESS": "Login successful",
+		"LOGOUT_SUCCESS": "Logout successful",
+		"USER_CREATED": "User created successfully",
+		"USER_UPDATED": "User updated successfully",
+		"PASSWORD_UPDATED": "Password updated successfully",
+		"EMAIL_VERIFIED": "Email verified successfully",
+		"TWO_FACTOR_ENABLED": "Two-factor authentication enabled",
+		"TWO_FACTOR_DISABLED": "Two-factor authentication disabled",
+		"ACCOUNT_LINKED": "Account linked successfully",
+		"ACCOUNT_UNLINKED": "Account unlinked successfully",
+		"VERIFICATION_EMAIL_SENT": "Verification email sent"
+	}
 }

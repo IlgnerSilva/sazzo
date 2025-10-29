@@ -17,17 +17,22 @@ export function ChoiceTwoFactorAuthentication() {
 
 	async function handle() {
 		const { serverError, data } = await executeAsync({ typeTwoFactor });
+
 		if (serverError) {
 			const message = translateMessage(serverError.code || "");
 			toast.error(message);
 			return;
 		}
+
 		if (!data) {
 			toast.info("Erro inesperado, tente novamente mais tarde");
 			return;
 		}
 
-		router.push(`/auth/signin/two-factor?typeTwoFactor=${data.token}`);
+		// ✅ MELHORADO: Redireciona sem passar token na URL
+		if (data.needsRedirect) {
+			router.push("/auth/signin/two-factor");
+		}
 	}
 
 	return (
@@ -48,7 +53,7 @@ export function ChoiceTwoFactorAuthentication() {
 						onValueChange={setTypeTwoFactor as any}
 						value={typeTwoFactor}
 					>
-						<UIChoicebox.ChoiceboxItem key={1} value="opt">
+						<UIChoicebox.ChoiceboxItem key={1} value="otp">
 							<UIChoicebox.ChoiceboxItemHeader>
 								<UIChoicebox.ChoiceboxItemTitle>
 									{c("ChoiceTwoFactorAutentication.sendChoice.email")}

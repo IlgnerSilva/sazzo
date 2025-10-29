@@ -1,52 +1,115 @@
+import { type NextRequest, NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
 import { getCachedSession } from "@/lib/better-auth/session-cached";
 import { locales, routing } from "@/lib/i18n/routing";
 import { privateRoutes, publicRoutes } from "@/routes";
-import createMiddleware from "next-intl/middleware";
-import { type NextRequest, NextResponse } from "next/server";
 
-// Middleware responsável pela internacionalização das rotas
+// ✅ Middleware de internacionalização
 const intlMiddleware = createMiddleware(routing);
 
-// Função que testa se o caminho da URL corresponde a uma das rotas definidas
-const testPathnameRegex = (pages: string[], pathName: string): boolean => {
-	const pathsWithParams = pages.map((p) => p.replace(/\[.*?\]/g, "[^/]+"));
-	return RegExp(
-		`^(/(${locales.join("|")}))?(${pathsWithParams.flatMap((p) => (p === "/" ? ["", "/"] : p)).join("|")})/?$`,
-		"i", // flag "i" para ignorar maiúsculas/minúsculas
-	).test(pathName);
+// ✅ PRÉ-COMPILAR regexes para performance
+const localesPattern = locales.join("|");
+
+// Cache de regexes compilados
+const routeMatchers = {
+	public: null as RegExp | null,
+	private: null as RegExp | null,
 };
 
-// Middleware de autenticação usando NextAuth
+// ✅ Função otimizada para criar regex de rotas
+function createRouteRegex(pages: string[]): RegExp {
+	const pathsWithParams = pages.map((p) => p.replace(/\[.*?\]/g, "[^/]+"));
+	return new RegExp(
+		`^(/(${localesPattern}))?(${pathsWithParams.flatMap((p) => (p === "/" ? ["", "/"] : p)).join("|")})/?$`,
+		"i",
+	);
+}
+
+// ✅ Inicializar regexes uma vez
+function initRouteMatchers() {
+	if (!routeMatchers.public) {
+		routeMatchers.public = createRouteRegex(publicRoutes);
+	}
+	if (!routeMatchers.private) {
+		routeMatchers.private = createRouteRegex(privateRoutes);
+	}
+}
+
+// ✅ Teste otimizado de pathname
+function testPathnameRegex(regex: RegExp, pathName: string): boolean {
+	return regex.test(pathName);
+}
+
+// ✅ Middleware de autenticação otimizado
 const authMiddleware = async (req: NextRequest) => {
-	const isPublicPage = testPathnameRegex(publicRoutes, req.nextUrl.pathname);
-	const isProtectPage = testPathnameRegex(privateRoutes, req.nextUrl.pathname);
+	// Inicializar matchers se necessário
+	initRouteMatchers();
 
-	const session = await getCachedSession();
+	const pathname = req.nextUrl.pathname;
+
+	// ✅ Early return para assets e API routes (não precisam de auth check)
+	if (
+		pathname.startsWith("/_next") ||
+		pathname.startsWith("/api") ||
+		pathname.includes(".")
+	) {
+		return intlMiddleware(req);
+	}
+
+	const isPublicPage = testPathnameRegex(routeMatchers.public!, pathname);
+	const isProtectPage = testPathnameRegex(routeMatchers.private!, pathname);
+
+	// ✅ Só busca sessão se necessário (páginas protegidas ou públicas com redirecionamento)
+	let session = null;
+	if (isProtectPage || isPublicPage) {
+		session = await getCachedSession();
+	}
+
 	const isLogged = !!session;
-	// console.log(cookies(). getItem("authToken"))
 
-	// Se o usuário não estiver autenticado e tentar acessar uma página que requer autenticação, redireciona para a página de login
+	// ✅ Redirecionar para login se não autenticado em página protegida
 	if (!isLogged && isProtectPage) {
-		return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
+		const url = new URL("/auth/signin", req.nextUrl.origin);
+		// ✅ Preservar locale na URL de redirecionamento
+		const locale = pathname.split("/")[1];
+		if (locales.includes(locale as any)) {
+			url.pathname = `/${locale}/auth/signin`;
+		}
+		return NextResponse.redirect(url);
 	}
 
-	// Se o usuário estiver autenticado e tentar acessar uma página de login, redireciona para a página inicial
+	// ✅ Redirecionar para home se autenticado tentando acessar página pública
 	if (isLogged && isPublicPage) {
-		return NextResponse.redirect(new URL("/", req.nextUrl));
+		const url = new URL("/", req.nextUrl.origin);
+		// ✅ Preservar locale
+		const locale = pathname.split("/")[1];
+		if (locales.includes(locale as any)) {
+			url.pathname = `/${locale}`;
+		}
+		return NextResponse.redirect(url);
 	}
 
-	// Se não for uma página de autenticação, continua o processo de internacionalização
+	// ✅ Continuar com internacionalização
 	return intlMiddleware(req);
 };
 
-// Função principal do middleware que combina a autenticação e a internacionalização
+// ✅ Função principal
 const proxy = (req: NextRequest) => {
-	return (authMiddleware as any)(req);
+	return authMiddleware(req);
 };
 
-// Configuração de correspondência para os caminhos que o middleware deve interceptar
+// ✅ Matcher otimizado - exclui arquivos estáticos explicitamente
 export const config = {
-	matcher: ["/((?!api|doc|rpc|spec|_next|_vercel|.*\\..*).*)"],
+	matcher: [
+		/*
+		 * Match all request paths except:
+		 * - _next/static (static files)
+		 * - _next/image (image optimization files)
+		 * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+		 * - *.* (files with extensions)
+		 */
+		"/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\..*).*)",
+	],
 };
 
 export default proxy;

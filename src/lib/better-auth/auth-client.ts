@@ -15,12 +15,6 @@ import type { auth } from "./auth.ts";
 
 export const authClient = createAuthClient({
 	baseURL: env.NEXT_PUBLIC_HOST_URL,
-	fetchOptions: {
-		auth: {
-			type: "Bearer",
-			token: () => localStorage.getItem("authToken") || "",
-		},
-	},
 	plugins: [
 		inferAdditionalFields<typeof auth>(),
 		twoFactorClient({}),
@@ -33,3 +27,7 @@ export const authClient = createAuthClient({
 		multiSessionClient(),
 	],
 });
+
+export const getClientSession = () => {
+	return authClient.useSession();
+};

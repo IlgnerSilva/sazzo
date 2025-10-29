@@ -40,8 +40,8 @@ export function LoginForm({
 	const form = useForm<FormLoginSchema>({
 		resolver: zodResolver(useFormLoginSchema()),
 		defaultValues: {
-			email: "ilgnersilva@outlook.com",
-			password: "Ilgner1234",
+			email: "",
+			password: "",
 			rememberMe: false,
 		},
 	});
@@ -56,11 +56,10 @@ export function LoginForm({
 				},
 				{
 					onSuccess: (ctx) => {
-						const authToken = ctx.response.headers.get("set-auth-token");
-						localStorage.setItem("authToken", authToken || "");
 						if ("twoFactorRedirect" in ctx.data) {
 							return setShowTwoFactor(true);
 						}
+
 						toast.success("Logged in successfully");
 						return router.push("/");
 					},

@@ -1,8 +1,5 @@
 "use client";
 
-import { UIDropdown, UISidebar } from "@/components/ui";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { authClient } from "@/lib/better-auth/auth-client";
 import {
 	BadgeCheck,
 	Bell,
@@ -12,8 +9,11 @@ import {
 	Sparkles,
 	User2,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { UIDropdown, UISidebar } from "@/components/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { authClient } from "@/lib/better-auth/auth-client";
 
 export function NavUser({
 	user,
@@ -33,7 +33,6 @@ export function NavUser({
 			{},
 			{
 				onSuccess: () => {
-					localStorage.removeItem("authToken");
 					router.push("/auth/signin");
 				},
 			},

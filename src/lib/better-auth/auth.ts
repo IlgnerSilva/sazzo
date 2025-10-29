@@ -41,7 +41,7 @@ export const auth = betterAuth({
 		enabled: true,
 		autoSignIn: false,
 		requireEmailVerification: false,
-		async sendResetPassword(data, request) {
+		async sendResetPassword(_data, _request) {
 			// Send email with reset password link
 		},
 		password: {
@@ -72,12 +72,10 @@ export const auth = betterAuth({
 	emailVerification: {
 		sendOnSignUp: true,
 		autoSignInAfterVerification: true,
-		async sendVerificationEmail(data, request) {
+		async sendVerificationEmail(_data, _request) {
 			// Send email with verification link
 		},
-		async onEmailVerification(user, request) {
-			
-		},
+		async onEmailVerification(_user, _request) {},
 		expiresIn: 60 * 5,
 	},
 
@@ -113,7 +111,7 @@ export const auth = betterAuth({
 			"/two-factor/send-otp": {
 				window: 86400, // 24 horas
 				max: 3,
-      		},
+			},
 		},
 	},
 	plugins: [
@@ -171,7 +169,7 @@ export const auth = betterAuth({
 		// }),
 		magicLink({
 			expiresIn: 60 * 5,
-			sendMagicLink({ email, token, url }, request) {
+			sendMagicLink({ email, token, url }, _request) {
 				// Send email with magic link
 			},
 		}),
@@ -183,7 +181,7 @@ export const auth = betterAuth({
 			otpOptions: {
 				digits: 6,
 				period: 30,
-				async sendOTP(data, request) {
+				async sendOTP(data, _request) {
 					await resend.emails.send({
 						from: "Acme <onboarding@resend.dev>",
 						to: ["ilgnersilva@outlook.com"],

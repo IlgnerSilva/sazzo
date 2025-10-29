@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { SwitcherLocale } from "@/components/swicher-locale";
 import { routing } from "@/lib/i18n/routing";
 
 const geistSans = Geist({
@@ -45,13 +46,14 @@ export default async function LocaleLayout({
 				<NextIntlClientProvider messages={dictionary}>
 					<div className="grid h-screen lg:grid-cols-2">
 						<div className="flex flex-col gap-4 p-6">
-							<div className="flex justify-center gap-2 md:justify-start">
+							<div className="relative flex justify-center gap-2 md:justify-start">
 								<Link className="flex items-center gap-2 font-medium" href="#">
 									<div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
 										<GalleryVerticalEnd className="size-4" />
 									</div>
 									Acme Inc.
 								</Link>
+								<SwitcherLocale className="absolute right-0" />
 							</div>
 							{children}
 						</div>

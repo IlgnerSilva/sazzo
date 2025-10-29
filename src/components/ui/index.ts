@@ -12,6 +12,7 @@ export * as UIInput from "./input";
 export * as UIInputOTP from "./input-otp";
 export * as UILabel from "./label";
 export * as UIRadioGroup from "./radio-group";
+export * as UISelect from "./select";
 export * as UISeparator from "./separator";
 export * as UISheet from "./sheet";
 export * as UISidebar from "./sidebar";

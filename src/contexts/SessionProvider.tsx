@@ -1,6 +1,5 @@
 "use client";
 import { createContext, type ReactNode, useContext } from "react";
-import { authClient } from "@/lib/better-auth/auth-client";
 import type { Session } from "@/types/session";
 
 type SessionProviderProps = {
@@ -14,11 +13,8 @@ export function SessionProvider({
 	children,
 	initialSession,
 }: SessionProviderProps) {
-	const { data: clientSession } = authClient.useSession();
-	const session = clientSession || initialSession;
-
 	return (
-		<SessionContext.Provider value={session}>
+		<SessionContext.Provider value={initialSession}>
 			{children}
 		</SessionContext.Provider>
 	);

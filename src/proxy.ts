@@ -108,7 +108,7 @@ export const config = {
 		 * - favicon.ico, sitemap.xml, robots.txt (metadata files)
 		 * - *.* (files with extensions)
 		 */
-		"/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\..*).*)",
+		"/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\..*).*)",
 	],
 };
 

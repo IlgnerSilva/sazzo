@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-
+import { AutoBreadcrumb } from "@/components/auto-breadcrumb";
 import { UIBreadcrumb, UISeparator, UISidebar } from "@/components/ui";
 
 export default async function LocaleLayout({
@@ -18,21 +18,7 @@ export default async function LocaleLayout({
 							className="mr-2 data-[orientation=vertical]:h-4"
 							orientation="vertical"
 						/>
-						<UIBreadcrumb.Breadcrumb>
-							<UIBreadcrumb.BreadcrumbList>
-								<UIBreadcrumb.BreadcrumbItem className="hidden md:block">
-									<UIBreadcrumb.BreadcrumbLink href="#">
-										Building Your Application
-									</UIBreadcrumb.BreadcrumbLink>
-								</UIBreadcrumb.BreadcrumbItem>
-								<UIBreadcrumb.BreadcrumbSeparator className="hidden md:block" />
-								<UIBreadcrumb.BreadcrumbItem>
-									<UIBreadcrumb.BreadcrumbPage>
-										Data Fetching
-									</UIBreadcrumb.BreadcrumbPage>
-								</UIBreadcrumb.BreadcrumbItem>
-							</UIBreadcrumb.BreadcrumbList>
-						</UIBreadcrumb.Breadcrumb>
+						<AutoBreadcrumb />
 					</div>
 				</header>
 				<div className="flex flex-1 flex-col gap-4 p-4 pt-0">

@@ -3,7 +3,7 @@ import { auth } from "./auth";
 
 // Função interna cacheada que recebe os headers como argumento
 async function fetchSessionCached(headersList: Headers) {
-	"use cache";
+	"use cache: private";
 	return await auth.api.getSession({ headers: headersList });
 }
 

@@ -1,4 +1,4 @@
-﻿Title,Body,Labels,Milestone
+title,body,labels,milestone
 INF-001 — Criar estrutura Turborepo,"## Objetivo
 Criar o monorepo base do FlowDesk.
 
@@ -7,14 +7,14 @@ Criar o monorepo base do FlowDesk.
 - [ ] Criar packages/db, auth, ui, config e types
 
 ## Critérios de aceite
-- [ ] pnpm install funciona
+- [ ] Bun install funciona
 - [ ] Turbo executa os workspaces
 - [ ] Estrutura documentada","infrastructure,priority:high",01 - Foundation
 INF-002 — Configurar package manager,"## Objetivo
 Padronizar o gerenciador de pacotes.
 
 ## Tarefas
-- [ ] Configurar pnpm e workspaces
+- [ ] Configurar Bun e workspaces
 - [ ] Scripts raiz
 - [ ] Lockfile
 

@@ -1,25 +1,53 @@
 name: Importar Issues em Massa
 
 on:
-  workflow_dispatch: # Permite que você execute o processo manualmente pelo painel do GitHub
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Testar sem criar as issues?'
+        type: boolean
+        default: true
 
 jobs:
   import-csv-issues:
     runs-on: ubuntu-latest
 
-    # Dá permissão de escrita para o token criar as issues no repositório
     permissions:
       issues: write
       contents: read
 
     steps:
-      # Passo 1: Baixa o código do repositório (onde está o seu arquivo CSV)
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      # Passo 2: Executa a action que lê o CSV e cria as issues
+      # A action NÃO cria milestones. Se não existirem, as issues saem sem milestone.
+      - name: Criar milestones
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          while IFS= read -r m; do
+            gh api "repos/${{ github.repository }}/milestones" -f title="$m" || true
+          done <<'EOF'
+          01 - Foundation
+          02 - Authentication
+          03 - Organizations
+          04 - Customers
+          05 - Deals
+          06 - Proposals
+          07 - Contracts
+          08 - Signatures
+          09 - Invoices
+          10 - Workflows
+          11 - Dashboard
+          12 - Notifications & Audit
+          13 - Testing
+          14 - Production
+          EOF
+
       - name: Importar Issues do CSV
-        uses: dsanchezcr/issue-importer-action@v1.0.0 # Substitua pela versão mais recente/estável se necessário
+        uses: dsanchezcr/issue-importer-action@v1.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          file_path: './flowdesk_github_issues_corrigido.csv' # Caminho exato do seu arquivo de dados
+          file-path: './flowdesk_github_issues_corrigido.csv'
+          file-format: csv
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          dry-run: ${{ inputs.dry_run }}

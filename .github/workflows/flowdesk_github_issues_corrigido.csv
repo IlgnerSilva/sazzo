@@ -1,0 +1,1681 @@
+﻿Title,Body,Labels,Milestone
+INF-001 — Criar estrutura Turborepo,"## Objetivo
+Criar o monorepo base do FlowDesk.
+
+## Tarefas
+- [ ] Criar apps/api e apps/web
+- [ ] Criar packages/db, auth, ui, config e types
+
+## Critérios de aceite
+- [ ] pnpm install funciona
+- [ ] Turbo executa os workspaces
+- [ ] Estrutura documentada","infrastructure,priority:high",01 - Foundation
+INF-002 — Configurar package manager,"## Objetivo
+Padronizar o gerenciador de pacotes.
+
+## Tarefas
+- [ ] Configurar pnpm e workspaces
+- [ ] Scripts raiz
+- [ ] Lockfile
+
+## Critérios de aceite
+- [ ] Instalação limpa funciona
+- [ ] Scripts dev/build/lint/typecheck estão disponíveis","infrastructure,priority:high",01 - Foundation
+INF-003 — Configurar Turborepo,"## Objetivo
+Configurar pipeline de desenvolvimento e CI.
+
+## Tarefas
+- [ ] Criar turbo.json
+- [ ] Pipelines dev/build/lint/typecheck/test
+
+## Critérios de aceite
+- [ ] Tasks executam somente os pacotes necessários e usam cache quando aplicável","infrastructure,priority:high",01 - Foundation
+INF-004 — Configurar TypeScript compartilhado,"## Objetivo
+Centralizar configurações TS.
+
+## Tarefas
+- [ ] Criar tsconfig base e referências por pacote/app
+
+## Critérios de aceite
+- [ ] Todos os workspaces compilam sem erros","infrastructure,priority:high",01 - Foundation
+INF-005 — Configurar Biome,"## Objetivo
+Padronizar lint e formatting.
+
+## Tarefas
+- [ ] Configurar regras, imports e scripts
+
+## Critérios de aceite
+- [ ] Biome passa em todo o monorepo","infrastructure,priority:high",01 - Foundation
+INF-006 — Configurar variáveis de ambiente,"## Objetivo
+Criar estratégia segura de env.
+
+## Tarefas
+- [ ] Criar .env.example e validação por ambiente
+
+## Critérios de aceite
+- [ ] Aplicações falham com mensagem clara quando env obrigatório está ausente","infrastructure,priority:high",01 - Foundation
+INF-007 — Docker Compose local,"## Objetivo
+Criar infraestrutura local.
+
+## Tarefas
+- [ ] Adicionar PostgreSQL e Redis
+- [ ] Volumes
+- [ ] Healthchecks
+
+## Critérios de aceite
+- [ ] Infra inicia com um comando e persiste dados","infrastructure,priority:high",01 - Foundation
+INF-008 — CI inicial,"## Objetivo
+Criar pipeline GitHub Actions.
+
+## Tarefas
+- [ ] Install
+- [ ] Lint
+- [ ] Typecheck
+- [ ] Tests
+- [ ] Build
+
+## Critérios de aceite
+- [ ] Pull request executa pipeline automaticamente","infrastructure,priority:high",01 - Foundation
+DB-001 — Configurar package Drizzle,"## Objetivo
+Criar package de banco.
+
+## Tarefas
+- [ ] Drizzle ORM, config e client
+
+## Critérios de aceite
+- [ ] Package conecta ao PostgreSQL","database,priority:high",01 - Foundation
+DB-002 — Configurar migrations,"## Objetivo
+Criar fluxo de migrations.
+
+## Tarefas
+- [ ] Drizzle-kit generate/migrate
+- [ ] Scripts
+
+## Critérios de aceite
+- [ ] Migration vazia e uma migration real executam","database,priority:high",01 - Foundation
+DB-003 — Schema Better Auth,"## Objetivo
+Criar tabelas necessárias para autenticação.
+
+## Tarefas
+- [ ] Aplicar schema exigido pelo Better Auth
+
+## Critérios de aceite
+- [ ] Auth schema migra sem conflitos","database,priority:high",01 - Foundation
+DB-004 — Schema Organization,"## Objetivo
+Criar organização multi-tenant.
+
+## Tarefas
+- [ ] Tabela organization e índices
+
+## Critérios de aceite
+- [ ] Organização possui slug único","database,priority:high",01 - Foundation
+DB-005 — Schema Membership,"## Objetivo
+Relacionar usuários e organizações.
+
+## Tarefas
+- [ ] Membership, role e status
+
+## Critérios de aceite
+- [ ] Usuário pode pertencer a organizações","database,priority:high",01 - Foundation
+DB-006 — Schema Invitation,"## Objetivo
+Persistir convites.
+
+## Tarefas
+- [ ] Token, email, role, expiração e status
+
+## Critérios de aceite
+- [ ] Convite pode ser criado e invalidado","database,priority:high",01 - Foundation
+DB-007 — Schema Customer,"## Objetivo
+Criar clientes.
+
+## Tarefas
+- [ ] Dados básicos, status e organizationId
+
+## Critérios de aceite
+- [ ] Cliente sempre pertence a uma organização","database,priority:high",01 - Foundation
+DB-008 — Schema Customer Contact,"## Objetivo
+Criar contatos de cliente.
+
+## Tarefas
+- [ ] Contato, email, telefone e cargo
+
+## Critérios de aceite
+- [ ] Contatos ficam vinculados ao cliente","database,priority:high",01 - Foundation
+DB-009 — Schema Deal,"## Objetivo
+Criar oportunidades.
+
+## Tarefas
+- [ ] Valor, estágio, owner, datas e organizationId
+
+## Critérios de aceite
+- [ ] Deal possui estágio e cliente válidos","database,priority:high",01 - Foundation
+DB-010 — Schema Proposal,"## Objetivo
+Criar propostas.
+
+## Tarefas
+- [ ] Status, validade, totals e dealId
+
+## Critérios de aceite
+- [ ] Proposta possui ciclo de vida definido","database,priority:high",01 - Foundation
+DB-011 — Schema Proposal Item,"## Objetivo
+Itens de proposta.
+
+## Tarefas
+- [ ] Descrição, quantidade, preço e total
+
+## Critérios de aceite
+- [ ] Totais podem ser calculados de forma determinística","database,priority:high",01 - Foundation
+DB-012 — Schema Public Token,"## Objetivo
+Acesso público seguro.
+
+## Tarefas
+- [ ] Hash/token, expiração, revogação e tipo
+
+## Critérios de aceite
+- [ ] Token não expõe IDs internos sensíveis","database,priority:high",01 - Foundation
+DB-013 — Schema Document,"## Objetivo
+Criar documentos.
+
+## Tarefas
+- [ ] Metadados, tipo e storageKey
+
+## Critérios de aceite
+- [ ] Documento pode ser versionado","database,priority:high",01 - Foundation
+DB-014 — Schema Document Version,"## Objetivo
+Versionar documentos.
+
+## Tarefas
+- [ ] Versão, checksum, storageKey e createdAt
+
+## Critérios de aceite
+- [ ] Versões não são sobrescritas","database,priority:high",01 - Foundation
+DB-015 — Schema Contract,"## Objetivo
+Criar contratos.
+
+## Tarefas
+- [ ] Status, proposalId, documentId e datas
+
+## Critérios de aceite
+- [ ] Contrato possui estados consistentes","database,priority:high",01 - Foundation
+DB-016 — Schema Contract Participant,"## Objetivo
+Participantes do contrato.
+
+## Tarefas
+- [ ] Nome, email, role e ordem
+
+## Critérios de aceite
+- [ ] Participantes podem assinar","database,priority:high",01 - Foundation
+DB-017 — Schema Signature Request,"## Objetivo
+Solicitação de assinatura.
+
+## Tarefas
+- [ ] Token, status, expiração e participante
+
+## Critérios de aceite
+- [ ] Request impede assinatura duplicada","database,priority:high",01 - Foundation
+DB-018 — Schema Signature,"## Objetivo
+Registro de assinatura.
+
+## Tarefas
+- [ ] Signer, timestamp, metadata e documentVersionId
+
+## Critérios de aceite
+- [ ] Assinatura fica imutável","database,priority:high",01 - Foundation
+DB-019 — Schema Invoice,"## Objetivo
+Criar faturas.
+
+## Tarefas
+- [ ] Status, valores, vencimento e contractId
+
+## Critérios de aceite
+- [ ] Fatura possui ciclo de vida","database,priority:high",01 - Foundation
+DB-020 — Schema Invoice Item,"## Objetivo
+Itens de fatura.
+
+## Tarefas
+- [ ] Descrição, quantidade, preço e total
+
+## Critérios de aceite
+- [ ] Total é consistente com os itens","database,priority:high",01 - Foundation
+DB-021 — Schema Payment,"## Objetivo
+Registrar pagamentos.
+
+## Tarefas
+- [ ] InvoiceId, amount, method, status e paidAt
+
+## Critérios de aceite
+- [ ] Pagamento pode liquidar fatura","database,priority:high",01 - Foundation
+DB-022 — Schema Task,"## Objetivo
+Criar tarefas internas.
+
+## Tarefas
+- [ ] Título, status, assignee, dueDate e vínculos
+
+## Critérios de aceite
+- [ ] Task pode ser atribuída e concluída","database,priority:high",01 - Foundation
+DB-023 — Schema Workflow,"## Objetivo
+Criar workflows.
+
+## Tarefas
+- [ ] Nome, status e organizationId
+
+## Critérios de aceite
+- [ ] Workflow pode ser ativado/desativado","database,priority:high",01 - Foundation
+DB-024 — Schema Workflow Node,"## Objetivo
+Nós de workflow.
+
+## Tarefas
+- [ ] Trigger, action, condition e delay
+
+## Critérios de aceite
+- [ ] Nós possuem configuração persistível","database,priority:high",01 - Foundation
+DB-025 — Schema Workflow Run,"## Objetivo
+Execuções de workflow.
+
+## Tarefas
+- [ ] Status, input, output, timestamps e error
+
+## Critérios de aceite
+- [ ] Execução pode ser auditada","database,priority:high",01 - Foundation
+DB-026 — Schema Notification,"## Objetivo
+Notificações.
+
+## Tarefas
+- [ ] Destinatário, tipo, payload e readAt
+
+## Critérios de aceite
+- [ ] Notificação pode ser lida","database,priority:high",01 - Foundation
+DB-027 — Schema Audit Log,"## Objetivo
+Auditoria.
+
+## Tarefas
+- [ ] Actor, action, resource, metadata e timestamp
+
+## Critérios de aceite
+- [ ] Eventos críticos ficam registrados","database,priority:high",01 - Foundation
+DB-028 — Schema Activity,"## Objetivo
+Timeline de atividades.
+
+## Tarefas
+- [ ] Tipo, entidade, actor e metadata
+
+## Critérios de aceite
+- [ ] Atividades podem ser consultadas cronologicamente","database,priority:high",01 - Foundation
+DB-029 — Índices e constraints,"## Objetivo
+Otimizar e proteger o banco.
+
+## Tarefas
+- [ ] Índices de tenant, status, datas e FKs
+
+## Critérios de aceite
+- [ ] Queries principais usam índices e constraints impedem estados inválidos","database,priority:high",01 - Foundation
+DB-030 — Seed de demonstração,"## Objetivo
+Criar dados realistas para demo.
+
+## Tarefas
+- [ ] Organization, usuários, clientes, deals e documentos
+
+## Critérios de aceite
+- [ ] Ambiente de desenvolvimento possui uma demo completa","database,priority:high",01 - Foundation
+AUTH-001 — Configurar Better Auth,"## Objetivo
+Integrar Better Auth ao package auth.
+
+## Tarefas
+- [ ] Configuração, secret, baseURL e adapter
+
+## Critérios de aceite
+- [ ] Auth inicia e cria sessão","backend,auth,priority:high",02 - Authentication
+AUTH-002 — Integrar Better Auth ao NestJS,"## Objetivo
+Disponibilizar autenticação na API.
+
+## Tarefas
+- [ ] Handler, middleware e contexto de sessão
+
+## Critérios de aceite
+- [ ] Endpoints protegidos reconhecem sessão","backend,auth,priority:high",02 - Authentication
+AUTH-003 — Session management,"## Objetivo
+Criar leitura e invalidação de sessões.
+
+## Tarefas
+- [ ] Current session
+- [ ] Logout
+- [ ] Expiração
+
+## Critérios de aceite
+- [ ] Sessões podem ser consultadas e encerradas","backend,auth,priority:high",02 - Authentication
+AUTH-004 — Cadastro,"## Objetivo
+Implementar criação de conta.
+
+## Tarefas
+- [ ] Email/senha, validação e mensagens de erro
+
+## Critérios de aceite
+- [ ] Usuário é criado e sessão inicial é controlada","backend,auth,priority:high",02 - Authentication
+AUTH-005 — Login,"## Objetivo
+Implementar login.
+
+## Tarefas
+- [ ] Credenciais, erros e rate limit
+
+## Critérios de aceite
+- [ ] Login válido cria sessão","backend,auth,priority:high",02 - Authentication
+AUTH-006 — Logout,"## Objetivo
+Implementar logout.
+
+## Tarefas
+- [ ] Invalidar sessão atual
+
+## Critérios de aceite
+- [ ] Sessão deixa de ser válida","backend,auth,priority:high",02 - Authentication
+AUTH-007 — Verificação de email,"## Objetivo
+Implementar fluxo de verificação.
+
+## Tarefas
+- [ ] Token, expiração e reenvio
+
+## Critérios de aceite
+- [ ] Usuário pode verificar email","backend,auth,priority:high",02 - Authentication
+AUTH-008 — Recuperação de senha,"## Objetivo
+Implementar forgot/reset password.
+
+## Tarefas
+- [ ] Token, expiração e invalidação
+
+## Critérios de aceite
+- [ ] Senha pode ser redefinida com segurança","backend,auth,priority:high",02 - Authentication
+AUTH-009 — OAuth Google,"## Objetivo
+Adicionar login social.
+
+## Tarefas
+- [ ] Configurar provider e callback
+
+## Critérios de aceite
+- [ ] Usuário pode autenticar via Google","backend,auth,priority:high",02 - Authentication
+AUTH-010 — 2FA,"## Objetivo
+Implementar segundo fator.
+
+## Tarefas
+- [ ] TOTP, challenge e recovery codes
+
+## Critérios de aceite
+- [ ] Usuário pode ativar e usar 2FA","backend,auth,priority:high",02 - Authentication
+AUTH-011 — Recovery codes,"## Objetivo
+Gerar e consumir códigos.
+
+## Tarefas
+- [ ] Hash dos códigos e uso único
+
+## Critérios de aceite
+- [ ] Código usado não pode ser reutilizado","backend,auth,priority:high",02 - Authentication
+AUTH-012 — Listagem de sessões,"## Objetivo
+Expor sessões ativas.
+
+## Tarefas
+- [ ] Endpoint e revogação individual
+
+## Critérios de aceite
+- [ ] Usuário vê dispositivos/sessões","backend,auth,priority:high",02 - Authentication
+AUTH-013 — Revogar sessão,"## Objetivo
+Encerrar sessão remota.
+
+## Tarefas
+- [ ] Endpoint autorizado
+
+## Critérios de aceite
+- [ ] Sessão selecionada é invalidada","backend,auth,priority:high",02 - Authentication
+AUTH-014 — Auth guard,"## Objetivo
+Proteger rotas NestJS.
+
+## Tarefas
+- [ ] Guard e decorator current user
+
+## Critérios de aceite
+- [ ] Rotas privadas retornam 401 sem sessão","backend,auth,priority:high",02 - Authentication
+AUTH-015 — Contexto de organização,"## Objetivo
+Resolver tenant atual.
+
+## Tarefas
+- [ ] Membership e organization context
+
+## Critérios de aceite
+- [ ] Request possui organização autorizada","backend,auth,priority:high",02 - Authentication
+ORG-001 — Criar organização,"## Objetivo
+Implementar criação de workspace.
+
+## Tarefas
+- [ ] Use case, repository e endpoint
+
+## Critérios de aceite
+- [ ] Usuário autenticado cria organização","backend,priority:high",03 - Organizations
+ORG-002 — Consultar organização,"## Objetivo
+Retornar workspace atual.
+
+## Tarefas
+- [ ] Endpoint e autorização
+
+## Critérios de aceite
+- [ ] Somente membros acessam","backend,priority:high",03 - Organizations
+ORG-003 — Atualizar organização,"## Objetivo
+Editar nome, logo e dados.
+
+## Tarefas
+- [ ] Validação e autorização
+
+## Critérios de aceite
+- [ ] Somente papel autorizado altera","backend,priority:high",03 - Organizations
+ORG-004 — Convites de equipe,"## Objetivo
+Criar e enviar convites.
+
+## Tarefas
+- [ ] Token, expiração, role e email
+
+## Critérios de aceite
+- [ ] Convite pode ser enviado","backend,priority:high",03 - Organizations
+ORG-005 — Aceitar convite,"## Objetivo
+Aceitar convite externo.
+
+## Tarefas
+- [ ] Validar token e criar membership
+
+## Critérios de aceite
+- [ ] Convite aceito cria membership","backend,priority:high",03 - Organizations
+ORG-006 — Gerenciar membros,"## Objetivo
+Listar/remover membros.
+
+## Tarefas
+- [ ] Endpoints e autorização
+
+## Critérios de aceite
+- [ ] Admin consegue gerenciar equipe","backend,priority:high",03 - Organizations
+ORG-007 — Alterar papel,"## Objetivo
+Alterar role de membro.
+
+## Tarefas
+- [ ] Validação de permissões
+
+## Critérios de aceite
+- [ ] Owner não pode ser removido indevidamente","backend,priority:high",03 - Organizations
+ORG-008 — Permission service,"## Objetivo
+Centralizar autorização.
+
+## Tarefas
+- [ ] Matriz de permissões por role
+
+## Critérios de aceite
+- [ ] Use cases usam autorização consistente","backend,priority:high",03 - Organizations
+CUS-001 — Criar cliente,"## Objetivo
+Criar customer.
+
+## Tarefas
+- [ ] Validação, repository e endpoint
+
+## Critérios de aceite
+- [ ] Cliente é criado no tenant atual","backend,priority:high",04 - Customers
+CUS-002 — Listar clientes,"## Objetivo
+Listar com paginação.
+
+## Tarefas
+- [ ] Busca, paginação e ordenação
+
+## Critérios de aceite
+- [ ] Lista retorna apenas tenant atual","backend,priority:high",04 - Customers
+CUS-003 — Buscar e filtrar clientes,"## Objetivo
+Adicionar filtros.
+
+## Tarefas
+- [ ] Nome, email, status e owner
+
+## Critérios de aceite
+- [ ] Filtros combináveis funcionam","backend,priority:high",04 - Customers
+CUS-004 — Consultar cliente,"## Objetivo
+Detalhes do cliente.
+
+## Tarefas
+- [ ] Endpoint e relações básicas
+
+## Critérios de aceite
+- [ ] Cliente existente é retornado","backend,priority:high",04 - Customers
+CUS-005 — Atualizar cliente,"## Objetivo
+Editar dados.
+
+## Tarefas
+- [ ] Validação e auditoria
+
+## Critérios de aceite
+- [ ] Alterações ficam registradas","backend,priority:high",04 - Customers
+CUS-006 — Arquivar cliente,"## Objetivo
+Soft delete/archive.
+
+## Tarefas
+- [ ] Status e proteção de dados
+
+## Critérios de aceite
+- [ ] Cliente arquivado não aparece na lista padrão","backend,priority:high",04 - Customers
+CUS-007 — Timeline do cliente,"## Objetivo
+Unificar atividades.
+
+## Tarefas
+- [ ] Consultar Activity por customerId
+
+## Critérios de aceite
+- [ ] Timeline ordenada corretamente","backend,priority:high",04 - Customers
+DEAL-001 — Criar deal,"## Objetivo
+Criar oportunidade.
+
+## Tarefas
+- [ ] Customer, value, stage e owner
+
+## Critérios de aceite
+- [ ] Deal é criado no tenant","backend,priority:high",05 - Deals
+DEAL-002 — Listar deals,"## Objetivo
+Listar oportunidades.
+
+## Tarefas
+- [ ] Filtros, paginação e ordenação
+
+## Critérios de aceite
+- [ ] Pipeline pode ser carregado","backend,priority:high",05 - Deals
+DEAL-003 — Atualizar deal,"## Objetivo
+Editar oportunidade.
+
+## Tarefas
+- [ ] Validação e autorização
+
+## Critérios de aceite
+- [ ] Dados atualizados corretamente","backend,priority:high",05 - Deals
+DEAL-004 — Alterar estágio,"## Objetivo
+Mover deal no pipeline.
+
+## Tarefas
+- [ ] Validação de transições
+
+## Critérios de aceite
+- [ ] Stage change gera activity","backend,priority:high",05 - Deals
+DEAL-005 — Ganhar/perder deal,"## Objetivo
+Encerrar oportunidade.
+
+## Tarefas
+- [ ] Won/lost e motivo
+
+## Critérios de aceite
+- [ ] Estado final é persistido","backend,priority:high",05 - Deals
+DEAL-006 — Pipeline,"## Objetivo
+Retornar dados agrupados.
+
+## Tarefas
+- [ ] Agrupar por stage
+
+## Critérios de aceite
+- [ ] Frontend recebe dados para Kanban","backend,priority:high",05 - Deals
+DEAL-007 — Timeline do deal,"## Objetivo
+Registrar e consultar atividades.
+
+## Tarefas
+- [ ] Activity por deal
+
+## Critérios de aceite
+- [ ] Eventos aparecem em ordem","backend,priority:high",05 - Deals
+PROP-001 — Criar proposta,"## Objetivo
+Criar proposta a partir de deal.
+
+## Tarefas
+- [ ] Itens, validade e total
+
+## Critérios de aceite
+- [ ] Proposta em draft","backend,priority:high",06 - Proposals
+PROP-002 — Gerenciar itens,"## Objetivo
+Adicionar/remover/editar itens.
+
+## Tarefas
+- [ ] Cálculo server-side
+
+## Critérios de aceite
+- [ ] Total correto","backend,priority:high",06 - Proposals
+PROP-003 — Atualizar proposta,"## Objetivo
+Editar proposta draft.
+
+## Tarefas
+- [ ] Bloquear edição após estados finais
+
+## Critérios de aceite
+- [ ] Regras de status respeitadas","backend,priority:high",06 - Proposals
+PROP-004 — Enviar proposta,"## Objetivo
+Gerar acesso público e enviar email.
+
+## Tarefas
+- [ ] Token, status e notification
+
+## Critérios de aceite
+- [ ] Cliente recebe link válido","backend,priority:high",06 - Proposals
+PROP-005 — Visualizar proposta pública,"## Objetivo
+Expor proposta por token.
+
+## Tarefas
+- [ ] Validar token e expiração
+
+## Critérios de aceite
+- [ ] Não exige login","backend,priority:high",06 - Proposals
+PROP-006 — Aprovar proposta,"## Objetivo
+Registrar aprovação.
+
+## Tarefas
+- [ ] Timestamp, signer e status
+
+## Critérios de aceite
+- [ ] Proposta vira approved","backend,priority:high",06 - Proposals
+PROP-007 — Rejeitar proposta,"## Objetivo
+Registrar rejeição.
+
+## Tarefas
+- [ ] Motivo opcional e status
+
+## Critérios de aceite
+- [ ] Proposta vira rejected","backend,priority:high",06 - Proposals
+PROP-008 — Expiração de proposta,"## Objetivo
+Controlar validade.
+
+## Tarefas
+- [ ] Validar expiresAt em acesso/ação
+
+## Critérios de aceite
+- [ ] Proposta expirada não pode ser aprovada","backend,priority:high",06 - Proposals
+CON-001 — Criar contrato,"## Objetivo
+Criar contrato.
+
+## Tarefas
+- [ ] Deal/proposal/document relationships
+
+## Critérios de aceite
+- [ ] Contrato inicia em draft","backend,priority:high",07 - Contracts
+CON-002 — Gerar contrato da proposta,"## Objetivo
+Criar contrato a partir de aprovação.
+
+## Tarefas
+- [ ] Mapear dados e participantes
+
+## Critérios de aceite
+- [ ] Workflow pode chamar o use case","backend,priority:high",07 - Contracts
+CON-003 — Gerenciar participantes,"## Objetivo
+Adicionar e ordenar signatários.
+
+## Tarefas
+- [ ] Validação de email e ordem
+
+## Critérios de aceite
+- [ ] Participantes ficam vinculados","backend,priority:high",07 - Contracts
+CON-004 — Enviar contrato,"## Objetivo
+Criar signature requests.
+
+## Tarefas
+- [ ] Tokens e emails
+
+## Critérios de aceite
+- [ ] Contrato fica aguardando assinatura","backend,priority:high",07 - Contracts
+CON-005 — Status do contrato,"## Objetivo
+Implementar máquina de estados.
+
+## Tarefas
+- [ ] Draft, awaiting, partial, signed, expired, cancelled
+
+## Critérios de aceite
+- [ ] Transições inválidas são rejeitadas","backend,priority:high",07 - Contracts
+SIG-001 — Criar sessão pública,"## Objetivo
+Abrir signing session.
+
+## Tarefas
+- [ ] Token, expiração e rate limit
+
+## Critérios de aceite
+- [ ] Signatário acessa sem conta","backend,security,priority:high",08 - Signatures
+SIG-002 — Identificação do signatário,"## Objetivo
+Registrar dados de identificação.
+
+## Tarefas
+- [ ] Nome, email e dados configurados
+
+## Critérios de aceite
+- [ ] Dados são vinculados à request","backend,security,priority:high",08 - Signatures
+SIG-003 — Registrar assinatura,"## Objetivo
+Persistir assinatura.
+
+## Tarefas
+- [ ] Assinatura, timestamp e metadata
+
+## Critérios de aceite
+- [ ] Assinatura é imutável","backend,security,priority:high",08 - Signatures
+SIG-004 — Completar contrato,"## Objetivo
+Atualizar status após todas assinaturas.
+
+## Tarefas
+- [ ] Verificar participantes pendentes
+
+## Critérios de aceite
+- [ ] Contrato vira signed","backend,security,priority:high",08 - Signatures
+SIG-005 — Impedir assinatura duplicada,"## Objetivo
+Validar request já assinada.
+
+## Tarefas
+- [ ] Retornar estado apropriado
+
+## Critérios de aceite
+- [ ] Mesma request não assina duas vezes","backend,security,priority:high",08 - Signatures
+INV-001 — Criar fatura,"## Objetivo
+Criar invoice.
+
+## Tarefas
+- [ ] Itens, vencimento e valores
+
+## Critérios de aceite
+- [ ] Fatura inicia em draft","backend,priority:high",09 - Invoices
+INV-002 — Gerar fatura do contrato,"## Objetivo
+Criar invoice após contrato assinado.
+
+## Tarefas
+- [ ] Mapear itens/valor
+
+## Critérios de aceite
+- [ ] Workflow consegue gerar invoice","backend,priority:high",09 - Invoices
+INV-003 — Listar faturas,"## Objetivo
+Listar invoices.
+
+## Tarefas
+- [ ] Filtros e paginação
+
+## Critérios de aceite
+- [ ] Somente tenant atual","backend,priority:high",09 - Invoices
+INV-004 — Consultar fatura,"## Objetivo
+Detalhes e itens.
+
+## Tarefas
+- [ ] Endpoint autorizado
+
+## Critérios de aceite
+- [ ] Dados completos retornados","backend,priority:high",09 - Invoices
+INV-005 — Enviar fatura,"## Objetivo
+Enviar por email/link.
+
+## Tarefas
+- [ ] Status e notification
+
+## Critérios de aceite
+- [ ] Cliente recebe fatura","backend,priority:high",09 - Invoices
+INV-006 — Registrar pagamento,"## Objetivo
+Registrar payment.
+
+## Tarefas
+- [ ] Valor, método e data
+
+## Critérios de aceite
+- [ ] Invoice é marcada paid quando quitada","backend,priority:high",09 - Invoices
+INV-007 — Vencimento de fatura,"## Objetivo
+Detectar overdue.
+
+## Tarefas
+- [ ] Regra de vencimento
+
+## Critérios de aceite
+- [ ] Invoice vencida muda de status","backend,priority:high",09 - Invoices
+INV-008 — Cancelar fatura,"## Objetivo
+Cancelar invoice.
+
+## Tarefas
+- [ ] Regra de estado
+
+## Critérios de aceite
+- [ ] Fatura cancelada não aceita pagamento","backend,priority:high",09 - Invoices
+TASK-001 — CRUD de tarefas,"## Objetivo
+Criar e gerenciar tarefas internas.
+
+## Tarefas
+- [ ] Create/list/update/complete
+
+## Critérios de aceite
+- [ ] Tasks respeitam organização","backend,priority:high",04 - Customers
+TASK-002 — Atribuir tarefa,"## Objetivo
+Atribuir a membro.
+
+## Tarefas
+- [ ] Validação de membership
+
+## Critérios de aceite
+- [ ] Assignee é válido","backend,priority:high",04 - Customers
+NOTIF-001 — Serviço de notificações,"## Objetivo
+Criar abstração.
+
+## Tarefas
+- [ ] Create/list/read
+
+## Critérios de aceite
+- [ ] Eventos podem gerar notificações","backend,priority:high",12 - Notifications & Audit
+NOTIF-002 — Preferências de notificação,"## Objetivo
+Persistir preferências.
+
+## Tarefas
+- [ ] Email/in-app por tipo
+
+## Critérios de aceite
+- [ ] Preferências são respeitadas","backend,priority:high",12 - Notifications & Audit
+AUD-001 — Serviço de auditoria,"## Objetivo
+Criar audit service.
+
+## Tarefas
+- [ ] Actor, action, resource e metadata
+
+## Critérios de aceite
+- [ ] Eventos críticos são persistidos","backend,priority:high",12 - Notifications & Audit
+ACT-001 — Serviço de atividades,"## Objetivo
+Criar timeline service.
+
+## Tarefas
+- [ ] Create/query activities
+
+## Critérios de aceite
+- [ ] Entidades podem registrar atividades","backend,priority:high",12 - Notifications & Audit
+DASH-001 — Resumo do dashboard,"## Objetivo
+Retornar KPIs.
+
+## Tarefas
+- [ ] Revenue, customers, contracts e actions
+
+## Critérios de aceite
+- [ ] Dados filtrados por organização","backend,priority:high",11 - Dashboard
+DASH-002 — Pipeline do dashboard,"## Objetivo
+Retornar pipeline agregado.
+
+## Tarefas
+- [ ] Valores e quantidade por estágio
+
+## Critérios de aceite
+- [ ] Dashboard consegue renderizar gráfico","backend,priority:high",11 - Dashboard
+DASH-003 — Receita por período,"## Objetivo
+Retornar série temporal.
+
+## Tarefas
+- [ ] Filtros por período
+
+## Critérios de aceite
+- [ ] Dados prontos para gráfico","backend,priority:high",11 - Dashboard
+WF-001 — Definir eventos de domínio,"## Objetivo
+Criar eventos ProposalApproved, ContractSigned e InvoicePaid.
+
+## Tarefas
+- [ ] Contratos/tipos de eventos e publisher
+
+## Critérios de aceite
+- [ ] Eventos possuem payload versionável","backend,workflow,priority:high",10 - Workflows
+WF-002 — Infra de processamento,"## Objetivo
+Criar mecanismo assíncrono.
+
+## Tarefas
+- [ ] Redis/queue abstraction e worker
+
+## Critérios de aceite
+- [ ] Jobs podem ser enfileirados e processados","backend,workflow,priority:high",10 - Workflows
+WF-003 — Criar workflow,"## Objetivo
+Implementar CRUD de workflows.
+
+## Tarefas
+- [ ] Trigger, nodes e status
+
+## Critérios de aceite
+- [ ] Workflow pode ser salvo","backend,workflow,priority:high",10 - Workflows
+WF-004 — Executar trigger,"## Objetivo
+Disparar workflow por evento.
+
+## Tarefas
+- [ ] Resolver workflows ativos
+
+## Critérios de aceite
+- [ ] Evento dispara execução correta","backend,workflow,priority:high",10 - Workflows
+WF-005 — Action create contract,"## Objetivo
+Implementar ação de criação de contrato.
+
+## Tarefas
+- [ ] Mapear proposal/deal
+
+## Critérios de aceite
+- [ ] Contrato é criado uma única vez","backend,workflow,priority:high",10 - Workflows
+WF-006 — Action create invoice,"## Objetivo
+Implementar ação de criação de invoice.
+
+## Tarefas
+- [ ] Mapear contract/deal
+
+## Critérios de aceite
+- [ ] Invoice é criada uma única vez","backend,workflow,priority:high",10 - Workflows
+WF-007 — Action mark deal won,"## Objetivo
+Implementar ação de encerramento.
+
+## Tarefas
+- [ ] Atualizar deal após pagamento
+
+## Critérios de aceite
+- [ ] Deal vira won","backend,workflow,priority:high",10 - Workflows
+WF-008 — Conditions,"## Objetivo
+Implementar condições básicas.
+
+## Tarefas
+- [ ] Comparadores e valores
+
+## Critérios de aceite
+- [ ] Workflow pode seguir caminhos condicionais","backend,workflow,priority:high",10 - Workflows
+WF-009 — Delay,"## Objetivo
+Implementar ação de atraso.
+
+## Tarefas
+- [ ] Persistir job futuro
+
+## Critérios de aceite
+- [ ] Execução continua após delay","backend,workflow,priority:high",10 - Workflows
+WF-010 — Workflow run history,"## Objetivo
+Persistir execução.
+
+## Tarefas
+- [ ] Input/output/error/status
+
+## Critérios de aceite
+- [ ] Histórico é consultável","backend,workflow,priority:high",10 - Workflows
+WF-011 — Retry e falhas,"## Objetivo
+Adicionar retry controlado.
+
+## Tarefas
+- [ ] Tentativas e dead-letter/error state
+
+## Critérios de aceite
+- [ ] Falha não perde execução","backend,workflow,priority:high",10 - Workflows
+WF-012 — Fluxo ProposalApproved,"## Objetivo
+Automatizar aprovação → contrato.
+
+## Tarefas
+- [ ] Criar workflow default
+
+## Critérios de aceite
+- [ ] Aprovação cria contrato automaticamente","backend,workflow,priority:high",10 - Workflows
+WF-013 — Fluxo ContractSigned,"## Objetivo
+Automatizar assinatura → invoice.
+
+## Tarefas
+- [ ] Criar workflow default
+
+## Critérios de aceite
+- [ ] Contrato assinado cria fatura","backend,workflow,priority:high",10 - Workflows
+WF-014 — Fluxo InvoicePaid,"## Objetivo
+Automatizar pagamento → deal won.
+
+## Tarefas
+- [ ] Criar workflow default
+
+## Critérios de aceite
+- [ ] Pagamento liquida deal","backend,workflow,priority:high",10 - Workflows
+FE-001 — Shell da aplicação,"## Objetivo
+Criar App Shell, sidebar e topbar.
+
+## Tarefas
+- [ ] Criar App Shell, sidebar e topbar
+
+## Critérios de aceite
+- [ ] Navegação principal funciona e responde em desktop/mobile","frontend,priority:high",01 - Foundation
+FE-002 — Design system,"## Objetivo
+Criar tokens e componentes base.
+
+## Tarefas
+- [ ] Criar tokens e componentes base
+
+## Critérios de aceite
+- [ ] Button, Input, Dialog, Table, Badge, Tabs, Select e DatePicker disponíveis","frontend,priority:high",01 - Foundation
+FE-003 — API client,"## Objetivo
+Criar cliente HTTP tipado.
+
+## Tarefas
+- [ ] Criar cliente HTTP tipado
+
+## Critérios de aceite
+- [ ] Tratamento de erros e auth consistente","frontend,priority:high",01 - Foundation
+FE-004 — Protected routes,"## Objetivo
+Proteger rotas privadas.
+
+## Tarefas
+- [ ] Proteger rotas privadas
+
+## Critérios de aceite
+- [ ] Usuário sem sessão é redirecionado para login","frontend,priority:high",01 - Foundation
+FE-005 — Landing page,"## Objetivo
+Implementar marketing site.
+
+## Tarefas
+- [ ] Implementar marketing site
+
+## Critérios de aceite
+- [ ] Landing possui hero, features, pricing, FAQ e CTA","frontend,priority:high",13 - Testing
+FE-006 — Login,"## Objetivo
+Implementar tela de login.
+
+## Tarefas
+- [ ] Implementar tela de login
+
+## Critérios de aceite
+- [ ] Validação, loading, erro e sucesso","frontend,priority:high",02 - Authentication
+FE-007 — Cadastro,"## Objetivo
+Implementar signup.
+
+## Tarefas
+- [ ] Implementar signup
+
+## Critérios de aceite
+- [ ] Validação, senha forte e estados","frontend,priority:high",02 - Authentication
+FE-008 — Verificação de email,"## Objetivo
+Implementar UI de verificação.
+
+## Tarefas
+- [ ] Implementar UI de verificação
+
+## Critérios de aceite
+- [ ] Reenvio, cooldown e sucesso","frontend,priority:high",02 - Authentication
+FE-009 — Forgot password,"## Objetivo
+Implementar recuperação.
+
+## Tarefas
+- [ ] Implementar recuperação
+
+## Critérios de aceite
+- [ ] Email enviado e estados de erro","frontend,priority:high",02 - Authentication
+FE-010 — Reset password,"## Objetivo
+Implementar redefinição.
+
+## Tarefas
+- [ ] Implementar redefinição
+
+## Critérios de aceite
+- [ ] Token válido, senha forte e sucesso","frontend,priority:high",02 - Authentication
+FE-011 — 2FA login,"## Objetivo
+Implementar challenge OTP.
+
+## Tarefas
+- [ ] Implementar challenge OTP
+
+## Critérios de aceite
+- [ ] Código, recovery code e erros","frontend,priority:high",02 - Authentication
+FE-012 — 2FA settings,"## Objetivo
+Implementar ativação.
+
+## Tarefas
+- [ ] Implementar ativação
+
+## Critérios de aceite
+- [ ] QR, secret, confirmação e recovery codes","frontend,priority:high",02 - Authentication
+FE-013 — Onboarding,"## Objetivo
+Implementar wizard.
+
+## Tarefas
+- [ ] Implementar wizard
+
+## Critérios de aceite
+- [ ] Welcome, organização, workspace, equipe e conclusão","frontend,priority:high",02 - Authentication
+FE-014 — Convite,"## Objetivo
+Implementar accept invitation.
+
+## Tarefas
+- [ ] Implementar accept invitation
+
+## Critérios de aceite
+- [ ] Usuário pode entrar ou criar conta","frontend,priority:high",02 - Authentication
+FE-015 — Dashboard,"## Objetivo
+Implementar dashboard.
+
+## Tarefas
+- [ ] Implementar dashboard
+
+## Critérios de aceite
+- [ ] KPIs, pipeline, receita, activity e pending actions","frontend,priority:high",11 - Dashboard
+FE-016 — Customers list,"## Objetivo
+Implementar listagem.
+
+## Tarefas
+- [ ] Implementar listagem
+
+## Critérios de aceite
+- [ ] Paginação, busca, filtros e estados","frontend,priority:high",04 - Customers
+FE-017 — Customer form,"## Objetivo
+Criar formulário.
+
+## Tarefas
+- [ ] Criar formulário
+
+## Critérios de aceite
+- [ ] Create/edit com validação","frontend,priority:high",04 - Customers
+FE-018 — Customer detail,"## Objetivo
+Implementar detalhe.
+
+## Tarefas
+- [ ] Implementar detalhe
+
+## Critérios de aceite
+- [ ] Overview, contatos, deals, documentos e timeline","frontend,priority:high",04 - Customers
+FE-019 — Deals pipeline,"## Objetivo
+Implementar Kanban.
+
+## Tarefas
+- [ ] Implementar Kanban
+
+## Critérios de aceite
+- [ ] Colunas por estágio e cards","frontend,priority:high",05 - Deals
+FE-020 — Deal form,"## Objetivo
+Criar/editar deal.
+
+## Tarefas
+- [ ] Criar/editar deal
+
+## Critérios de aceite
+- [ ] Formulário com cliente, valor, owner e datas","frontend,priority:high",05 - Deals
+FE-021 — Deal detail,"## Objetivo
+Implementar detalhe.
+
+## Tarefas
+- [ ] Implementar detalhe
+
+## Critérios de aceite
+- [ ] Activity, proposal e contract","frontend,priority:high",05 - Deals
+FE-022 — Proposal list,"## Objetivo
+Listar propostas.
+
+## Tarefas
+- [ ] Listar propostas
+
+## Critérios de aceite
+- [ ] Status, busca e filtros","frontend,priority:high",06 - Proposals
+FE-023 — Proposal editor,"## Objetivo
+Criar editor.
+
+## Tarefas
+- [ ] Criar editor
+
+## Critérios de aceite
+- [ ] Itens, totais, validade e preview","frontend,priority:high",06 - Proposals
+FE-024 — Proposal send,"## Objetivo
+Enviar proposta.
+
+## Tarefas
+- [ ] Enviar proposta
+
+## Critérios de aceite
+- [ ] Confirmação e status","frontend,priority:high",06 - Proposals
+FE-025 — Public proposal,"## Objetivo
+Implementar página pública.
+
+## Tarefas
+- [ ] Implementar página pública
+
+## Critérios de aceite
+- [ ] Documento, valor, approve/reject e estados","frontend,priority:high",06 - Proposals
+FE-026 — Proposal approval,"## Objetivo
+Implementar sucesso/erro.
+
+## Tarefas
+- [ ] Implementar sucesso/erro
+
+## Critérios de aceite
+- [ ] Approved, rejected, expired e invalid","frontend,priority:high",06 - Proposals
+FE-027 — Contracts list,"## Objetivo
+Listar contratos.
+
+## Tarefas
+- [ ] Listar contratos
+
+## Critérios de aceite
+- [ ] Status, participantes e filtros","frontend,priority:high",07 - Contracts
+FE-028 — Contract detail,"## Objetivo
+Detalhe do contrato.
+
+## Tarefas
+- [ ] Detalhe do contrato
+
+## Critérios de aceite
+- [ ] Documento, participantes, status e activity","frontend,priority:high",07 - Contracts
+FE-029 — Public signing,"## Objetivo
+Fluxo de assinatura público.
+
+## Tarefas
+- [ ] Fluxo de assinatura público
+
+## Critérios de aceite
+- [ ] Review, identify, sign e complete","frontend,priority:high",08 - Signatures
+FE-030 — Signature input,"## Objetivo
+Canvas e assinatura digitada.
+
+## Tarefas
+- [ ] Canvas e assinatura digitada
+
+## Critérios de aceite
+- [ ] Touch-friendly e preview","frontend,priority:high",08 - Signatures
+FE-031 — Signing error states,"## Objetivo
+Estados de link.
+
+## Tarefas
+- [ ] Estados de link
+
+## Critérios de aceite
+- [ ] Expired, invalid, signed e cancelled","frontend,priority:high",08 - Signatures
+FE-032 — Invoices list,"## Objetivo
+Listar invoices.
+
+## Tarefas
+- [ ] Listar invoices
+
+## Critérios de aceite
+- [ ] Filtros, status e paginação","frontend,priority:high",09 - Invoices
+FE-033 — Invoice form,"## Objetivo
+Criar/editar invoice.
+
+## Tarefas
+- [ ] Criar/editar invoice
+
+## Critérios de aceite
+- [ ] Itens, vencimento e total","frontend,priority:high",09 - Invoices
+FE-034 — Invoice detail,"## Objetivo
+Detalhe e pagamento.
+
+## Tarefas
+- [ ] Detalhe e pagamento
+
+## Critérios de aceite
+- [ ] Registrar pagamento e histórico","frontend,priority:high",09 - Invoices
+FE-035 — Workflow list,"## Objetivo
+Listar workflows.
+
+## Tarefas
+- [ ] Listar workflows
+
+## Critérios de aceite
+- [ ] Status e ações","frontend,priority:high",10 - Workflows
+FE-036 — Workflow builder,"## Objetivo
+Criar canvas de workflow.
+
+## Tarefas
+- [ ] Criar canvas de workflow
+
+## Critérios de aceite
+- [ ] Nodes, conexões e configuração","frontend,priority:high",10 - Workflows
+FE-037 — Workflow execution,"## Objetivo
+Histórico de execuções.
+
+## Tarefas
+- [ ] Histórico de execuções
+
+## Critérios de aceite
+- [ ] Status, logs e erros","frontend,priority:high",10 - Workflows
+FE-038 — Tasks,"## Objetivo
+Implementar tarefas.
+
+## Tarefas
+- [ ] Implementar tarefas
+
+## Critérios de aceite
+- [ ] List, Kanban, create, assign e complete","frontend,priority:high",13 - Testing
+FE-039 — Notifications,"## Objetivo
+Implementar notification center.
+
+## Tarefas
+- [ ] Implementar notification center
+
+## Critérios de aceite
+- [ ] Unread count, list e mark read","frontend,priority:high",12 - Notifications & Audit
+FE-040 — Activity timeline,"## Objetivo
+Implementar timelines.
+
+## Tarefas
+- [ ] Implementar timelines
+
+## Critérios de aceite
+- [ ] Customer, deal e global","frontend,priority:high",12 - Notifications & Audit
+FE-041 — Team management,"## Objetivo
+Implementar membros.
+
+## Tarefas
+- [ ] Implementar membros
+
+## Critérios de aceite
+- [ ] Invite, role, remove e status","frontend,priority:high",03 - Organizations
+FE-042 — Organization settings,"## Objetivo
+Configurar organização.
+
+## Tarefas
+- [ ] Configurar organização
+
+## Critérios de aceite
+- [ ] Nome, logo, slug e dados","frontend,priority:high",03 - Organizations
+FE-043 — Profile settings,"## Objetivo
+Configurar perfil.
+
+## Tarefas
+- [ ] Configurar perfil
+
+## Critérios de aceite
+- [ ] Nome, avatar e dados pessoais","frontend,priority:high",02 - Authentication
+FE-044 — Security settings,"## Objetivo
+Configurar segurança.
+
+## Tarefas
+- [ ] Configurar segurança
+
+## Critérios de aceite
+- [ ] 2FA, sessões e recovery codes","frontend,priority:high",02 - Authentication
+FE-045 — Notification settings,"## Objetivo
+Preferências.
+
+## Tarefas
+- [ ] Preferências
+
+## Critérios de aceite
+- [ ] Email e in-app","frontend,priority:high",02 - Authentication
+FE-046 — Responsive pass,"## Objetivo
+Revisar todas as telas.
+
+## Tarefas
+- [ ] Revisar todas as telas
+
+## Critérios de aceite
+- [ ] Desktop/tablet/mobile sem overflow","frontend,priority:high",13 - Testing
+FE-047 — Accessibility pass,"## Objetivo
+Revisar acessibilidade.
+
+## Tarefas
+- [ ] Revisar acessibilidade
+
+## Critérios de aceite
+- [ ] Focus, labels, contrast e keyboard navigation","frontend,priority:high",13 - Testing
+SEC-001 — Rate limiting,"## Objetivo
+Adicionar rate limiting em auth e endpoints públicos.
+
+## Tarefas
+- [ ] Limites por IP/token/rota
+
+## Critérios de aceite
+- [ ] Abuso básico é bloqueado","security,backend,priority:high",13 - Testing
+SEC-002 — CORS,"## Objetivo
+Configurar CORS por ambiente.
+
+## Tarefas
+- [ ] Allowlist web origin
+
+## Critérios de aceite
+- [ ] Produção não aceita origins arbitrárias","security,backend,priority:high",13 - Testing
+SEC-003 — Security headers,"## Objetivo
+Adicionar headers de segurança.
+
+## Tarefas
+- [ ] Helmet/config equivalente
+
+## Critérios de aceite
+- [ ] Headers são verificados em produção","security,backend,priority:high",13 - Testing
+SEC-004 — Tenant isolation tests,"## Objetivo
+Testar isolamento entre organizações.
+
+## Tarefas
+- [ ] Fixtures A/B e endpoints principais
+
+## Critérios de aceite
+- [ ] Nenhum recurso de A é acessível por B","security,backend,priority:high",13 - Testing
+SEC-005 — Public token hardening,"## Objetivo
+Proteger links públicos.
+
+## Tarefas
+- [ ] Expiração, hash, rate limit e revogação
+
+## Critérios de aceite
+- [ ] Tokens inválidos/expirados não expõem dados","security,backend,priority:high",13 - Testing
+TEST-001 — Unit tests de domínio,"## Objetivo
+Cobrir regras centrais.
+
+## Tarefas
+- [ ] Deal, proposal, contract, invoice e payment
+
+## Critérios de aceite
+- [ ] Casos normais e inválidos cobertos","testing,priority:high",13 - Testing
+TEST-002 — Integration tests de repositories,"## Objetivo
+Testar persistência.
+
+## Tarefas
+- [ ] Fixtures e banco de teste
+
+## Critérios de aceite
+- [ ] Repositories passam em banco real de teste","testing,priority:high",13 - Testing
+TEST-003 — Auth E2E,"## Objetivo
+Testar autenticação.
+
+## Tarefas
+- [ ] Signup, verify, login, reset e 2FA
+
+## Critérios de aceite
+- [ ] Fluxo completo funciona","testing,priority:high",13 - Testing
+TEST-004 — Customer E2E,"## Objetivo
+Testar customer CRUD.
+
+## Tarefas
+- [ ] Create/list/update/archive
+
+## Critérios de aceite
+- [ ] Fluxo passa","testing,priority:high",13 - Testing
+TEST-005 — Deal E2E,"## Objetivo
+Testar pipeline.
+
+## Tarefas
+- [ ] Create/move/won/lost
+
+## Critérios de aceite
+- [ ] Fluxo passa","testing,priority:high",13 - Testing
+TEST-006 — Proposal E2E,"## Objetivo
+Testar proposta.
+
+## Tarefas
+- [ ] Create/send/public/approve/reject
+
+## Critérios de aceite
+- [ ] Fluxo passa","testing,priority:high",13 - Testing
+TEST-007 — Signature E2E,"## Objetivo
+Testar assinatura externa.
+
+## Tarefas
+- [ ] Public link/identify/sign/complete
+
+## Critérios de aceite
+- [ ] Fluxo passa sem conta externa","testing,priority:high",13 - Testing
+TEST-008 — Invoice E2E,"## Objetivo
+Testar faturamento.
+
+## Tarefas
+- [ ] Create/pay/overdue/cancel
+
+## Critérios de aceite
+- [ ] Fluxo passa","testing,priority:high",13 - Testing
+TEST-009 — Workflow E2E,"## Objetivo
+Testar automações.
+
+## Tarefas
+- [ ] Approval→contract→signature→invoice→payment→won
+
+## Critérios de aceite
+- [ ] Workflow completo passa","testing,priority:high",13 - Testing
+TEST-010 — Frontend smoke tests,"## Objetivo
+Testar rotas críticas.
+
+## Tarefas
+- [ ] Login, dashboard, customer, proposal, signing
+
+## Critérios de aceite
+- [ ] Rotas principais carregam","testing,priority:high",13 - Testing
+DOC-001 — README,"## Objetivo
+Documentar projeto.
+
+## Tarefas
+- [ ] Setup, arquitetura, scripts e env
+
+## Critérios de aceite
+- [ ] Novo dev consegue executar o projeto","documentation,priority:high",14 - Production
+DOC-002 — Architecture docs,"## Objetivo
+Documentar arquitetura.
+
+## Tarefas
+- [ ] Diagrama monorepo, módulos e fluxo
+
+## Critérios de aceite
+- [ ] Decisões principais estão documentadas","documentation,priority:high",14 - Production
+DOC-003 — API docs,"## Objetivo
+Documentar API.
+
+## Tarefas
+- [ ] Swagger e convenções
+
+## Critérios de aceite
+- [ ] Endpoints principais documentados","documentation,priority:high",14 - Production
+DOC-004 — ADRs,"## Objetivo
+Registrar decisões importantes.
+
+## Tarefas
+- [ ] Auth, tenancy, workflow e storage
+
+## Critérios de aceite
+- [ ] ADRs versionados","documentation,priority:high",14 - Production
+DEP-001 — Production database,"## Objetivo
+Preparar PostgreSQL de produção.
+
+## Tarefas
+- [ ] Connection, migrations e backup strategy
+
+## Critérios de aceite
+- [ ] Banco produtivo configurado","deployment,priority:high",14 - Production
+DEP-002 — API deployment,"## Objetivo
+Publicar API.
+
+## Tarefas
+- [ ] Build, env, healthcheck
+
+## Critérios de aceite
+- [ ] API responde em produção","deployment,priority:high",14 - Production
+DEP-003 — Web deployment,"## Objetivo
+Publicar web.
+
+## Tarefas
+- [ ] Build e env
+
+## Critérios de aceite
+- [ ] Aplicação web responde em produção","deployment,priority:high",14 - Production
+DEP-004 — Redis/worker deployment,"## Objetivo
+Publicar processamento assíncrono.
+
+## Tarefas
+- [ ] Worker e Redis
+
+## Critérios de aceite
+- [ ] Jobs processam em produção","deployment,priority:high",14 - Production
+DEP-005 — Email provider,"## Objetivo
+Configurar envio real.
+
+## Tarefas
+- [ ] Provider, domain e templates
+
+## Critérios de aceite
+- [ ] Emails principais são entregues","deployment,priority:high",14 - Production
+DEP-006 — Observability,"## Objetivo
+Adicionar logs/monitoramento.
+
+## Tarefas
+- [ ] Error tracking e health checks
+
+## Critérios de aceite
+- [ ] Falhas produtivas são observáveis","deployment,priority:high",14 - Production
+DEP-007 — Production smoke test,"## Objetivo
+Executar checklist final.
+
+## Tarefas
+- [ ] Auth, CRM, proposal, signing, invoice e workflow
+
+## Critérios de aceite
+- [ ] Fluxo crítico passa em produção","deployment,priority:high",14 - Production
+FINAL-001 — FlowDesk Production Ready,"## Objetivo
+Concluir o produto e validar o fluxo ponta a ponta.
+
+## Tarefas
+- [ ] Executar checklist final de segurança, testes, UX, documentação e deploy
+
+## Critérios de aceite
+- [ ] Usuário consegue cadastrar, criar negócio, enviar proposta, cliente aprovar, contrato ser assinado, invoice ser criada/paga e deal ser encerrado","deployment,priority:high",14 - Production
+INT-001 — Integrar auth no frontend,"## Objetivo
+Conectar Better Auth ao TanStack Start.
+
+## Tarefas
+- [ ] Session hydration, login/logout e guards
+
+## Critérios de aceite
+- [ ] Usuário autenticado navega sem inconsistências","frontend,backend,priority:high",04 - Customers
+INT-002 — Integrar organization context,"## Objetivo
+Sincronizar tenant atual.
+
+## Tarefas
+- [ ] Provider/context e headers
+
+## Critérios de aceite
+- [ ] Requests usam organization correta","frontend,backend,priority:high",04 - Customers
+INT-003 — Integrar Customers,"## Objetivo
+Conectar UI à API.
+
+## Tarefas
+- [ ] Queries, mutations, cache e invalidation
+
+## Critérios de aceite
+- [ ] CRUD completo funciona pela UI","frontend,backend,priority:high",04 - Customers
+INT-004 — Integrar Deals,"## Objetivo
+Conectar pipeline à API.
+
+## Tarefas
+- [ ] Queries/mutations e optimistic updates quando apropriado
+
+## Critérios de aceite
+- [ ] Pipeline funciona ponta a ponta","frontend,backend,priority:high",05 - Deals
+INT-005 — Integrar Proposals,"## Objetivo
+Conectar editor e envio.
+
+## Tarefas
+- [ ] Queries/mutations e public link
+
+## Critérios de aceite
+- [ ] Proposta pode ser criada e enviada","frontend,backend,priority:high",06 - Proposals
+INT-006 — Integrar Public Proposal,"## Objetivo
+Conectar página pública.
+
+## Tarefas
+- [ ] Token, approval/rejection e estados
+
+## Critérios de aceite
+- [ ] Cliente aprova sem login","frontend,backend,priority:high",06 - Proposals
+INT-007 — Integrar Contracts,"## Objetivo
+Conectar contratos.
+
+## Tarefas
+- [ ] Queries, send e participants
+
+## Critérios de aceite
+- [ ] Contrato pode ser enviado","frontend,backend,priority:high",07 - Contracts
+INT-008 — Integrar Signing,"## Objetivo
+Conectar assinatura pública.
+
+## Tarefas
+- [ ] Session, identification, signature e completion
+
+## Critérios de aceite
+- [ ] Documento pode ser assinado sem conta","frontend,backend,priority:high",08 - Signatures
+INT-009 — Integrar Invoices,"## Objetivo
+Conectar financeiro.
+
+## Tarefas
+- [ ] CRUD e payment mutation
+
+## Critérios de aceite
+- [ ] Invoice pode ser liquidada","frontend,backend,priority:high",09 - Invoices
+INT-010 — Integrar Workflows,"## Objetivo
+Conectar builder e execução.
+
+## Tarefas
+- [ ] CRUD, activate e history
+
+## Critérios de aceite
+- [ ] Workflow pode ser configurado e acompanhado","frontend,backend,priority:high",10 - Workflows

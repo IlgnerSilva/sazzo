@@ -19,7 +19,7 @@ jobs:
 
       # Passo 2: Executa a action que lê o CSV e cria as issues
       - name: Importar Issues do CSV
-        uses: ginfuru/issue-importer-action@v1.0.0 # Substitua pela versão mais recente/estável se necessário
+        uses: dsanchezcr/issue-importer-action@v1.0.0 # Substitua pela versão mais recente/estável se necessário
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          file_path: './issues.csv' # Caminho exato do seu arquivo de dados
+          file_path: './flowdesk_github_issues_corrigido.csv' # Caminho exato do seu arquivo de dados

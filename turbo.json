@@ -20,6 +20,6 @@
     "//#lint": {
       "cache": false
     },
-    "lint:fix": {}
+    "//#lint:fix": {}
   }
 }

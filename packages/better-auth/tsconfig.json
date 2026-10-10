@@ -1,9 +1,6 @@
 {
 	"extends": "@sazzo/tsconfig/base.json",
 	"compilerOptions": {
-		"allowJs": true,
-		"esModuleInterop": true,
-		"incremental": false,
 		"rootDir": "./src",
 		"outDir": "./dist"
 	},

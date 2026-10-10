@@ -1,15 +1,8 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
-import { i18n } from "@better-auth/i18n";
 import { db, schema } from "@sazzo/drizzle";
 import { compare, hash } from "bcrypt";
 import { betterAuth } from "better-auth";
-import {
-	admin,
-	emailOTP,
-	magicLink,
-	organization,
-	twoFactor,
-} from "better-auth/plugins";
+import { admin, organization, twoFactor } from "better-auth/plugins";
 import { v7 } from "uuid";
 
 export const auth = betterAuth({

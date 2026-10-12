@@ -1,8 +1,9 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
-import { db, schema } from "@sazzo/drizzle";
+import { db } from "@sazzo/drizzle";
+import * as schema from "@sazzo/drizzle/schema";
 import { compare, hash } from "bcrypt";
 import { betterAuth } from "better-auth";
-import { admin, organization, twoFactor } from "better-auth/plugins";
+import { admin, openAPI, organization, twoFactor } from "better-auth/plugins";
 import { v7 } from "uuid";
 
 export const auth = betterAuth({
@@ -18,7 +19,7 @@ export const auth = betterAuth({
 	},
 	secret: process.env.SECRET,
 	baseURL: process.env.BASE_URL,
-	basePath: "/api/v1",
+	basePath: "/api/v1/auth",
 	emailAndPassword: {
 		enabled: true,
 		password: {
@@ -28,5 +29,12 @@ export const auth = betterAuth({
 		requireEmailVerification: true,
 	},
 	emailVerification: {},
-	plugins: [admin(), organization(), twoFactor()],
+	plugins: [
+		admin(),
+		organization(),
+		twoFactor(),
+		openAPI({
+			disableDefaultReference: true,
+		}),
+	],
 });

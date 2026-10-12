@@ -15,13 +15,19 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"preset": "recommended"
+			"preset": "recommended",
+			"style": {
+				"useImportType": "off"
+			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
-		}
+		},
+		"parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
 	},
 	"assist": {
 		"enabled": true,
